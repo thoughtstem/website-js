@@ -1,0 +1,121 @@
+<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><div class="jumbotron" id="ns1861_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="ns1862_main()" id="ns1862_clicker">0</button></div></div><script>
+//<![CDATA[
+console.log("Mounted Clicker");
+window.ns1862_count=0;
+;
+function ns1862_main(){
+ns1862_inc(1);
+
+}
+
+function ns1862_inc(amount){
+console.log("Inc");
+ window.ns1862_count=(window.ns1862_count + amount);
+;
+ document.getElementById("ns1862_clicker").innerHTML=window.ns1862_count;
+;
+   if((window.ns1862_count == 10)){
+ns1861_main();
+
+}else{
+  ;
+
+};
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="ns1863_main()" id="ns1863_clicker">0</button></div></div><script>
+//<![CDATA[
+console.log("Mounted Clicker");
+window.ns1863_count=0;
+;
+function ns1863_main(){
+ns1863_inc(1);
+
+}
+
+function ns1863_inc(amount){
+console.log("Inc");
+ window.ns1863_count=(window.ns1863_count + amount);
+;
+ document.getElementById("ns1863_clicker").innerHTML=window.ns1863_count;
+;
+   if((window.ns1863_count == 10)){
+ns1861_main();
+
+}else{
+  ;
+
+};
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="ns1864_main()" id="ns1864_clicker">0</button></div></div><script>
+//<![CDATA[
+console.log("Mounted Clicker");
+window.ns1864_count=0;
+;
+function ns1864_main(){
+ns1864_inc(1);
+
+}
+
+function ns1864_inc(amount){
+console.log("Inc");
+ window.ns1864_count=(window.ns1864_count + amount);
+;
+ document.getElementById("ns1864_clicker").innerHTML=window.ns1864_count;
+;
+   if((window.ns1864_count == 10)){
+ns1861_main();
+
+}else{
+  ;
+
+};
+
+}
+
+
+//]]>
+</script></div></div></div></div><script>
+//<![CDATA[
+function ns1861_main(){
+document.getElementById("ns1861_jumbo").style.backgroundColor="red";
+;
+
+}
+
+
+//]]>
+</script><div><button type="button" class="btn btn-primary" onClick="ns1865_newClicker()">I make clickers</button><div id="ns1865_target"></div></div><script>
+//<![CDATA[
+function ns1865_newClicker(){
+document.getElementById("ns1865_target").innerHTML = "<div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">Click Me</h5><button type=\"button\" class=\"btn btn-primary\" onClick=\"ns1866_main()\" id=\"ns1866_clicker\">0</button></div></div>"
+
+aScript = document.createElement("script")
+aScript.text = "\n\nconsole.log(\"Mounted Clicker\");\nwindow.ns1866_count=0;\n;\nfunction ns1866_main(){\nns1866_inc(1);\n\n}\n\nfunction ns1866_inc(amount){\nconsole.log(\"Inc\");\n window.ns1866_count=(window.ns1866_count + amount);\n;\n document.getElementById(\"ns1866_clicker\").innerHTML=window.ns1866_count;\n;\n   if((window.ns1866_count == 10)){\nconsole.log(\"Max Reached\");\n\n}else{\n  ;\n\n};\n\n}\n\n\n\n"
+document.getElementById("ns1865_target").appendChild(aScript);
+
+}
+
+
+//]]>
+</script><div><button type="button" class="btn btn-primary" onClick="ns1867_newClicker()">I make clicker-makers</button><div id="ns1867_target"></div></div><script>
+//<![CDATA[
+function ns1867_newClicker(){
+document.getElementById("ns1867_target").innerHTML = "<div><button type=\"button\" class=\"btn btn-primary\" onClick=\"ns1868_newClicker()\">I make clickers</button><div id=\"ns1868_target\"></div></div>"
+
+aScript = document.createElement("script")
+aScript.text = "\n\nfunction ns1868_newClicker(){\ndocument.getElementById(\"ns1868_target\").innerHTML = \"<div class=\\\"card\\\"><div class=\\\"card-body\\\"><h5 class=\\\"card-title\\\">Click Me</h5><button type=\\\"button\\\" class=\\\"btn btn-primary\\\" onClick=\\\"ns1869_main()\\\" id=\\\"ns1869_clicker\\\">0</button></div></div>\"\n\naScript = document.createElement(\"script\")\naScript.text = \"\\n\\nconsole.log(\\\"Mounted Clicker\\\");\\nwindow.ns1869_count=0;\\n;\\nfunction ns1869_main(){\\nns1869_inc(1);\\n\\n}\\n\\nfunction ns1869_inc(amount){\\nconsole.log(\\\"Inc\\\");\\n window.ns1869_count=(window.ns1869_count + amount);\\n;\\n document.getElementById(\\\"ns1869_clicker\\\").innerHTML=window.ns1869_count;\\n;\\n   if((window.ns1869_count == 10)){\\nconsole.log(\\\"Max Reached\\\");\\n\\n}else{\\n  ;\\n\\n};\\n\\n}\\n\\n\\n\\n\"\ndocument.getElementById(\"ns1868_target\").appendChild(aScript);\n\n}\n\n\n\n"
+document.getElementById("ns1867_target").appendChild(aScript);
+
+}
+
+
+//]]>
+</script><script src="/js/jquery-3.2.1.slim.min.js"></script><script src="/js/bootstrap.bundle.min.js"></script></body></html>

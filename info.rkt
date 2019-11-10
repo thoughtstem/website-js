@@ -1,5 +1,5 @@
 #lang info
-(define collection "js")
+(define collection "website-js")
 (define deps '("base"))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
 (define scribblings '(("scribblings/js.scrbl" ())))

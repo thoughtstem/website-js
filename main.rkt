@@ -1,6 +1,9 @@
 #lang at-exp racket
 
-(require syntax/parse/define)
+(provide (all-defined-out))
+
+(require syntax/parse/define
+         website)
 
 ;Key concepts:
 ;  * Minimal amount of javascript language to provide react-like abstractions.  Only compile to that.
@@ -29,11 +32,12 @@
 (define (window. name)
   (string->symbol (~a 'window. (namespace) "_" name)))
 
+
 (define (call fun . args)
-  (define name (~a (namespace) "_" fun))
+  (define name (~a "window." (namespace) "_" fun))
 
   (string->symbol
-    @~a{@name(@params[args])}))
+    @~a{@name(@params[(map val args)])}))
 
 
 (define (params . args)
@@ -42,14 +46,18 @@
 (define (function name args . body)
   (string->symbol
     @~a{
-    function @(~a (namespace) "_" name)(@(params args)){
+    window.@(~a (namespace) "_" name) = function(@(params args)){
     @(string-join (map ~a (map statement body)))
     }
     @"\n"}))
 
 (define (id s)
   ;No string->symbol because it's for generating HTML ids, and for use with getEl()
-  (~a (namespace) "_" s))
+  (~a  (namespace) "_" s))
+
+(define (id# s)
+  ;No string->symbol because it's for generating HTML ids, and for use with getEl()
+  (~a "#" (namespace) "_" s))
 
 ;/END Namespace-aware stuff
 
@@ -74,7 +82,7 @@
   (statement (~a "var " name "=" val)))
 
 (define (set-var name v)
-  (statement (~a name "=" v)))
+  (statement (~a name "=" (val v))))
 
 (define (get-var name)
   (string->symbol
@@ -83,7 +91,7 @@
 
 (define (+=! name amount)
   (set-var name (op '+ (get-var name)
-                    'amount)))
+                    (val amount))))
 
 (define innerHTML "innerHTML")
 
@@ -157,43 +165,14 @@
                 #:keep-script-tags? #f))
 
 
-;TODO:
-;  * Child state affects parent state
-;  * Injecting new component at runtime from JS? Works?
+(define (alert s)
+  (statement @~a{alert(@(val s))}))
 
 
-(require website/bootstrap)
-
-(define (clicker type 
-                 #:max (max 10) 
-                 #:on-max (on-max (log "Max Reached")))
-  (enclose
-    (define button-id    (id "clicker"))
-    (define window.count (window. 'count))
-
-    (list
-      (card
-        (card-body
-          (card-title "Click Me")
-          (type
-            on-click: (call 'main)
-            id: button-id
-            0)))
-
-      (script/inline
-        (statement (log "Mounted Clicker"))
-        (statement (set-var window.count 0))
-        (function 'main '()
-                  (call 'inc 1))
-
-        (function 'inc '(amount)
-                  (log "Inc")
-                  (+=! window.count 'amount)
-                  (set-var (getEl button-id innerHTML)
-                           window.count)
-                  (js/if (js/= window.count max)
-                         on-max
-                         noop))))))
+(define (js . s)
+  (string->symbol
+    (string-join 
+      (map ~a (flatten s)))))
 
 
 (define (inject-component id comp)
@@ -205,74 +184,5 @@
     aScript.text = @(html->script-string comp)
     document.getElementById("@id").appendChild(aScript)
     }))
-
-(define (clicker-maker)
-  (enclose
-    (define the-button (clicker button-primary))
-    (list
-      (div
-        (button-primary on-click: (call 'newClicker)
-                        "I make clickers")
-        (div id: (id "target")))
-      (script/inline
-        (function 'newClicker '()
-                  (inject-component (id "target") the-button))))))
-
-
-(define (meta-clicker-maker)
-  (enclose
-    (define the-clicker-maker (clicker-maker))
-    (list
-      (div
-        (button-primary on-click: (call 'newClicker)
-                        "I make clicker-makers")
-        (div id: (id "target")))
-      (script/inline
-        (function 'newClicker '()
-                  (inject-component (id "target") the-clicker-maker))))))
-
-
-
-(define (clickertron)
-  (enclose
-    (list
-      (jumbotron
-        id: (id 'jumbo)
-        (card-deck
-          (jumbotron
-            (card-deck
-              (clicker button-primary
-                       #:on-max (call 'main))
-              (clicker button-success
-                       #:on-max (call 'main))
-              (clicker button-danger
-                       #:on-max (call 'main))))))
-      (script/inline
-        (function 'main '()
-                  (set-var (getEl (id 'jumbo) 'style 'backgroundColor)
-                           (val "red")))))))
-
-
-
-(define (test)
-  (list
-    (bootstrap-files)
-    (page index.html
-          (content
-            (clickertron)
-            (clicker-maker)
-            (meta-clicker-maker) ))))
-
-
-(render (test) #:to "out")
-
-
-
-
-
-
-
-
-
 
 

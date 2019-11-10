@@ -1,0 +1,11 @@
+Known Bugs:
+  Color picker sliders only work in one direction.  Fixing this will require cleaning up the (call ...) semantics -- which will require coming up with some kind of abstractions over lambdas.
+    - (call 'change "red" 'amount) is a gross, degenerate callback that requires knowing that the lexical context it's getting embedded into has an 'amount variable in scope. 
+      - It might work, but it's not what we want.  The abstractions leak if we go that route.  
+  If component A creates B and C, both of which are clickers -- their ids will be the same.  Convert the (inject-js ...) function to generate a new namespace at runtime.
+  @-reader sometimes confusingly inserts a space "@(id "test")"  -> " ns245_test" 
+  * Document and anchor the namespacing and the various namespace aware functions.  Semantics keep shifting.
+
+Need:
+  Tests
+  More demos to prove the approach

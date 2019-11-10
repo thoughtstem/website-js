@@ -1,42 +1,121 @@
-<html><head><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" /><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><h1>Code Pen Conversion: </h1><a href="https://codepen.io/riyos94/pen/NXBvEX/">(Original)</a><div class="jumbotron" id="ns1068_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div class="jumbotron text-center" class="text-center"><label>Single slider</label><input id="ns1069_basic" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="15" /></div><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
-//<![CDATA[
-var slider = new Slider(" #ns1069_basic ", { 
-    tooltip: 'always' 
- }).on("slide",()=>{ window.ns1068_change("red") });
-//]]>
-</script></div><div class="col"><div class="jumbotron text-center" class="text-center"><label>Single slider</label><input id="ns1070_basic" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="15" /></div><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+<html><head><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" /><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><h1 id="ns1068_main-title">Sliders</h1><h2 id="ns1068_secondary-title">Cool, huh?</h2><a href="https://codepen.io/riyos94/pen/NXBvEX/">(Original slider code)</a><div class="jumbotron" id="ns1069_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns1070_output" class="badge badge-secondary">0</span></div><input id="ns1070_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
 var slider = new Slider(" #ns1070_basic ", { 
     tooltip: 'always' 
- }).on("slide",()=>{ window.ns1068_change("green") });
+ }).on("slide",(x)=>{ 
+        document.getElementById("ns1070_output").innerHTML=x;
+
+        window.ns1069_change("red" , x) });
 //]]>
-</script></div><div class="col"><div class="jumbotron text-center" class="text-center"><label>Single slider</label><input id="ns1071_basic" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="15" /></div><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+</script></div><div class="col"><div><span id="ns1071_output" class="badge badge-secondary">0</span></div><input id="ns1071_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
 var slider = new Slider(" #ns1071_basic ", { 
     tooltip: 'always' 
- }).on("slide",()=>{ window.ns1068_change("blue") });
+ }).on("slide",(x)=>{ 
+        document.getElementById("ns1071_output").innerHTML=x;
+
+        window.ns1069_change("green" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns1072_output" class="badge badge-secondary">0</span></div><input id="ns1072_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1072_basic ", { 
+    tooltip: 'always' 
+ }).on("slide",(x)=>{ 
+        document.getElementById("ns1072_output").innerHTML=x;
+
+        window.ns1069_change("blue" , x) });
 //]]>
 </script></div></div></div><script>
 //<![CDATA[
-window.ns1068_red=0;
-window.ns1068_green=0;
-window.ns1068_blue=0;
-  window. ns1068_change  = function (color){ 
+window.ns1069_red=0;
+window.ns1069_green=0;
+window.ns1069_blue=0;
+  window. ns1069_change  = function (color, amount){ 
      if(color == "red"){ 
-       window.ns1068_red=(window.ns1068_red + 16);
+       window.ns1069_red=amount;
 
      } 
      if(color == "green"){ 
-       window.ns1068_green=(window.ns1068_green + 16);
+       window.ns1069_green=amount;
 
      } 
      if(color == "blue"){ 
-       window.ns1068_blue=(window.ns1068_blue + 16);
+       window.ns1069_blue=amount;
 
      } 
 
-       document.getElementById("ns1068_output").style.backgroundColor="rgb(" +  window.ns1068_red  + "," +  window.ns1068_green  + "," +  window.ns1068_blue  + ")";
+       document.getElementById("ns1069_output").style.backgroundColor="rgb(" +  window.ns1069_red  + "," +  window.ns1069_green  + "," +  window.ns1069_blue  + ")";
 
+
+       window.ns1068_main("primary" , "rgb(" +  window.ns1069_red  + "," +  window.ns1069_green  + "," +  window.ns1069_blue  + ")") 
  }
+//]]>
+</script><div class="jumbotron" id="ns1073_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns1074_output" class="badge badge-secondary">0</span></div><input id="ns1074_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1074_basic ", { 
+    tooltip: 'always' 
+ }).on("slide",(x)=>{ 
+        document.getElementById("ns1074_output").innerHTML=x;
+
+        window.ns1073_change("red" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns1075_output" class="badge badge-secondary">0</span></div><input id="ns1075_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1075_basic ", { 
+    tooltip: 'always' 
+ }).on("slide",(x)=>{ 
+        document.getElementById("ns1075_output").innerHTML=x;
+
+        window.ns1073_change("green" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns1076_output" class="badge badge-secondary">0</span></div><input id="ns1076_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1076_basic ", { 
+    tooltip: 'always' 
+ }).on("slide",(x)=>{ 
+        document.getElementById("ns1076_output").innerHTML=x;
+
+        window.ns1073_change("blue" , x) });
+//]]>
+</script></div></div></div><script>
+//<![CDATA[
+window.ns1073_red=0;
+window.ns1073_green=0;
+window.ns1073_blue=0;
+  window. ns1073_change  = function (color, amount){ 
+     if(color == "red"){ 
+       window.ns1073_red=amount;
+
+     } 
+     if(color == "green"){ 
+       window.ns1073_green=amount;
+
+     } 
+     if(color == "blue"){ 
+       window.ns1073_blue=amount;
+
+     } 
+
+       document.getElementById("ns1073_output").style.backgroundColor="rgb(" +  window.ns1073_red  + "," +  window.ns1073_green  + "," +  window.ns1073_blue  + ")";
+
+
+       window.ns1068_main("secondary" , "rgb(" +  window.ns1073_red  + "," +  window.ns1073_green  + "," +  window.ns1073_blue  + ")") 
+ }
+//]]>
+</script><script>
+//<![CDATA[
+window.ns1068_main = function(kind , color){
+if(kind == "primary"){ 
+ document.getElementById("ns1068_main-title").style.color=color;
+
+ } 
+ if(kind == "secondary"){ 
+ document.getElementById("ns1068_secondary-title").style.color=color;
+
+ };
+
+}
+
+
 //]]>
 </script><script src="/js/jquery-3.2.1.slim.min.js"></script><script src="/js/bootstrap.bundle.min.js"></script></body></html>

@@ -40,6 +40,17 @@
     @~a{@name(@params[(map val args)])}))
 
 
+;Simple currying mechanic
+(define (callback fun . args)
+  (define name (~a "window." (namespace) "_" fun))
+
+  (lambda (x . xs)
+    (define all-args (append args
+                             (cons x xs)))
+    (string->symbol
+      @~a{@name(@params[(map val all-args)])})))
+
+
 (define (params . args)
   @(string->symbol (string-join (add-between (map ~a (flatten args)) ","))))
 

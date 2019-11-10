@@ -34,7 +34,7 @@
                   (call 'inc 1))
 
         (function 'inc '(amount)
-                  @on-click
+                  @(on-click 'amount)
                   (+=! window.count 'amount)
                   (set-var (getEl button-id innerHTML)
                            window.count)

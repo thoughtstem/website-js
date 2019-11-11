@@ -2,63 +2,56 @@
 
 (provide color-picker)
 
-(require (except-in website/bootstrap var)
-         website-js
+(require website-js
          "./clicker.rkt")
 
 
 (define (clicker-on-click kind c)
   (curry clicker 
-	 #:max 255
-	 #:on-click c))
+         #:on-click c))
 
 (define (color-picker
-           #:on-change (on-change noop)
-           #:r (r (curry clicker-on-click button-danger))
-           #:g (g (curry clicker-on-click button-success))
-           #:b (b (curry clicker-on-click button-primary)))
+          #:on-change (on-change (const ""))
+          #:r (r (curry clicker-on-click button-danger))
+          #:g (g (curry clicker-on-click button-success))
+          #:b (b (curry clicker-on-click button-primary)))
   (enclose
-    (list
-      (jumbotron
-        id: (id "output")
-        style: (properties background-color: "rgb(0,0,0)")
-        (row
-          (col
-	    (r (callback 'change "red")))
-          (col
-	    (g (callback 'change "green")))
-          (col
-	    (b (callback 'change "blue")))))
+    (define output-id (id 'output))
 
-      (script/inline
-        @(set-var (window. 'red) 0)
-        @(set-var (window. 'green) 0)
-        @(set-var (window. 'blue) 0)
+    (jumbotron
+      id: output-id
+      style: (properties background-color: "rgb(0,0,0)")
+      (row
+        (col
+          (r (callback 'change "red")))
+        (col
+          (g (callback 'change "green")))
+        (col
+          (b (callback 'change "blue")))))
 
-        @js{
-          window.@(id 'change) = function (color, amount){
-            if(color == "red"){
-              @(set-var (window. 'red) 'amount) 
-            }
-            if(color == "green"){
-              @(set-var (window. 'green) 'amount) 
-            }
-            if(color == "blue"){
-              @(set-var (window. 'blue) 'amount) 
-            }
+    (script ([red 0]
+             [green 0]
+             [blue 0]
+             [output output-id])
+            (function (change color amount)
+                      @js{
+                      if(@color == "red"){
+                      @red = @amount 
+                      }
+                      if(@color == "green"){
+                      @green = @amount
+                      }
+                      if(@color == "blue"){
+                      @blue = @amount
+                      }
 
-              @(set-var
-                 (getEl (id "output") 'style 'backgroundColor)
-                 @js{
-                   "rgb(" + @(window. 'red) + "," + @(window. 'green) + "," + @(window. 'blue) + ")"
-                 })
+                      var newColor = "rgb(" + @red + "," + @green + "," + @blue + ")"; 
 
-              @(on-change 
-                 @js{
-                   "rgb(" + @(window. 'red) + "," + @(window. 'green) + "," + @(window. 'blue) + ")"
-                 })
-         }
-        }))))
+                      document.getElementById(@output).style.backgroundColor = newColor;
+
+                      @(on-change 'newColor)
+                      }
+                      )) ))
 
 (define (test)
   (bootstrap

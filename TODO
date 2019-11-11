@@ -1,14 +1,21 @@
-Known Bugs:
-  * Meta components that show code for making components.  Can "write" the code by manipulating other components.
-  * make (getEl ...) smart about things like 'background-color -> 'backgroundColor
-  * lists inside of (enclose ...) are confusing.  I keep getting them wrong.
-  [DONE? (callback ...) to the rescue]  Color picker sliders only work in one direction.  Fixing this will require cleaning up the (call ...) semantics -- which will require coming up with some kind of abstractions over lambdas.
-    - (call 'change "red" 'amount) is a gross, degenerate callback that requires knowing that the lexical context it's getting embedded into has an 'amount variable in scope. 
-      - It might work, but it's not what we want.  The abstractions leak if we go that route.  
-  If component A creates B and C, both of which are clickers -- their ids will be the same.  Convert the (inject-js ...) function to generate a new namespace at runtime.
-  @-reader sometimes confusingly inserts a space "@(id "test")"  -> " ns245_test" 
+Pay debt:
   * Document and anchor the namespacing and the various namespace aware functions.  Semantics keep shifting.
+     -  Get the demos idiomatic.  Document the idioms.
+  *  Make more declarative? (div id: "counter" (get-state "number")) 
+    - React still wins over the document.getEl... stuff.
+    - Need to decide, though if this should stop us from using things as-is.  The JS isn't that long or that bad...
 
-Need:
+Take loan:
+  * Port over something like Google's MDC components -- Use quickstart:
+      <head>
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+      </head>
+  Now just make scoped components out of everything... 
+
+  Meta components that show code for making components.  Can "write" the code by manipulating other components. (code (pre ...))?
+ 
   Tests
+
   More demos to prove the approach

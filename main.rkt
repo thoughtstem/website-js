@@ -1,9 +1,10 @@
 #lang at-exp racket
 
-(provide (all-defined-out))
+(provide (all-defined-out)
+         (all-from-out website/bootstrap))
 
 (require syntax/parse/define
-         website)
+         website/bootstrap)
 
 ;Key concepts:
 ;  * Minimal amount of javascript language to provide react-like abstractions.  Only compile to that.
@@ -26,8 +27,11 @@
   (parameterize ([namespace n])
     (let () stuff ...)))
 
-(define-syntax-rule (enclose stuff ...)
-  (with-namespace (gensym 'ns) stuff ...))
+(define-syntax-rule (enclose stuff ... html js)
+  (with-namespace (gensym 'ns) 
+                  stuff 
+                  ...
+                  (list html js)))
 
 (define (window. name)
   (string->symbol (~a 'window. (namespace) "_" name)))
@@ -189,11 +193,48 @@
 (define (inject-component id comp)
   (string->symbol
     @~a{
-    document.getElementById("@id").innerHTML = @(html->non-script-string comp)
+    window.namespace_num = window.namespace_num || 0
+
+    window.namespace_num += 1
+
+    var newNamespace = "ns0000" + window.namespace_num
+    
+    document.getElementById(@id).innerHTML += @(html->non-script-string comp).replace(/ns\d*/g, newNamespace)
 
     aScript = document.createElement("script") 
-    aScript.text = @(html->script-string comp)
-    document.getElementById("@id").appendChild(aScript)
+    aScript.text = @(html->script-string comp).replace(/ns\d*/g, newNamespace) 
+    document.getElementById(@id).appendChild(aScript)
     }))
+
+
+;Syntactic sugarings...
+
+(define-syntax-rule (state ([k v] ...)
+                           (function (name ps ...) statements ...) ...)
+  (let ([k (window. 'k)]
+        ...)
+    (list
+      (set-var k v)
+      ...
+      (let ([ps 'ps] ...)
+        (function 'name '(ps ...)
+                  statements ...)) 
+      ... )))
+
+(define-syntax-rule (el= the-id chain ... last)
+  (set-var (getEl (id 'the-id) 'chain ...) last))
+
+(define-syntax-rule (st= the-id val)
+  (set-var the-id val))
+
+
+
+(define-syntax-rule (script stuff ...)
+  (script/inline
+    (state stuff ...)))
+
+
+
+
 
 

@@ -1,118 +1,106 @@
-<html><head><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" /><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><h1 id="ns1068_main-title">Sliders</h1><h2 id="ns1068_secondary-title">Cool, huh?</h2><a href="https://codepen.io/riyos94/pen/NXBvEX/">(Original slider code)</a><div class="jumbotron" id="ns1069_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns1070_output" class="badge badge-secondary">0</span></div><input id="ns1070_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><div class="jumbotron" id="ns734_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns735_main()" id="ns735_clicker">0</button></div></div><script>
 //<![CDATA[
-var slider = new Slider(" #ns1070_basic ", { 
-    tooltip: 'always' 
- }).on("slide",(x)=>{ 
-        document.getElementById("ns1070_output").innerHTML=x;
+window.ns735_button="ns735_clicker";
+window.ns735_count=0;
+window.ns735_main = function(){
+window.ns735_inc(1);
 
-        window.ns1069_change("red" , x) });
+}
+
+window.ns735_inc = function(amount){
+window.ns735_count  +=  amount 
+ document.getElementById( window.ns735_button ).innerHTML =  window.ns735_count;
+ window.ns734_main(window.ns735_count);
+
+}
+
+
 //]]>
-</script></div><div class="col"><div><span id="ns1071_output" class="badge badge-secondary">0</span></div><input id="ns1071_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns736_main()" id="ns736_clicker">0</button></div></div><script>
 //<![CDATA[
-var slider = new Slider(" #ns1071_basic ", { 
-    tooltip: 'always' 
- }).on("slide",(x)=>{ 
-        document.getElementById("ns1071_output").innerHTML=x;
+window.ns736_button="ns736_clicker";
+window.ns736_count=0;
+window.ns736_main = function(){
+window.ns736_inc(1);
 
-        window.ns1069_change("green" , x) });
+}
+
+window.ns736_inc = function(amount){
+window.ns736_count  +=  amount 
+ document.getElementById( window.ns736_button ).innerHTML =  window.ns736_count;
+ window.ns734_main(window.ns736_count);
+
+}
+
+
 //]]>
-</script></div><div class="col"><div><span id="ns1072_output" class="badge badge-secondary">0</span></div><input id="ns1072_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns737_main()" id="ns737_clicker">0</button></div></div><script>
 //<![CDATA[
-var slider = new Slider(" #ns1072_basic ", { 
-    tooltip: 'always' 
- }).on("slide",(x)=>{ 
-        document.getElementById("ns1072_output").innerHTML=x;
+window.ns737_button="ns737_clicker";
+window.ns737_count=0;
+window.ns737_main = function(){
+window.ns737_inc(1);
 
-        window.ns1069_change("blue" , x) });
+}
+
+window.ns737_inc = function(amount){
+window.ns737_count  +=  amount 
+ document.getElementById( window.ns737_button ).innerHTML =  window.ns737_count;
+ window.ns734_main(window.ns737_count);
+
+}
+
+
 //]]>
-</script></div></div></div><script>
+</script></div></div></div></div><script>
 //<![CDATA[
-window.ns1069_red=0;
-window.ns1069_green=0;
-window.ns1069_blue=0;
-  window. ns1069_change  = function (color, amount){ 
-     if(color == "red"){ 
-       window.ns1069_red=amount;
-
-     } 
-     if(color == "green"){ 
-       window.ns1069_green=amount;
-
-     } 
-     if(color == "blue"){ 
-       window.ns1069_blue=amount;
-
-     } 
-
-       document.getElementById("ns1069_output").style.backgroundColor="rgb(" +  window.ns1069_red  + "," +  window.ns1069_green  + "," +  window.ns1069_blue  + ")";
-
-
-       window.ns1068_main("primary" , "rgb(" +  window.ns1069_red  + "," +  window.ns1069_green  + "," +  window.ns1069_blue  + ")") 
- }
-//]]>
-</script><div class="jumbotron" id="ns1073_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns1074_output" class="badge badge-secondary">0</span></div><input id="ns1074_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
-//<![CDATA[
-var slider = new Slider(" #ns1074_basic ", { 
-    tooltip: 'always' 
- }).on("slide",(x)=>{ 
-        document.getElementById("ns1074_output").innerHTML=x;
-
-        window.ns1073_change("red" , x) });
-//]]>
-</script></div><div class="col"><div><span id="ns1075_output" class="badge badge-secondary">0</span></div><input id="ns1075_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
-//<![CDATA[
-var slider = new Slider(" #ns1075_basic ", { 
-    tooltip: 'always' 
- }).on("slide",(x)=>{ 
-        document.getElementById("ns1075_output").innerHTML=x;
-
-        window.ns1073_change("green" , x) });
-//]]>
-</script></div><div class="col"><div><span id="ns1076_output" class="badge badge-secondary">0</span></div><input id="ns1076_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
-//<![CDATA[
-var slider = new Slider(" #ns1076_basic ", { 
-    tooltip: 'always' 
- }).on("slide",(x)=>{ 
-        document.getElementById("ns1076_output").innerHTML=x;
-
-        window.ns1073_change("blue" , x) });
-//]]>
-</script></div></div></div><script>
-//<![CDATA[
-window.ns1073_red=0;
-window.ns1073_green=0;
-window.ns1073_blue=0;
-  window. ns1073_change  = function (color, amount){ 
-     if(color == "red"){ 
-       window.ns1073_red=amount;
-
-     } 
-     if(color == "green"){ 
-       window.ns1073_green=amount;
-
-     } 
-     if(color == "blue"){ 
-       window.ns1073_blue=amount;
-
-     } 
-
-       document.getElementById("ns1073_output").style.backgroundColor="rgb(" +  window.ns1073_red  + "," +  window.ns1073_green  + "," +  window.ns1073_blue  + ")";
-
-
-       window.ns1068_main("secondary" , "rgb(" +  window.ns1073_red  + "," +  window.ns1073_green  + "," +  window.ns1073_blue  + ")") 
- }
-//]]>
-</script><script>
-//<![CDATA[
-window.ns1068_main = function(kind , color){
-if(kind == "primary"){ 
- document.getElementById("ns1068_main-title").style.color=color;
-
- } 
- if(kind == "secondary"){ 
- document.getElementById("ns1068_secondary-title").style.color=color;
-
+window.ns734_count=0;
+window.ns734_jumbo="ns734_jumbo";
+window.ns734_main = function(amount){
+window.ns734_count  += amount 
+ if( window.ns734_count  == 10){ 
+ document.getElementById( window.ns734_jumbo ).style.backgroundColor = "red" 
  };
+
+}
+
+
+//]]>
+</script><div><button type="button" class="btn btn-primary" onClick="window.ns738_newClicker()">I make clickers</button><div id="ns738_target"></div></div><script>
+//<![CDATA[
+window.ns738_target="ns738_target";
+window.ns738_newClicker = function(){
+window.namespace_num = window.namespace_num || 0
+
+window.namespace_num += 1
+
+var newNamespace = "ns0000" + window.namespace_num
+
+document.getElementById(window.ns738_target).innerHTML += "<div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">Click Me</h5><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns739_main()\" id=\"ns739_clicker\">0</button></div></div>".replace(/ns\d*/g, newNamespace)
+
+aScript = document.createElement("script")
+aScript.text = "\n\nwindow.ns739_button=\"ns739_clicker\";\nwindow.ns739_count=0;\nwindow.ns739_main = function(){\nwindow.ns739_inc(1);\n\n}\n\nwindow.ns739_inc = function(amount){\nwindow.ns739_count  +=  amount \n document.getElementById( window.ns739_button ).innerHTML =  window.ns739_count;\n ;\n\n}\n\n\n\n".replace(/ns\d*/g, newNamespace)
+document.getElementById(window.ns738_target).appendChild(aScript);
+
+}
+
+
+//]]>
+</script><div><button type="button" class="btn btn-primary" onClick="window.ns740_newClicker()">I make clicker-makers</button><div id="ns740_target"></div></div><script>
+//<![CDATA[
+window.ns740_target="ns740_target";
+window.ns740_newClicker = function(){
+window.namespace_num = window.namespace_num || 0
+
+window.namespace_num += 1
+
+var newNamespace = "ns0000" + window.namespace_num
+
+document.getElementById(window.ns740_target).innerHTML += "<div><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns741_newClicker()\">I make clickers</button><div id=\"ns741_target\"></div></div>".replace(/ns\d*/g, newNamespace)
+
+aScript = document.createElement("script")
+aScript.text = "\n\nwindow.ns741_target=\"ns741_target\";\nwindow.ns741_newClicker = function(){\nwindow.namespace_num = window.namespace_num || 0\n\nwindow.namespace_num += 1\n\nvar newNamespace = \"ns0000\" + window.namespace_num\n\ndocument.getElementById(window.ns741_target).innerHTML += \"<div class=\\\"card\\\"><div class=\\\"card-body\\\"><h5 class=\\\"card-title\\\">Click Me</h5><button type=\\\"button\\\" class=\\\"btn btn-primary\\\" onClick=\\\"window.ns742_main()\\\" id=\\\"ns742_clicker\\\">0</button></div></div>\".replace(/ns\\d*/g, newNamespace)\n\naScript = document.createElement(\"script\")\naScript.text = \"\\n\\nwindow.ns742_button=\\\"ns742_clicker\\\";\\nwindow.ns742_count=0;\\nwindow.ns742_main = function(){\\nwindow.ns742_inc(1);\\n\\n}\\n\\nwindow.ns742_inc = function(amount){\\nwindow.ns742_count  +=  amount \\n document.getElementById( window.ns742_button ).innerHTML =  window.ns742_count;\\n ;\\n\\n}\\n\\n\\n\\n\".replace(/ns\\d*/g, newNamespace)\ndocument.getElementById(window.ns741_target).appendChild(aScript);\n\n}\n\n\n\n".replace(/ns\d*/g, newNamespace)
+document.getElementById(window.ns740_target).appendChild(aScript);
 
 }
 

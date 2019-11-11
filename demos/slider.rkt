@@ -1,5 +1,7 @@
 #lang at-exp racket
 
+(provide slider)
+
 ;Exercise in coverting a codepen...
 ;https://codepen.io/riyos94/pen/NXBvEX/
 

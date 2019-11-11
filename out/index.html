@@ -1,129 +1,116 @@
-<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><div class="jumbotron" id="ns735_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns736_main()" id="ns736_clicker">0</button></div></div><script>
+<html><head><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" /><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><h1 id="ns1087_mainTitle">Sliders</h1><h2 id="ns1087_secondaryTitle">Cool, huh?</h2><a href="https://codepen.io/riyos94/pen/NXBvEX/">(Original slider code)</a><div class="jumbotron" id="ns1088_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns1089_output" class="badge badge-secondary">0</span></div><input id="ns1089_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
-window.ns736_button="ns736_clicker";
-window.ns736_count=0;
-window.ns736_main = function(){
-window.ns736_inc(1);
+var slider = new Slider(" #ns1089_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns1089_output" ).innerHTML = x 
+                          window.ns1088_change("red" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns1090_output" class="badge badge-secondary">0</span></div><input id="ns1090_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1090_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns1090_output" ).innerHTML = x 
+                          window.ns1088_change("green" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns1091_output" class="badge badge-secondary">0</span></div><input id="ns1091_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1091_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns1091_output" ).innerHTML = x 
+                          window.ns1088_change("blue" , x) });
+//]]>
+</script></div></div></div><script>
+//<![CDATA[
+window.ns1088_red=0;
+window.ns1088_green=0;
+window.ns1088_blue=0;
+window.ns1088_output="ns1088_output";
+window.ns1088_change = function(color , amount){
+if( color  == "red"){ 
+ window.ns1088_red  =  amount 
+ } 
+ if( color  == "green"){ 
+ window.ns1088_green  =  amount 
+ } 
+ if( color  == "blue"){ 
+ window.ns1088_blue  =  amount 
+ } 
 
-}
+ var newColor = "rgb(" +  window.ns1088_red  + "," +  window.ns1088_green  + "," +  window.ns1088_blue  + ")"; 
 
-window.ns736_inc = function(amount){
-window.ns736_count  +=  amount 
- document.getElementById( window.ns736_button ).innerHTML =  window.ns736_count;
- window.ns735_main(window.ns736_count);
+ document.getElementById( window.ns1088_output ).style.backgroundColor = newColor; 
+
+ window.ns1087_main("primary" , newColor);
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns737_main()" id="ns737_clicker">0</button></div></div><script>
+</script><div class="jumbotron" id="ns1092_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns1093_output" class="badge badge-secondary">0</span></div><input id="ns1093_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
-window.ns737_button="ns737_clicker";
-window.ns737_count=0;
-window.ns737_main = function(){
-window.ns737_inc(1);
+var slider = new Slider(" #ns1093_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns1093_output" ).innerHTML = x 
+                          window.ns1092_change("red" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns1094_output" class="badge badge-secondary">0</span></div><input id="ns1094_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1094_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns1094_output" ).innerHTML = x 
+                          window.ns1092_change("green" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns1095_output" class="badge badge-secondary">0</span></div><input id="ns1095_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns1095_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns1095_output" ).innerHTML = x 
+                          window.ns1092_change("blue" , x) });
+//]]>
+</script></div></div></div><script>
+//<![CDATA[
+window.ns1092_red=0;
+window.ns1092_green=0;
+window.ns1092_blue=0;
+window.ns1092_output="ns1092_output";
+window.ns1092_change = function(color , amount){
+if( color  == "red"){ 
+ window.ns1092_red  =  amount 
+ } 
+ if( color  == "green"){ 
+ window.ns1092_green  =  amount 
+ } 
+ if( color  == "blue"){ 
+ window.ns1092_blue  =  amount 
+ } 
 
-}
+ var newColor = "rgb(" +  window.ns1092_red  + "," +  window.ns1092_green  + "," +  window.ns1092_blue  + ")"; 
 
-window.ns737_inc = function(amount){
-window.ns737_count  +=  amount 
- document.getElementById( window.ns737_button ).innerHTML =  window.ns737_count;
- window.ns735_main(window.ns737_count);
+ document.getElementById( window.ns1092_output ).style.backgroundColor = newColor; 
+
+ window.ns1087_main("secondary" , newColor);
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns738_main()" id="ns738_clicker">0</button></div></div><script>
+</script><script>
 //<![CDATA[
-window.ns738_button="ns738_clicker";
-window.ns738_count=0;
-window.ns738_main = function(){
-window.ns738_inc(1);
-
-}
-
-window.ns738_inc = function(amount){
-window.ns738_count  +=  amount 
- document.getElementById( window.ns738_button ).innerHTML =  window.ns738_count;
- window.ns735_main(window.ns738_count);
-
-}
-
-
-//]]>
-</script></div></div></div></div><script>
-//<![CDATA[
-window.ns735_count=0;
-window.ns735_jumbo="ns735_jumbo";
-window.ns735_main = function(amount){
-window.ns735_count  = amount 
- if( window.ns735_count  == 10){ 
- document.getElementById( window.ns735_jumbo ).style.backgroundColor = "red" 
+window.ns1087_mainTitle="ns1087_mainTitle";
+window.ns1087_secondaryTitle="ns1087_secondaryTitle";
+window.ns1087_main = function(kind , color){
+if( kind  == "primary"){ 
+    document.getElementById( window.ns1087_mainTitle ).style.color = color 
+ } 
+ if( kind  == "secondary"){ 
+    document.getElementById( window.ns1087_secondaryTitle ).style.color = color 
  };
-
-}
-
-
-//]]>
-</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns739_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns739_total"></span><hr /><div class="row" id="ns739_target"></div></div></div><script>
-//<![CDATA[
-window.ns739_target="ns739_target";
-window.ns739_totalDiv="ns739_total";
-window.ns739_total=0;
-window.ns739_newClicker = function(){
-window.namespace_num = window.namespace_num || 0
-
-window.namespace_num += 1
-
-var newNamespace = "ns0000" + window.namespace_num
-
-var s = "<div class=\"col\"><div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">Click Me</h5><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns740_main()\" id=\"ns740_clicker\">0</button></div></div></div>"
-var oldNamespace = s.match(/(ns\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??
-
-document.getElementById(window.ns739_target).innerHTML += s.replace(new RegExp(oldNamespace, "g") , newNamespace)
-
-aScript = document.createElement("script")
-aScript.text = "\n\nwindow.ns740_button=\"ns740_clicker\";\nwindow.ns740_count=0;\nwindow.ns740_main = function(){\nwindow.ns740_inc(1);\n\n}\n\nwindow.ns740_inc = function(amount){\nwindow.ns740_count  +=  amount \n document.getElementById( window.ns740_button ).innerHTML =  window.ns740_count;\n window.ns739_updateTotal(window.ns740_count);\n\n}\n\n\n\n".replace(new RegExp(oldNamespace, "g") , newNamespace)
-document.getElementById(window.ns739_target).appendChild(aScript);
-
-}
-
-window.ns739_updateTotal = function(){
-window.ns739_total  += 1 
- document.getElementById( window.ns739_totalDiv ).innerHTML = "Total:" +  window.ns739_total;
- ;
-
-}
-
-
-//]]>
-</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns741_newClicker()">I make clicker-makers</button><span class="badge badge-pill badge-primary" id="ns741_total"></span><hr /><div class="row" id="ns741_target"></div></div></div><script>
-//<![CDATA[
-window.ns741_target="ns741_target";
-window.ns741_totalDiv="ns741_total";
-window.ns741_total=0;
-window.ns741_newClicker = function(){
-window.namespace_num = window.namespace_num || 0
-
-window.namespace_num += 1
-
-var newNamespace = "ns0000" + window.namespace_num
-
-var s = "<div class=\"col\"><div class=\"card\"><div class=\"card-body\"><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns742_newClicker()\">I make clickers</button><span class=\"badge badge-pill badge-primary\" id=\"ns742_total\"></span><hr /><div class=\"row\" id=\"ns742_target\"></div></div></div></div>"
-var oldNamespace = s.match(/(ns\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??
-
-document.getElementById(window.ns741_target).innerHTML += s.replace(new RegExp(oldNamespace, "g") , newNamespace)
-
-aScript = document.createElement("script")
-aScript.text = "\n\nwindow.ns742_target=\"ns742_target\";\nwindow.ns742_totalDiv=\"ns742_total\";\nwindow.ns742_total=0;\nwindow.ns742_newClicker = function(){\nwindow.namespace_num = window.namespace_num || 0\n\nwindow.namespace_num += 1\n\nvar newNamespace = \"ns0000\" + window.namespace_num\n\nvar s = \"<div class=\\\"col\\\"><div class=\\\"card\\\"><div class=\\\"card-body\\\"><h5 class=\\\"card-title\\\">Click Me</h5><button type=\\\"button\\\" class=\\\"btn btn-primary\\\" onClick=\\\"window.ns743_main()\\\" id=\\\"ns743_clicker\\\">0</button></div></div></div>\"\nvar oldNamespace = s.match(/(ns\\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??\n\ndocument.getElementById(window.ns742_target).innerHTML += s.replace(new RegExp(oldNamespace, \"g\") , newNamespace)\n\naScript = document.createElement(\"script\")\naScript.text = \"\\n\\nwindow.ns743_button=\\\"ns743_clicker\\\";\\nwindow.ns743_count=0;\\nwindow.ns743_main = function(){\\nwindow.ns743_inc(1);\\n\\n}\\n\\nwindow.ns743_inc = function(amount){\\nwindow.ns743_count  +=  amount \\n document.getElementById( window.ns743_button ).innerHTML =  window.ns743_count;\\n window.ns742_updateTotal(window.ns743_count);\\n\\n}\\n\\n\\n\\n\".replace(new RegExp(oldNamespace, \"g\") , newNamespace)\ndocument.getElementById(window.ns742_target).appendChild(aScript);\n\n}\n\nwindow.ns742_updateTotal = function(){\nwindow.ns742_total  += 1 \n document.getElementById( window.ns742_totalDiv ).innerHTML = \"Total:\" +  window.ns742_total;\n window.ns741_updateTotal(window.ns742_total);\n\n}\n\n\n\n".replace(new RegExp(oldNamespace, "g") , newNamespace)
-document.getElementById(window.ns741_target).appendChild(aScript);
-
-}
-
-window.ns741_updateTotal = function(){
-window.ns741_total  += 1 
- document.getElementById( window.ns741_totalDiv ).innerHTML = "Total:" +  window.ns741_total;
 
 }
 

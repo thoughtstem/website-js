@@ -7,7 +7,7 @@
          "./color-picker.rkt" 
          "./clicker.rkt")
 
-(define (slider #:on-tick (on-slide noop))
+(define (slider #:on-tick (on-slide (const "")))
   (enclose
     (define output (id 'output))
     (define basic (id 'basic))

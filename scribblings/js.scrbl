@@ -1,6 +1,5 @@
 #lang scribble/manual
-@require[@for-label[website-js
-                    racket/base]]
+@require[@for-label[website-js]]
 
 @title{js}
 @author{thoughtstem}

@@ -1,6 +1,8 @@
 #lang at-exp racket
 
-(provide clicker)
+(provide clicker
+         clicker-maker
+         meta-clicker-maker)
 
 ;TODO:
 ;  * Child state affects parent state

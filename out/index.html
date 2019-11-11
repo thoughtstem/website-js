@@ -1,22 +1,4 @@
-<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><div class="jumbotron" id="ns734_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns735_main()" id="ns735_clicker">0</button></div></div><script>
-//<![CDATA[
-window.ns735_button="ns735_clicker";
-window.ns735_count=0;
-window.ns735_main = function(){
-window.ns735_inc(1);
-
-}
-
-window.ns735_inc = function(amount){
-window.ns735_count  +=  amount 
- document.getElementById( window.ns735_button ).innerHTML =  window.ns735_count;
- window.ns734_main(window.ns735_count);
-
-}
-
-
-//]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns736_main()" id="ns736_clicker">0</button></div></div><script>
+<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><div class="jumbotron" id="ns735_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns736_main()" id="ns736_clicker">0</button></div></div><script>
 //<![CDATA[
 window.ns736_button="ns736_clicker";
 window.ns736_count=0;
@@ -28,13 +10,13 @@ window.ns736_inc(1);
 window.ns736_inc = function(amount){
 window.ns736_count  +=  amount 
  document.getElementById( window.ns736_button ).innerHTML =  window.ns736_count;
- window.ns734_main(window.ns736_count);
+ window.ns735_main(window.ns736_count);
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns737_main()" id="ns737_clicker">0</button></div></div><script>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns737_main()" id="ns737_clicker">0</button></div></div><script>
 //<![CDATA[
 window.ns737_button="ns737_clicker";
 window.ns737_count=0;
@@ -46,7 +28,25 @@ window.ns737_inc(1);
 window.ns737_inc = function(amount){
 window.ns737_count  +=  amount 
  document.getElementById( window.ns737_button ).innerHTML =  window.ns737_count;
- window.ns734_main(window.ns737_count);
+ window.ns735_main(window.ns737_count);
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns738_main()" id="ns738_clicker">0</button></div></div><script>
+//<![CDATA[
+window.ns738_button="ns738_clicker";
+window.ns738_count=0;
+window.ns738_main = function(){
+window.ns738_inc(1);
+
+}
+
+window.ns738_inc = function(amount){
+window.ns738_count  +=  amount 
+ document.getElementById( window.ns738_button ).innerHTML =  window.ns738_count;
+ window.ns735_main(window.ns738_count);
 
 }
 
@@ -54,53 +54,76 @@ window.ns737_count  +=  amount
 //]]>
 </script></div></div></div></div><script>
 //<![CDATA[
-window.ns734_count=0;
-window.ns734_jumbo="ns734_jumbo";
-window.ns734_main = function(amount){
-window.ns734_count  += amount 
- if( window.ns734_count  == 10){ 
- document.getElementById( window.ns734_jumbo ).style.backgroundColor = "red" 
+window.ns735_count=0;
+window.ns735_jumbo="ns735_jumbo";
+window.ns735_main = function(amount){
+window.ns735_count  = amount 
+ if( window.ns735_count  == 10){ 
+ document.getElementById( window.ns735_jumbo ).style.backgroundColor = "red" 
  };
 
 }
 
 
 //]]>
-</script><div><button type="button" class="btn btn-primary" onClick="window.ns738_newClicker()">I make clickers</button><div id="ns738_target"></div></div><script>
+</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns739_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns739_total"></span><hr /><div class="row" id="ns739_target"></div></div></div><script>
 //<![CDATA[
-window.ns738_target="ns738_target";
-window.ns738_newClicker = function(){
+window.ns739_target="ns739_target";
+window.ns739_totalDiv="ns739_total";
+window.ns739_total=0;
+window.ns739_newClicker = function(){
 window.namespace_num = window.namespace_num || 0
 
 window.namespace_num += 1
 
 var newNamespace = "ns0000" + window.namespace_num
 
-document.getElementById(window.ns738_target).innerHTML += "<div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">Click Me</h5><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns739_main()\" id=\"ns739_clicker\">0</button></div></div>".replace(/ns\d*/g, newNamespace)
+var s = "<div class=\"col\"><div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">Click Me</h5><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns740_main()\" id=\"ns740_clicker\">0</button></div></div></div>"
+var oldNamespace = s.match(/(ns\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??
+
+document.getElementById(window.ns739_target).innerHTML += s.replace(new RegExp(oldNamespace, "g") , newNamespace)
 
 aScript = document.createElement("script")
-aScript.text = "\n\nwindow.ns739_button=\"ns739_clicker\";\nwindow.ns739_count=0;\nwindow.ns739_main = function(){\nwindow.ns739_inc(1);\n\n}\n\nwindow.ns739_inc = function(amount){\nwindow.ns739_count  +=  amount \n document.getElementById( window.ns739_button ).innerHTML =  window.ns739_count;\n ;\n\n}\n\n\n\n".replace(/ns\d*/g, newNamespace)
-document.getElementById(window.ns738_target).appendChild(aScript);
+aScript.text = "\n\nwindow.ns740_button=\"ns740_clicker\";\nwindow.ns740_count=0;\nwindow.ns740_main = function(){\nwindow.ns740_inc(1);\n\n}\n\nwindow.ns740_inc = function(amount){\nwindow.ns740_count  +=  amount \n document.getElementById( window.ns740_button ).innerHTML =  window.ns740_count;\n window.ns739_updateTotal(window.ns740_count);\n\n}\n\n\n\n".replace(new RegExp(oldNamespace, "g") , newNamespace)
+document.getElementById(window.ns739_target).appendChild(aScript);
+
+}
+
+window.ns739_updateTotal = function(){
+window.ns739_total  += 1 
+ document.getElementById( window.ns739_totalDiv ).innerHTML = "Total:" +  window.ns739_total;
+ ;
 
 }
 
 
 //]]>
-</script><div><button type="button" class="btn btn-primary" onClick="window.ns740_newClicker()">I make clicker-makers</button><div id="ns740_target"></div></div><script>
+</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns741_newClicker()">I make clicker-makers</button><span class="badge badge-pill badge-primary" id="ns741_total"></span><hr /><div class="row" id="ns741_target"></div></div></div><script>
 //<![CDATA[
-window.ns740_target="ns740_target";
-window.ns740_newClicker = function(){
+window.ns741_target="ns741_target";
+window.ns741_totalDiv="ns741_total";
+window.ns741_total=0;
+window.ns741_newClicker = function(){
 window.namespace_num = window.namespace_num || 0
 
 window.namespace_num += 1
 
 var newNamespace = "ns0000" + window.namespace_num
 
-document.getElementById(window.ns740_target).innerHTML += "<div><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns741_newClicker()\">I make clickers</button><div id=\"ns741_target\"></div></div>".replace(/ns\d*/g, newNamespace)
+var s = "<div class=\"col\"><div class=\"card\"><div class=\"card-body\"><button type=\"button\" class=\"btn btn-primary\" onClick=\"window.ns742_newClicker()\">I make clickers</button><span class=\"badge badge-pill badge-primary\" id=\"ns742_total\"></span><hr /><div class=\"row\" id=\"ns742_target\"></div></div></div></div>"
+var oldNamespace = s.match(/(ns\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??
+
+document.getElementById(window.ns741_target).innerHTML += s.replace(new RegExp(oldNamespace, "g") , newNamespace)
 
 aScript = document.createElement("script")
-aScript.text = "\n\nwindow.ns741_target=\"ns741_target\";\nwindow.ns741_newClicker = function(){\nwindow.namespace_num = window.namespace_num || 0\n\nwindow.namespace_num += 1\n\nvar newNamespace = \"ns0000\" + window.namespace_num\n\ndocument.getElementById(window.ns741_target).innerHTML += \"<div class=\\\"card\\\"><div class=\\\"card-body\\\"><h5 class=\\\"card-title\\\">Click Me</h5><button type=\\\"button\\\" class=\\\"btn btn-primary\\\" onClick=\\\"window.ns742_main()\\\" id=\\\"ns742_clicker\\\">0</button></div></div>\".replace(/ns\\d*/g, newNamespace)\n\naScript = document.createElement(\"script\")\naScript.text = \"\\n\\nwindow.ns742_button=\\\"ns742_clicker\\\";\\nwindow.ns742_count=0;\\nwindow.ns742_main = function(){\\nwindow.ns742_inc(1);\\n\\n}\\n\\nwindow.ns742_inc = function(amount){\\nwindow.ns742_count  +=  amount \\n document.getElementById( window.ns742_button ).innerHTML =  window.ns742_count;\\n ;\\n\\n}\\n\\n\\n\\n\".replace(/ns\\d*/g, newNamespace)\ndocument.getElementById(window.ns741_target).appendChild(aScript);\n\n}\n\n\n\n".replace(/ns\d*/g, newNamespace)
-document.getElementById(window.ns740_target).appendChild(aScript);
+aScript.text = "\n\nwindow.ns742_target=\"ns742_target\";\nwindow.ns742_totalDiv=\"ns742_total\";\nwindow.ns742_total=0;\nwindow.ns742_newClicker = function(){\nwindow.namespace_num = window.namespace_num || 0\n\nwindow.namespace_num += 1\n\nvar newNamespace = \"ns0000\" + window.namespace_num\n\nvar s = \"<div class=\\\"col\\\"><div class=\\\"card\\\"><div class=\\\"card-body\\\"><h5 class=\\\"card-title\\\">Click Me</h5><button type=\\\"button\\\" class=\\\"btn btn-primary\\\" onClick=\\\"window.ns743_main()\\\" id=\\\"ns743_clicker\\\">0</button></div></div></div>\"\nvar oldNamespace = s.match(/(ns\\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??\n\ndocument.getElementById(window.ns742_target).innerHTML += s.replace(new RegExp(oldNamespace, \"g\") , newNamespace)\n\naScript = document.createElement(\"script\")\naScript.text = \"\\n\\nwindow.ns743_button=\\\"ns743_clicker\\\";\\nwindow.ns743_count=0;\\nwindow.ns743_main = function(){\\nwindow.ns743_inc(1);\\n\\n}\\n\\nwindow.ns743_inc = function(amount){\\nwindow.ns743_count  +=  amount \\n document.getElementById( window.ns743_button ).innerHTML =  window.ns743_count;\\n window.ns742_updateTotal(window.ns743_count);\\n\\n}\\n\\n\\n\\n\".replace(new RegExp(oldNamespace, \"g\") , newNamespace)\ndocument.getElementById(window.ns742_target).appendChild(aScript);\n\n}\n\nwindow.ns742_updateTotal = function(){\nwindow.ns742_total  += 1 \n document.getElementById( window.ns742_totalDiv ).innerHTML = \"Total:\" +  window.ns742_total;\n window.ns741_updateTotal(window.ns742_total);\n\n}\n\n\n\n".replace(new RegExp(oldNamespace, "g") , newNamespace)
+document.getElementById(window.ns741_target).appendChild(aScript);
+
+}
+
+window.ns741_updateTotal = function(){
+window.ns741_total  += 1 
+ document.getElementById( window.ns741_totalDiv ).innerHTML = "Total:" +  window.ns741_total;
 
 }
 

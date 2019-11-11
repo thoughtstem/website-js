@@ -36,32 +36,70 @@
                       )) ))
 
 
-(define (clicker-maker)
+(define (clicker-maker
+          #:on-click (on-click (const "")))
   (enclose
-    (define the-button (clicker button-primary))
+    (define to-make
+      (clicker #:on-click (callback 'updateTotal)  ;Ouch: (callback 'inc) is an infinite loop...
+               button-primary))
+
+    (define the-button 
+        (wrap col to-make) )
     
-      (div
-        (button-primary on-click: (call 'newClicker)
-                        "I make clickers")
-        (div id: (id 'target)))
+      (card
+        (card-body
+          (button-primary on-click: (call 'newClicker)
+                          "I make clickers")
+          (span 
+            class: "badge badge-pill badge-primary"
+            id: (id 'total))
+          (hr)
+          (row id: (id 'target))))
       (script
-         ([target (id 'target)])
+         ([target (id 'target)]
+          [totalDiv (id 'total)] 
+          [total 0])
          (function (newClicker)
-                   (inject-component target the-button))) ))
+                   (inject-component target the-button))
+
+         (function (updateTotal)
+                   @js{
+                     @total += 1 
+                     document.getElementById(@totalDiv).innerHTML = "Total:" + @total
+                   }
+                   (on-click total)
+                   ))))
 
 
 (define (meta-clicker-maker)
   (enclose
-    (define the-clicker-maker (clicker-maker))
+    (define the-clicker-maker 
+      (wrap col (clicker-maker
+                  #:on-click (callback 'updateTotal))))
     
-      (div
-        (button-primary on-click: (call 'newClicker)
-                        "I make clicker-makers")
-        (div id: (id 'target)))
+    
+      (card
+        (card-body
+          (button-primary on-click: (call 'newClicker)
+                          "I make clicker-makers")
+          (span 
+            class: "badge badge-pill badge-primary"
+            id: (id 'total))
+          (hr)
+          (row id: (id 'target))))
       (script
-         ([target (id 'target)])
+         ([target (id 'target)]
+          [totalDiv (id 'total)] 
+          [total 0])
          (function (newClicker)
-                   (inject-component target the-clicker-maker))) ))
+                   (inject-component target the-clicker-maker))
+         
+         (function (updateTotal)
+                   @js{
+                     @total += 1 
+                     document.getElementById(@totalDiv).innerHTML = "Total:" + @total
+                   })   
+         ) ))
 
 
 
@@ -84,7 +122,7 @@
        [jumbo (id 'jumbo)])
       (function (main amount)
                 @js{
-                @count += amount 
+                @count = amount 
                 if(@count == 10){
                 document.getElementById(@jumbo).style.backgroundColor = "red" 
                 }

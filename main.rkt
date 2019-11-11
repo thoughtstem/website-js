@@ -125,23 +125,6 @@
 
 (define on-click: 'onClick:)
 
-(define noop "")
-
-
-
-(define (js/if c t f)
-  (string->symbol
-    @~a{
-      if(@c){
-    @(statement t) 
-    }else{
-      @(statement f) 
-    }}))
-
-(define (js/= a b)
-  (op '== a b))
-
-
 (define (html->string element
                       #:keep-script-tags? (keep-script-tags #t))
   (define with-tags
@@ -198,11 +181,14 @@
     window.namespace_num += 1
 
     var newNamespace = "ns0000" + window.namespace_num
+
+    var s = @(html->non-script-string comp)
+    var oldNamespace = s.match(/(ns\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??
     
-    document.getElementById(@id).innerHTML += @(html->non-script-string comp).replace(/ns\d*/g, newNamespace)
+    document.getElementById(@id).innerHTML += s.replace(new RegExp(oldNamespace, "g") , newNamespace)  
 
     aScript = document.createElement("script") 
-    aScript.text = @(html->script-string comp).replace(/ns\d*/g, newNamespace) 
+    aScript.text = @(html->script-string comp).replace(new RegExp(oldNamespace, "g") , newNamespace) 
     document.getElementById(@id).appendChild(aScript)
     }))
 
@@ -235,6 +221,9 @@
 
 
 
-
+(define (wrap f component)
+  (list-set component
+            0
+            (f (first component)))) 
 
 

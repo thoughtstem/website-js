@@ -151,16 +151,18 @@
                        [#rx"//<!\\[CDATA\\[" ""] 
                        [#rx"//\\]\\]>" ""]))) )
 
+(define (html->non-script-string e)
+  (define no-scripts (scrape-out 'script e))
 
+  (html->string no-scripts))
 
-;Assumes the HTML-then-Script property...
-(define (html->non-script-string element)
-  (html->string (first element)))
+(define (html->script-string e)
+  (define scripts 
+    (collect-all 'script e))
 
-;Assumes the HTML-then-Script property...
-(define (html->script-string element)
-  (html->string (second element)
-                #:keep-script-tags? #f))
+  (string-join
+    (map (curry html->string #:keep-script-tags? #f)
+         scripts)))
 
 
 (define (alert s)

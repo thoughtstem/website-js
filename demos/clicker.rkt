@@ -45,6 +45,8 @@
       (clicker #:on-click (callback 'updateTotal)  ;Ouch: (callback 'inc) is an infinite loop...
                button-primary))
 
+    (displayln ((callback 'updateTotal) 'test))
+
     (define the-button 
         (wrap col to-make) )
     
@@ -56,21 +58,24 @@
             class: "badge badge-pill badge-primary"
             id: (id 'total))
           (hr)
-          (row id: (id 'target))))
+          (row id: (id 'target))
+          (template id: (id 'template)
+             the-button)))
       (script
          ([target (id 'target)]
+          [template (id 'template)] 
           [totalDiv (id 'total)] 
           [total 0])
+
          (function (newClicker)
-                   (inject-component target the-button))
+           (inject-component template target))
 
          (function (updateTotal)
                    @js{
                      @total += 1 
                      document.getElementById(@totalDiv).innerHTML = "Total:" + @total
                    }
-                   (on-click total)
-                   ))))
+                   (on-click total)))))
 
 
 (define (meta-clicker-maker)
@@ -88,13 +93,16 @@
             class: "badge badge-pill badge-primary"
             id: (id 'total))
           (hr)
-          (row id: (id 'target))))
+          (row id: (id 'target))
+          (template id: (id 'template)
+             the-clicker-maker)))
       (script
          ([target (id 'target)]
+          [template (id 'template)] 
           [totalDiv (id 'total)] 
           [total 0])
          (function (newClicker)
-                   (inject-component target the-clicker-maker))
+           (inject-component template target))
          
          (function (updateTotal)
                    @js{
@@ -137,6 +145,7 @@
     (bootstrap-files)
     (page index.html
           (content
+            (js-runtime)
             (clickertron)
             (clicker-maker)
             (meta-clicker-maker) ))))

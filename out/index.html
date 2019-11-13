@@ -1,232 +1,116 @@
-<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><h1>Color Picker Demo</h1><div class="jumbotron" id="ns697_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns701_main()" id="ns701_clicker">0</button></div></div><script>
+<html><head><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" /><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><h1 id="ns938_mainTitle">Sliders</h1><h2 id="ns938_secondaryTitle">Cool, huh?</h2><a href="https://codepen.io/riyos94/pen/NXBvEX/">(Original slider code)</a><div class="jumbotron" id="ns939_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns940_output" class="badge badge-secondary">0</span></div><input id="ns940_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
-window.ns701_button="ns701_clicker";
-window.ns701_count=0;
-window.ns701_main = function(){
-window.ns701_inc(1);
-
-}
-
-window.ns701_inc = function(amount){
-window.ns701_count  +=  amount 
- document.getElementById( window.ns701_button ).innerHTML =  window.ns701_count;
- window.ns697_change("red" , window.ns701_count);
-
-}
-
-
+var slider = new Slider(" #ns940_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns940_output" ).innerHTML = x 
+                          window.ns939_change("red" , x) });
 //]]>
-</script></div><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns702_main()" id="ns702_clicker">0</button></div></div><script>
+</script></div><div class="col"><div><span id="ns941_output" class="badge badge-secondary">0</span></div><input id="ns941_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
-window.ns702_button="ns702_clicker";
-window.ns702_count=0;
-window.ns702_main = function(){
-window.ns702_inc(1);
-
-}
-
-window.ns702_inc = function(amount){
-window.ns702_count  +=  amount 
- document.getElementById( window.ns702_button ).innerHTML =  window.ns702_count;
- window.ns697_change("green" , window.ns702_count);
-
-}
-
-
+var slider = new Slider(" #ns941_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns941_output" ).innerHTML = x 
+                          window.ns939_change("green" , x) });
 //]]>
-</script></div><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns703_main()" id="ns703_clicker">0</button></div></div><script>
+</script></div><div class="col"><div><span id="ns942_output" class="badge badge-secondary">0</span></div><input id="ns942_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
-window.ns703_button="ns703_clicker";
-window.ns703_count=0;
-window.ns703_main = function(){
-window.ns703_inc(1);
-
-}
-
-window.ns703_inc = function(amount){
-window.ns703_count  +=  amount 
- document.getElementById( window.ns703_button ).innerHTML =  window.ns703_count;
- window.ns697_change("blue" , window.ns703_count);
-
-}
-
-
+var slider = new Slider(" #ns942_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns942_output" ).innerHTML = x 
+                          window.ns939_change("blue" , x) });
 //]]>
 </script></div></div></div><script>
 //<![CDATA[
-alert("Hi")
-//]]>
-</script><script>
-//<![CDATA[
-window.ns697_red=0;
-window.ns697_green=0;
-window.ns697_blue=0;
-window.ns697_output="ns697_output";
-window.ns697_change = function(color , amount){
+window.ns939_red=0;
+window.ns939_green=0;
+window.ns939_blue=0;
+window.ns939_output="ns939_output";
+window.ns939_change = function(color , amount){
 if( color  == "red"){ 
- window.ns697_red  =  amount 
+ window.ns939_red  =  amount 
  } 
  if( color  == "green"){ 
- window.ns697_green  =  amount 
+ window.ns939_green  =  amount 
  } 
  if( color  == "blue"){ 
- window.ns697_blue  =  amount 
+ window.ns939_blue  =  amount 
  } 
 
- var newColor = "rgb(" +  window.ns697_red  + "," +  window.ns697_green  + "," +  window.ns697_blue  + ")"; 
+ var newColor = "rgb(" +  window.ns939_red  + "," +  window.ns939_green  + "," +  window.ns939_blue  + ")"; 
 
- document.getElementById( window.ns697_output ).style.backgroundColor = newColor; 
+ document.getElementById( window.ns939_output ).style.backgroundColor = newColor; 
 
- ;
-
-}
-
-
-//]]>
-</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns698_newClicker()">I make pickers</button><hr /><div class="row" id="ns698_target"></div><template id="ns698_template"><div class="jumbotron" id="ns700_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns704_main()" id="ns704_clicker">0</button></div></div><script>
-//<![CDATA[
-window.ns704_button="ns704_clicker";
-window.ns704_count=0;
-window.ns704_main = function(){
-window.ns704_inc(1);
-
-}
-
-window.ns704_inc = function(amount){
-window.ns704_count  +=  amount 
- document.getElementById( window.ns704_button ).innerHTML =  window.ns704_count;
- window.ns700_change("red" , window.ns704_count);
+ window.ns938_main("primary" , newColor);
 
 }
 
 
 //]]>
-</script></div><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns705_main()" id="ns705_clicker">0</button></div></div><script>
+</script><div class="jumbotron" id="ns943_output" style="background-color:rgb(0,0,0);"><div class="row"><div class="col"><div><span id="ns944_output" class="badge badge-secondary">0</span></div><input id="ns944_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
-window.ns705_button="ns705_clicker";
-window.ns705_count=0;
-window.ns705_main = function(){
-window.ns705_inc(1);
-
-}
-
-window.ns705_inc = function(amount){
-window.ns705_count  +=  amount 
- document.getElementById( window.ns705_button ).innerHTML =  window.ns705_count;
- window.ns700_change("green" , window.ns705_count);
-
-}
-
-
+var slider = new Slider(" #ns944_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns944_output" ).innerHTML = x 
+                          window.ns943_change("red" , x) });
 //]]>
-</script></div><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns706_main()" id="ns706_clicker">0</button></div></div><script>
+</script></div><div class="col"><div><span id="ns945_output" class="badge badge-secondary">0</span></div><input id="ns945_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
 //<![CDATA[
-window.ns706_button="ns706_clicker";
-window.ns706_count=0;
-window.ns706_main = function(){
-window.ns706_inc(1);
-
-}
-
-window.ns706_inc = function(amount){
-window.ns706_count  +=  amount 
- document.getElementById( window.ns706_button ).innerHTML =  window.ns706_count;
- window.ns700_change("blue" , window.ns706_count);
-
-}
-
-
+var slider = new Slider(" #ns945_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns945_output" ).innerHTML = x 
+                          window.ns943_change("green" , x) });
+//]]>
+</script></div><div class="col"><div><span id="ns946_output" class="badge badge-secondary">0</span></div><input id="ns946_basic" type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0" /><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script><script>
+//<![CDATA[
+var slider = new Slider(" #ns946_basic ", { 
+                          tooltip: 'always' 
+                          }).on("slide",(x)=>{ 
+                          document.getElementById( "ns946_output" ).innerHTML = x 
+                          window.ns943_change("blue" , x) });
 //]]>
 </script></div></div></div><script>
 //<![CDATA[
-alert("Hi")
+window.ns943_red=0;
+window.ns943_green=0;
+window.ns943_blue=0;
+window.ns943_output="ns943_output";
+window.ns943_change = function(color , amount){
+if( color  == "red"){ 
+ window.ns943_red  =  amount 
+ } 
+ if( color  == "green"){ 
+ window.ns943_green  =  amount 
+ } 
+ if( color  == "blue"){ 
+ window.ns943_blue  =  amount 
+ } 
+
+ var newColor = "rgb(" +  window.ns943_red  + "," +  window.ns943_green  + "," +  window.ns943_blue  + ")"; 
+
+ document.getElementById( window.ns943_output ).style.backgroundColor = newColor; 
+
+ window.ns938_main("secondary" , newColor);
+
+}
+
+
 //]]>
 </script><script>
 //<![CDATA[
-window.ns700_red=0;
-window.ns700_green=0;
-window.ns700_blue=0;
-window.ns700_output="ns700_output";
-window.ns700_change = function(color , amount){
-if( color  == "red"){ 
- window.ns700_red  =  amount 
+window.ns938_mainTitle="ns938_mainTitle";
+window.ns938_secondaryTitle="ns938_secondaryTitle";
+window.ns938_main = function(kind , color){
+if( kind  == "primary"){ 
+    document.getElementById( window.ns938_mainTitle ).style.color = color 
  } 
- if( color  == "green"){ 
- window.ns700_green  =  amount 
- } 
- if( color  == "blue"){ 
- window.ns700_blue  =  amount 
- } 
-
- var newColor = "rgb(" +  window.ns700_red  + "," +  window.ns700_green  + "," +  window.ns700_blue  + ")"; 
-
- document.getElementById( window.ns700_output ).style.backgroundColor = newColor; 
-
- ;
-
-}
-
-
-//]]>
-</script></template></div></div><script>
-//<![CDATA[
-window.ns698_target="ns698_target";
-window.ns698_template="ns698_template";
-window.ns698_newClicker = function(){
-
-function replaceAllText(root, find, replace) {
-
-    var walker = document.createTreeWalker(
-        root,
-        NodeFilter.SHOW_ALL,  // filtering only text nodes
-        null,
-        false
-    );
-
-    while (walker.nextNode()) {
-        //if (walker.currentNode.nodeValue.trim())
-        var c = walker.currentNode
-        if(c.id){
-          c.id = c.id.replace(find, replace)
-        }
-        console.log(c)
-        if(c.getAttribute && c.getAttribute('onclick')){
-          c.setAttribute('onclick', c.getAttribute('onclick').replace(find, replace))
-        }
-        if(c.tagName == "SCRIPT"){
-          c.textContent = c.textContent.replace(find, replace)
-        }
-    }
-}
-
-     function newNamespaceKeeping(old){
-        console.log("Keeping", old)
-        var cache = {}
-        return function(ns){
-          if(!cache[ns]){
-            //Keep a cache.  And avoid changing the oldNamespace...
-            window.namespace_num = window.namespace_num || 0
-            window.namespace_num += 1
-            var freshNamespace = ns + "0000" + window.namespace_num
-            cache[ns] = freshNamespace
-          }
-
-          return cache[ns];
-        }
-     }
-
-
-                    var s = document.getElementById(window.ns698_template).innerHTML
-                    var oldNamespace = "ns698"
-                    //var oldNamespace = s.match(/(ns\d*)/)[0]
-
-                    var content = document.getElementById(window.ns698_template).content
-                    var clonedContent = document.importNode(content, true)
-                    replaceAllText(clonedContent, /ns\d*/g, newNamespaceKeeping(oldNamespace))
-
-                    document.getElementById(window.ns698_target).appendChild(clonedContent)
-
-;
+ if( kind  == "secondary"){ 
+    document.getElementById( window.ns938_secondaryTitle ).style.color = color 
+ };
 
 }
 

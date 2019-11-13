@@ -1,10 +1,12 @@
 #lang at-exp racket
 
 (provide (all-defined-out)
-         (all-from-out website/bootstrap))
+         (all-from-out website/bootstrap)
+	 (all-from-out "./js.rkt"))
 
 (require syntax/parse/define
-         website/bootstrap)
+         website/bootstrap
+	 "./js.rkt")
 
 ;Key concepts:
 ;  * Minimal amount of javascript language to provide react-like abstractions.  Only compile to that.
@@ -175,23 +177,19 @@
       (map ~a (flatten s)))))
 
 
-(define (inject-component id comp)
+(define (inject-component template target)
   (string->symbol
     @~a{
-    window.namespace_num = window.namespace_num || 0
+    var s = document.getElementById(@template).innerHTML
+    var oldNamespace = "@(namespace)"
+    //var oldNamespace = s.match(/(ns\d*)/)[0] 
 
-    window.namespace_num += 1
+    var content = document.getElementById(@template).content
+    var clonedContent = document.importNode(content, true) 
+    replaceAllText(clonedContent, /ns\d*/g, newNamespaceKeeping(oldNamespace))
 
-    var newNamespace = "ns0000" + window.namespace_num
+    document.getElementById(@target).appendChild(clonedContent)
 
-    var s = @(html->non-script-string comp)
-    var oldNamespace = s.match(/(ns\d*)/)[0] //Maybe buggy?  Just grabbing the first thing that looks like a namespace.  Maybe that's usally the component's main namespace and not the callback namespaces??
-    
-    document.getElementById(@id).innerHTML += s.replace(new RegExp(oldNamespace, "g") , newNamespace)  
-
-    aScript = document.createElement("script") 
-    aScript.text = @(html->script-string comp).replace(new RegExp(oldNamespace, "g") , newNamespace) 
-    document.getElementById(@id).appendChild(aScript)
     }))
 
 

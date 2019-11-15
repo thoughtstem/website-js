@@ -1,17 +1,11 @@
 Pay debt:
-  * BUG: See picker-maker in color-picker.  Won't create multipl color-pickers
-    - Homing in on a simpler way -- with html <template> tags.  But it isn't quite working. 
-    - Gotta pin down how namespaces will work in JavaScript.  If we can implement them at the template load boundary, that's ideal...  
-
-
-
-  * See warts in clicker.rkt, want to do (col-4 ...) on a component and get back something that (inject-component ...) can still use
-    - (wrap ...) is a bandaid for the mean time...
+  * Consider whether we want another layer of sugar over the template thing?
   * Document and anchor the namespacing and the various namespace aware functions.  Semantics keep shifting.
      -  Get the demos idiomatic.  Document the idioms.
   *  Make more declarative? (div id: "counter" (get-state "number")) 
     - React still wins over the document.getEl... stuff.
     - Need to decide, though if this should stop us from using things as-is.  The JS isn't that long or that bad...
+
 
 Take loan:
   * Port over something like Google's MDC components -- Use quickstart:

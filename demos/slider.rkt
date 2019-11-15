@@ -40,6 +40,29 @@
 (define (slider-on-slide s)
   (slider #:on-tick s))
 
+(define (color-picker-sliders)
+  (color-picker
+    #:on-change (callback 'main "primary")
+    #:r (curry slider-on-slide)
+    #:g (curry slider-on-slide)
+    #:b (curry slider-on-slide)))
+
+(define (color-picker-maker)
+  (enclose
+    (card
+      (button-primary on-click: (call 'newPicker)
+	"Click me: I make color pickers appear!")
+      (hr)
+      (div id: (id 'target))
+      (template id: (id 'template) 
+        (color-picker-sliders)))
+    (script
+      ((target (id 'target))
+       (template (id 'template)))
+      (function
+	(newPicker)
+	(inject-component template target)))))
+
 (define (test)
   (bootstrap
     (page index.html
@@ -49,8 +72,6 @@
             (include-css "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css")
 
             (enclose
-
-              
                 (list
                   (h1 id: (id 'mainTitle) "Sliders")
                   (h2 id: (id 'secondaryTitle) "Cool, huh?")

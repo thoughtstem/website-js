@@ -13,13 +13,14 @@
 ;  * Symbols are (currently) used to represent literal javascript code.  'a would be the variable a, '|main();| would be a function call. 
 ;     May have to change this when it gets slow.
 ;  * Other values, like strings, are converted to JS values of equivalent types when converted to javasctipt.   "hello" would turn into '|"hello"| when combined with other JS.
-;  * Reusable components are a tuple (list HTML JS).  Tools below help keep the JS and HTML identifiers in sync, syntactically nearby, and lexically scoped.
 
 (define (convert-id s)
+  ;TODO: Camel casing?
   (string->symbol
     (string-replace (~a s)
                     "-"
                     "_")))
+
 
 ;Namespace-aware stuff
 
@@ -29,22 +30,23 @@
   (parameterize ([namespace n])
     (let () stuff ...)))
 
+
+(define num 0)
+(define (next-namespace)
+  (set! num (add1 num))
+  (string->symbol (~a "ns" num)))
+
 (define-syntax-rule (enclose stuff ... html js)
   (with-namespace (gensym 'ns) 
                   stuff 
                   ...
                   (list html js)))
 
-(define (window. name)
-  (string->symbol (~a 'window. (namespace) "_" name)))
-
-
 (define (call fun . args)
   (define name (~a "window." (namespace) "_" fun))
 
   (string->symbol
     @~a{@name(@params[(map val args)])}))
-
 
 ;Simple currying mechanic
 (define (callback fun . args)
@@ -55,7 +57,6 @@
                              (cons x xs)))
     (string->symbol
       @~a{@name(@params[(map val all-args)])})))
-
 
 (define (params . args)
   @(string->symbol (string-join (add-between (map ~a (flatten args)) ","))))
@@ -72,13 +73,9 @@
   ;No string->symbol because it's for generating HTML ids, and for use with getEl()
   (~a  (namespace) "_" s))
 
-(define (id# s)
-  ;No string->symbol because it's for generating HTML ids, and for use with getEl()
-  (~a "#" (namespace) "_" s))
+(define ns id)
 
 ;/END Namespace-aware stuff
-
-
 
 (define (val x)
   (cond 
@@ -90,110 +87,44 @@
   (string->symbol
     (~a s ";\n")))
 
-
-(define (op name a b)
-  (string->symbol
-    @~a{(@a @name @b)}))
-
-(define (var name val)
-  (statement (~a "var " name "=" val)))
-
-(define (set-var name v)
-  (statement (~a name "=" (val v))))
-
-(define (get-var name)
-  (string->symbol
-    (~a name)))
-
-
-(define (+=! name amount)
-  (set-var name (op '+ (get-var name)
-                    (val amount))))
-
 (define innerHTML "innerHTML")
-
-(define (dots . things)
-  (apply ~a
-         (cons
-           (if (not (empty? things)) "." "") 
-           (add-between (flatten things) "."))) )
-
-(define (getEl id . refs)
-  @~a{document.getElementById(@(val id))@(dots refs)})
 
 (define (log s)
   (~a "console.log(" (val s) ")"))
 
-
 (define on-click: 'onClick:)
 
-(define (html->string element
-                      #:keep-script-tags? (keep-script-tags #t))
-  (define with-tags
-    (string-replace 
-      (~s
-        (with-output-to-string ;TODO shorten
-          (thunk
-            (output-xml element))))
-      "\n" ""))
-
-  (define fix-end-tags
-    (string-replace
-      with-tags 
-      "</script>" 
-      (if keep-script-tags "</scr\"+\"pt>" "")))
-
-
-  (if keep-script-tags
-    fix-end-tags
-    (regexp-replaces fix-end-tags 
-                     '(
-                       [#rx"<script>" ""]
-                       [#rx"</script>" ""]
-                       [#rx"//<!\\[CDATA\\[" ""] 
-                       [#rx"//\\]\\]>" ""]))) )
-
-(define (html->non-script-string e)
-  (define no-scripts (scrape-out 'script e))
-
-  (html->string no-scripts))
-
-(define (html->script-string e)
-  (define scripts 
-    (collect-all 'script e))
-
-  (string-join
-    (map (curry html->string #:keep-script-tags? #f)
-         scripts)))
-
-
-(define (alert s)
-  (statement @~a{alert(@(val s))}))
-
-
+;Mostly for at-reader support @js{raw js here}
 (define (js . s)
   (string->symbol
     (string-join 
       (map ~a (flatten s)))))
-
 
 (define (inject-component template target)
   (string->symbol
     @~a{
     var s = document.getElementById(@template).innerHTML
     var oldNamespace = "@(namespace)"
-    //var oldNamespace = s.match(/(ns\d*)/)[0] 
 
     var content = document.getElementById(@template).content
     var clonedContent = document.importNode(content, true) 
-    replaceAllText(clonedContent, /ns\d*/g, newNamespaceKeeping(oldNamespace))
+    replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
 
     document.getElementById(@target).appendChild(clonedContent)
-
     }))
 
 
 ;Syntactic sugarings...
+
+(define (window. name)
+    (string->symbol (~a 'window. (namespace) "_" name)))
+
+(define (set-var name v)
+    (statement (~a name "="  (val v))))
+
+(define (get-var name)
+    (string->symbol
+          (~a name)))
 
 (define-syntax-rule (state ([k v] ...)
                            (function (name ps ...) statements ...) ...)
@@ -207,23 +138,7 @@
                   statements ...)) 
       ... )))
 
-(define-syntax-rule (el= the-id chain ... last)
-  (set-var (getEl (id 'the-id) 'chain ...) last))
-
-(define-syntax-rule (st= the-id val)
-  (set-var the-id val))
-
-
-
 (define-syntax-rule (script stuff ...)
   (script/inline
     (state stuff ...)))
-
-
-
-(define (wrap f component)
-  (list-set component
-            0
-            (f (first component)))) 
-
 

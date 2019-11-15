@@ -4,11 +4,6 @@
          clicker-maker
          meta-clicker-maker)
 
-;TODO:
-;  * Child state affects parent state
-;  * Injecting new component at runtime from JS? Works?
-
-
 (require website-js)
 
 (define (clicker (type button-primary) 
@@ -45,43 +40,40 @@
       (clicker #:on-click (callback 'updateTotal)  ;Ouch: (callback 'inc) is an infinite loop...
                button-primary))
 
-    (displayln ((callback 'updateTotal) 'test))
+    (define the-button (col to-make))
 
-    (define the-button 
-        (wrap col to-make) )
-    
-      (card
-        (card-body
-          (button-primary on-click: (call 'newClicker)
-                          "I make clickers")
-          (span 
-            class: "badge badge-pill badge-primary"
-            id: (id 'total))
-          (hr)
-          (row id: (id 'target))
-          (template id: (id 'template)
-             the-button)))
-      (script
-         ([target (id 'target)]
-          [template (id 'template)] 
-          [totalDiv (id 'total)] 
-          [total 0])
+    (card
+      (card-body
+        (button-primary on-click: (call 'newClicker)
+                        "I make clickers")
+        (span 
+          class: "badge badge-pill badge-primary"
+          id: (id 'total))
+        (hr)
+        (row id: (id 'target))
+        (template id: (id 'template)
+                  the-button)))
+    (script
+      ([target (id 'target)]
+       [template (id 'template)] 
+       [totalDiv (id 'total)] 
+       [total 0])
 
-         (function (newClicker)
-           (inject-component template target))
+      (function (newClicker)
+                (inject-component template target))
 
-         (function (updateTotal)
-                   @js{
-                     @total += 1 
-                     document.getElementById(@totalDiv).innerHTML = "Total:" + @total
-                   }
-                   (on-click total)))))
+      (function (updateTotal)
+                @js{
+                @total += 1 
+                document.getElementById(@totalDiv).innerHTML = "Total:" + @total
+                }
+                (on-click total)))))
 
 
 (define (meta-clicker-maker)
   (enclose
     (define the-clicker-maker 
-      (wrap col (clicker-maker
+      (col (clicker-maker
                   #:on-click (callback 'updateTotal))))
     
     

@@ -212,17 +212,30 @@ Anyway, the main point is accomplished -- and indeed was accomplished even befor
 More interesting to me, however, as an organizing principle for any sort of endeavor would be -- what are the minimal set of linguistic tools that the average component author needs.  Yes: There will always be odd, unique, weird needs.  And for that, the escape hatch into dangerous JS territory -- a tool always at hand.  But when we do the sorts of things that pure user interfaces most often require -- what linguistic tools most assist us?
 
 I don't know the answer to that question, but my next steps are to try converting a standard component library -- like React's Material UI or Material Design Components.  This will illuminate the powerful abstractions that must come next.   
+@section{Client-Side Rendering}
+
+Started to build a calendar and realized there are some problems here.  The language you use to define behaviour (JS) doesn't have a syntax for describing components (like Racket does).  So you can't, for example, say:  
+
+When you click "New Event", add a new event component to the calendar and rerender the calendar.  
+
+How would you even do that in the current system?    A calendar can take the id of some template to inject, and 
+
+The callback mechanism gives children a way to communicate with parents (i.e. a way for parents to subscribe to things of interest and be notified).  But in React a parent can render out a new version of a child, with different props.  Feels like we need something like that here... 
+
+Currently, a parent could delete a component and inject a new version of it.  But that new version would have to be described in gross JS.  Or it would have to have been known at compile time.
+
+For the calendar, it doesn't work.  There are infinitely many ways to have events on calendars.  So whatever is adding events to the calendar needs to be able to take user input, construct new events, and rerender the calendar with those events.
+
+Currently, we can render out components.  Can we render out component functions -- javascript functions that return either a component string, or a component dom object (wrapped in a template?).  Whatever it is, it needs to be passable into other such functions, so that on the JS side (as on the Racket side), components can be assembled in building-block fashion.
 
 
+First stop on the quest: Racket script.  Does it let me compile out my Racket functions to JS in a useful way?
 
+Hmmm.  Just looked at it.  Seems like too much complexity for what I want. Plus the playground demo seemed slow.  I'm going to try rolling my own.  My domain is smaller, so I feel I might be able to hack to gether a much simpler compiler than RacketScript.
 
+Okay, so we want some kind of way for parents to affect the runtime state of their children.  Their children have functions.  Can parents just reach in and call those?  Or pass in the ones to be called?
 
-
-
-
-
-
-
+Figured out that if you have a reference to some dom element with a component inside, you can extract the namespace (brittle process atm), and call whatever functions you want.  It's like having an object reference and calling the object's methods.  I THINK this is enough to start building out cool components.  Maybe it's not as slick as React, but I have a feeling its flexibilty will be its strength.
 
 
 

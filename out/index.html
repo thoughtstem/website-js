@@ -43,56 +43,94 @@ function newNamespaceKeeping(old){
      return cache[ns] || ns;
    }
 }
+
+function getNamespace(component){
+  console.log(component)
+  return component.innerHTML.match(/ns\d+/)[0]
+}
 //]]>
-</script><div class="jumbotron" id="ns1009_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns1010_main()" id="ns1010_clicker">0</button></div></div><script>
+</script><div class="jumbotron" id="ns564_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns565_main()" id="ns565_clicker">0</button></div></div><script>
 //<![CDATA[
-window.ns1010_button="ns1010_clicker";
-window.ns1010_count=0;
-window.ns1010_main = function(){
-window.ns1010_inc(1);
+window.ns565_button="ns565_clicker";
+window.ns565_count=0;
+window.ns565_main = function(){
+window.ns565_inc(1);
 
 }
 
-window.ns1010_inc = function(amount){
-window.ns1010_count  +=  amount 
- document.getElementById( window.ns1010_button ).innerHTML =  window.ns1010_count;
- window.ns1009_main(window.ns1010_count);
+window.ns565_clear = function(){
+window.ns565_count  = 0;
+ window.ns565_render();
 
 }
 
-
-//]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns1011_main()" id="ns1011_clicker">0</button></div></div><script>
-//<![CDATA[
-window.ns1011_button="ns1011_clicker";
-window.ns1011_count=0;
-window.ns1011_main = function(){
-window.ns1011_inc(1);
+window.ns565_inc = function(amount){
+window.ns565_count  +=  amount;
+ window.ns565_render();
+ window.ns564_main(window.ns565_count);
 
 }
 
-window.ns1011_inc = function(amount){
-window.ns1011_count  +=  amount 
- document.getElementById( window.ns1011_button ).innerHTML =  window.ns1011_count;
- window.ns1009_main(window.ns1011_count);
+window.ns565_render = function(){
+document.getElementById( window.ns565_button ).innerHTML =  window.ns565_count;
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns1012_main()" id="ns1012_clicker">0</button></div></div><script>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns566_main()" id="ns566_clicker">0</button></div></div><script>
 //<![CDATA[
-window.ns1012_button="ns1012_clicker";
-window.ns1012_count=0;
-window.ns1012_main = function(){
-window.ns1012_inc(1);
+window.ns566_button="ns566_clicker";
+window.ns566_count=0;
+window.ns566_main = function(){
+window.ns566_inc(1);
 
 }
 
-window.ns1012_inc = function(amount){
-window.ns1012_count  +=  amount 
- document.getElementById( window.ns1012_button ).innerHTML =  window.ns1012_count;
- window.ns1009_main(window.ns1012_count);
+window.ns566_clear = function(){
+window.ns566_count  = 0;
+ window.ns566_render();
+
+}
+
+window.ns566_inc = function(amount){
+window.ns566_count  +=  amount;
+ window.ns566_render();
+ window.ns564_main(window.ns566_count);
+
+}
+
+window.ns566_render = function(){
+document.getElementById( window.ns566_button ).innerHTML =  window.ns566_count;
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns567_main()" id="ns567_clicker">0</button></div></div><script>
+//<![CDATA[
+window.ns567_button="ns567_clicker";
+window.ns567_count=0;
+window.ns567_main = function(){
+window.ns567_inc(1);
+
+}
+
+window.ns567_clear = function(){
+window.ns567_count  = 0;
+ window.ns567_render();
+
+}
+
+window.ns567_inc = function(amount){
+window.ns567_count  +=  amount;
+ window.ns567_render();
+ window.ns564_main(window.ns567_count);
+
+}
+
+window.ns567_render = function(){
+document.getElementById( window.ns567_button ).innerHTML =  window.ns567_count;
 
 }
 
@@ -100,76 +138,147 @@ window.ns1012_count  +=  amount
 //]]>
 </script></div></div></div></div><script>
 //<![CDATA[
-window.ns1009_count=0;
-window.ns1009_jumbo="ns1009_jumbo";
-window.ns1009_main = function(amount){
-window.ns1009_count  = amount 
- if( window.ns1009_count  == 10){ 
- document.getElementById( window.ns1009_jumbo ).style.backgroundColor = "red" 
+window.ns564_count=0;
+window.ns564_jumbo="ns564_jumbo";
+window.ns564_main = function(amount){
+window.ns564_count  = amount 
+ if( window.ns564_count  == 10){ 
+ document.getElementById( window.ns564_jumbo ).style.backgroundColor = "red" 
  };
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns1013_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns1013_total"></span><hr /><div class="row" id="ns1013_target"></div><template id="ns1013_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns1014_main()" id="ns1014_clicker">0</button></div></div><script>
+</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns568_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns568_total"></span><hr /><div class="row" id="ns568_target"></div><template id="ns568_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns569_main()" id="ns569_clicker">0</button></div></div><script>
 //<![CDATA[
-window.ns1014_button="ns1014_clicker";
-window.ns1014_count=0;
-window.ns1014_main = function(){
-window.ns1014_inc(1);
+window.ns569_button="ns569_clicker";
+window.ns569_count=0;
+window.ns569_main = function(){
+window.ns569_inc(1);
 
 }
 
-window.ns1014_inc = function(amount){
-window.ns1014_count  +=  amount 
- document.getElementById( window.ns1014_button ).innerHTML =  window.ns1014_count;
- window.ns1013_updateTotal(window.ns1014_count);
+window.ns569_clear = function(){
+window.ns569_count  = 0;
+ window.ns569_render();
+
+}
+
+window.ns569_inc = function(amount){
+window.ns569_count  +=  amount;
+ window.ns569_render();
+ window.ns568_updateTotal(window.ns569_count);
+
+}
+
+window.ns569_render = function(){
+document.getElementById( window.ns569_button ).innerHTML =  window.ns569_count;
 
 }
 
 
 //]]>
-</script></div></template></div></div><script>
+</script></div></template><button type="button" class="btn btn-danger" onClick="window.ns568_clearAll()">Clear All</button></div></div><script>
 //<![CDATA[
-window.ns1013_target="ns1013_target";
-window.ns1013_template="ns1013_template";
-window.ns1013_totalDiv="ns1013_total";
-window.ns1013_total=0;
-window.ns1013_newClicker = function(){
-var s = document.getElementById(window.ns1013_template).innerHTML
-var oldNamespace = "ns1013"
-
-var content = document.getElementById(window.ns1013_template).content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1013_target).appendChild(clonedContent);
+window.ns568_target="ns568_target";
+window.ns568_template="ns568_template";
+window.ns568_totalDiv="ns568_total";
+window.ns568_total=0;
+window.ns568_children=[];
+window.ns568_clearAll = function(){
+for(var c of  window.ns568_children ) 
+    window[getNamespace( c ) +  "_clear" ](  );
 
 }
 
-window.ns1013_updateTotal = function(){
-window.ns1013_total  += 1 
- document.getElementById( window.ns1013_totalDiv ).innerHTML = "Total:" +  window.ns1013_total;
+window.ns568_newClicker = function(){
+var s = document.getElementById(window.ns568_template).innerHTML
+var oldNamespace = "ns568"
+
+var content = document.getElementById(window.ns568_template).content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns568_target).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns568_target).lastChild;
+   window.ns568_children .push(injected) ;
+ window[getNamespace( injected ) +  "_inc" ]( 5 );
+
+}
+
+window.ns568_updateTotal = function(){
+window.ns568_total  += 1 
+ document.getElementById( window.ns568_totalDiv ).innerHTML = "Total:" +  window.ns568_total;
  ;
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns1015_newClicker()">I make clicker-makers</button><span class="badge badge-pill badge-primary" id="ns1015_total"></span><hr /><div class="row" id="ns1015_target"></div><template id="ns1015_template"><div class="col"><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns1016_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns1016_total"></span><hr /><div class="row" id="ns1016_target"></div><template id="ns1016_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns1017_main()" id="ns1017_clicker">0</button></div></div><script>
+</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns570_newClicker()">I make clicker-makers</button><span class="badge badge-pill badge-primary" id="ns570_total"></span><hr /><div class="row" id="ns570_target"></div><template id="ns570_template"><div class="col"><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns571_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns571_total"></span><hr /><div class="row" id="ns571_target"></div><template id="ns571_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns572_main()" id="ns572_clicker">0</button></div></div><script>
 //<![CDATA[
-window.ns1017_button="ns1017_clicker";
-window.ns1017_count=0;
-window.ns1017_main = function(){
-window.ns1017_inc(1);
+window.ns572_button="ns572_clicker";
+window.ns572_count=0;
+window.ns572_main = function(){
+window.ns572_inc(1);
 
 }
 
-window.ns1017_inc = function(amount){
-window.ns1017_count  +=  amount 
- document.getElementById( window.ns1017_button ).innerHTML =  window.ns1017_count;
- window.ns1016_updateTotal(window.ns1017_count);
+window.ns572_clear = function(){
+window.ns572_count  = 0;
+ window.ns572_render();
+
+}
+
+window.ns572_inc = function(amount){
+window.ns572_count  +=  amount;
+ window.ns572_render();
+ window.ns571_updateTotal(window.ns572_count);
+
+}
+
+window.ns572_render = function(){
+document.getElementById( window.ns572_button ).innerHTML =  window.ns572_count;
+
+}
+
+
+//]]>
+</script></div></template><button type="button" class="btn btn-danger" onClick="window.ns571_clearAll()">Clear All</button></div></div><script>
+//<![CDATA[
+window.ns571_target="ns571_target";
+window.ns571_template="ns571_template";
+window.ns571_totalDiv="ns571_total";
+window.ns571_total=0;
+window.ns571_children=[];
+window.ns571_clearAll = function(){
+for(var c of  window.ns571_children ) 
+    window[getNamespace( c ) +  "_clear" ](  );
+
+}
+
+window.ns571_newClicker = function(){
+var s = document.getElementById(window.ns571_template).innerHTML
+var oldNamespace = "ns571"
+
+var content = document.getElementById(window.ns571_template).content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns571_target).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns571_target).lastChild;
+   window.ns571_children .push(injected) ;
+ window[getNamespace( injected ) +  "_inc" ]( 5 );
+
+}
+
+window.ns571_updateTotal = function(){
+window.ns571_total  += 1 
+ document.getElementById( window.ns571_totalDiv ).innerHTML = "Total:" +  window.ns571_total;
+ window.ns570_updateTotal(window.ns571_total);
 
 }
 
@@ -177,52 +286,27 @@ window.ns1017_count  +=  amount
 //]]>
 </script></div></template></div></div><script>
 //<![CDATA[
-window.ns1016_target="ns1016_target";
-window.ns1016_template="ns1016_template";
-window.ns1016_totalDiv="ns1016_total";
-window.ns1016_total=0;
-window.ns1016_newClicker = function(){
-var s = document.getElementById(window.ns1016_template).innerHTML
-var oldNamespace = "ns1016"
+window.ns570_target="ns570_target";
+window.ns570_template="ns570_template";
+window.ns570_totalDiv="ns570_total";
+window.ns570_total=0;
+window.ns570_newClicker = function(){
+var s = document.getElementById(window.ns570_template).innerHTML
+var oldNamespace = "ns570"
 
-var content = document.getElementById(window.ns1016_template).content
+var content = document.getElementById(window.ns570_template).content
 var clonedContent = document.importNode(content, true)
 replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
 
-document.getElementById(window.ns1016_target).appendChild(clonedContent);
+document.getElementById(window.ns570_target).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns570_target).lastChild;
 
 }
 
-window.ns1016_updateTotal = function(){
-window.ns1016_total  += 1 
- document.getElementById( window.ns1016_totalDiv ).innerHTML = "Total:" +  window.ns1016_total;
- window.ns1015_updateTotal(window.ns1016_total);
-
-}
-
-
-//]]>
-</script></div></template></div></div><script>
-//<![CDATA[
-window.ns1015_target="ns1015_target";
-window.ns1015_template="ns1015_template";
-window.ns1015_totalDiv="ns1015_total";
-window.ns1015_total=0;
-window.ns1015_newClicker = function(){
-var s = document.getElementById(window.ns1015_template).innerHTML
-var oldNamespace = "ns1015"
-
-var content = document.getElementById(window.ns1015_template).content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1015_target).appendChild(clonedContent);
-
-}
-
-window.ns1015_updateTotal = function(){
-window.ns1015_total  += 1 
- document.getElementById( window.ns1015_totalDiv ).innerHTML = "Total:" +  window.ns1015_total;
+window.ns570_updateTotal = function(){
+window.ns570_total  += 1 
+ document.getElementById( window.ns570_totalDiv ).innerHTML = "Total:" +  window.ns570_total;
 
 }
 

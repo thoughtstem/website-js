@@ -24,13 +24,24 @@
             (function (main)
                       (call 'inc 1))
 
+            (function (clear)
+                      @js{
+                        @count = 0
+                      }
+                       
+                      (call 'render))
+
             (function (inc amount)
                       @js{
                       @count += @amount
-                      document.getElementById(@button).innerHTML = @count
                       }
+                      (call 'render)
                       (on-click count) ;Cutpoint
-                      )) ))
+                      )
+
+           (function (render)
+              @js{document.getElementById(@button).innerHTML = @count} 
+              ))))
 
 
 (define (clicker-maker
@@ -52,15 +63,27 @@
         (hr)
         (row id: (id 'target))
         (template id: (id 'template)
-                  the-button)))
+                  the-button)
+       (button-danger
+          on-click: (call 'clearAll)
+          "Clear All")))
     (script
       ([target (id 'target)]
        [template (id 'template)] 
        [totalDiv (id 'total)] 
-       [total 0])
+       [total 0]
+       [children '|[]|])
+
+      (function (clearAll)
+                @js{
+                   for(var c of @children) 
+                     @(js-call 'c 'clear)  
+                 })
 
       (function (newClicker)
-                (inject-component template target))
+                (inject-component template target)
+                @js{ @|children|.push(injected) })
+
 
       (function (updateTotal)
                 @js{

@@ -48,6 +48,10 @@
   (string->symbol
     @~a{@name(@params[(map val args)])}))
 
+;For calling on child elements, or anything you have the runtime namespace for
+(define (js-call elem fun . args)
+  @js{window[getNamespace(@elem) + @(val (~a "_" fun))](@params[(map val args)])})
+
 ;Simple currying mechanic
 (define (callback fun . args)
   (define name (~a "window." (namespace) "_" fun))
@@ -111,6 +115,8 @@
     replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
 
     document.getElementById(@target).appendChild(clonedContent)
+
+    window.injected = document.getElementById(@target).lastChild 
     }))
 
 
@@ -141,4 +147,6 @@
 (define-syntax-rule (script stuff ...)
   (script/inline
     (state stuff ...)))
+
+
 

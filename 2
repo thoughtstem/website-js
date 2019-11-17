@@ -1,0 +1,96 @@
+#lang racket
+
+(require website-js)
+
+(define (day-square day-num 
+                    #:active? (active? #t))
+  (card
+    (card-body 
+      (p style: (properties
+                  color: (if active? "black"
+                           "gray"))
+         day-num))))
+
+
+(define (day-name n)
+  ())
+
+(define (calendar )
+  (define day-names
+    (container
+      (day-name "Sunday") 
+      (day-name "Monday") 
+      (day-name "Tuesday") 
+      (day-name "Wednesday") 
+      (day-name "Thursday") 
+      (day-name "Friday") 
+      (day-name "Saturday")))
+
+  (define week-1 
+    (card-group
+      (day-square 31 #:active? #f)
+      (day-square 1)
+      (day-square 2)
+      (day-square 3)
+      (day-square 4)
+      (day-square 5)
+      (day-square 6)))
+
+  (define week-2
+    (card-group
+      (day-square 7)
+      (day-square 8)
+      (day-square 9)
+      (day-square 10)
+      (day-square 11)
+      (day-square 12)
+      (day-square 13)))
+
+  (define week-3
+    (card-group
+      (day-square 14)
+      (day-square 15)
+      (day-square 16)
+      (day-square 17)
+      (day-square 18)
+      (day-square 19)
+      (day-square 20)))
+
+  (define week-4
+    (card-group
+      (day-square 21)
+      (day-square 22)
+      (day-square 23)
+      (day-square 24)
+      (day-square 25)
+      (day-square 26)
+      (day-square 27)))
+
+  (define week-5
+    (card-group
+      (day-square 28)
+      (day-square 29)
+      (day-square 30)
+      (day-square 1 #:active? #f)
+      (day-square 2 #:active? #f)
+      (day-square 3 #:active? #f)
+      (day-square 4 #:active? #f)))
+  
+  (container 
+    (h3 style: (properties text-align: "center") 
+        "June")
+    day-names
+    week-1 
+    week-2
+    week-3
+    week-4
+    week-5))
+
+
+(module+ main
+  (render (bootstrap
+            (page index.html
+                  (content 
+                    (calendar))))
+          #:to "out"))
+

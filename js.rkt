@@ -49,4 +49,13 @@
 
 	  return cache[ns] || ns;
         }
-     }}))
+     }
+
+     function getNamespace(component){
+       console.log(component)
+       return component.innerHTML.match(/ns\d+/)[0]  
+     }
+     }))
+
+
+

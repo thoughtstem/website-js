@@ -48,6 +48,26 @@ function getNamespace(component){
   console.log(component)
   return component.innerHTML.match(/ns\d+/)[0]
 }
+
+function injectComponent(template, target, oldNamespace){
+       var actualTemplate = null;
+       if(typeof(template) == "string")
+           actualTemplate = document.getElementById(template);
+       else
+           actualTemplate = template;
+
+       var s = actualTemplate.innerHTML
+
+       var content = actualTemplate.content
+       var clonedContent = document.importNode(content, true)
+       replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+       document.getElementById(target).appendChild(clonedContent)
+
+       window.injected = document.getElementById(target).lastChild
+       if (actualTemplate.afterInject)
+          actualTemplate.afterInject(window.injected)
+}
 //]]>
 </script><div class="container"><div class="card-group"><div class="card"><div class="card-header"><h3>July</h3></div><div class="card-body"><span id="ns1214_eventControls"></span><script>
 //<![CDATA[
@@ -70,7 +90,7 @@ window.ns1108_addEvent(Math.floor(Math.random()*30) + 1);
 
 
 //]]>
-</script><div class="card-group"><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Sun</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Mon</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Tue</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Wed</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Thu</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Fri</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Sat</div></div></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1110_modal">31</p><div class="modal fade" id="ns1110_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1110_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1110_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1110_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card-group"><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Sun</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Mon</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Tue</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Wed</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Thu</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Fri</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Sat</div></div></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1110_modal">31</p><div class="modal fade" id="ns1110_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1110_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1110_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1110_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1110_time="8am";
 window.ns1110_name="Fun event";
@@ -81,7 +101,6 @@ window.ns1110_name=document.getElementById( window.ns1110_nameEl ) .value;
 ;
  window.ns1110_time=document.getElementById( window.ns1110_timeEl ) .options[ document.getElementById( window.ns1110_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1110_time);
   $(' #ns1110_modal ').modal('hide') ;
  window.ns1109_createAndAddEvent(window.ns1110_name , window.ns1110_time);
 
@@ -106,24 +125,7 @@ document.getElementById( window.ns1111_nameSpan ) .innerHTML = n;
 window.ns1109_events="ns1109_events";
 window.ns1109_eventTemplate="ns1109_eventTemplate";
 window.ns1109_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1109"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1109_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1109_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1109_events);;
 
 }
 
@@ -138,7 +140,7 @@ window.ns1109_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1113_modal">1</p><div class="modal fade" id="ns1113_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1113_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1113_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1113_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1113_modal">1</p><div class="modal fade" id="ns1113_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1113_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1113_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1113_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1113_time="8am";
 window.ns1113_name="Fun event";
@@ -149,7 +151,6 @@ window.ns1113_name=document.getElementById( window.ns1113_nameEl ) .value;
 ;
  window.ns1113_time=document.getElementById( window.ns1113_timeEl ) .options[ document.getElementById( window.ns1113_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1113_time);
   $(' #ns1113_modal ').modal('hide') ;
  window.ns1112_createAndAddEvent(window.ns1113_name , window.ns1113_time);
 
@@ -174,24 +175,7 @@ document.getElementById( window.ns1114_nameSpan ) .innerHTML = n;
 window.ns1112_events="ns1112_events";
 window.ns1112_eventTemplate="ns1112_eventTemplate";
 window.ns1112_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1112"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1112_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1112_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1112_events);;
 
 }
 
@@ -206,7 +190,7 @@ window.ns1112_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1116_modal">2</p><div class="modal fade" id="ns1116_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1116_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1116_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1116_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1116_modal">2</p><div class="modal fade" id="ns1116_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1116_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1116_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1116_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1116_time="8am";
 window.ns1116_name="Fun event";
@@ -217,7 +201,6 @@ window.ns1116_name=document.getElementById( window.ns1116_nameEl ) .value;
 ;
  window.ns1116_time=document.getElementById( window.ns1116_timeEl ) .options[ document.getElementById( window.ns1116_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1116_time);
   $(' #ns1116_modal ').modal('hide') ;
  window.ns1115_createAndAddEvent(window.ns1116_name , window.ns1116_time);
 
@@ -242,24 +225,7 @@ document.getElementById( window.ns1117_nameSpan ) .innerHTML = n;
 window.ns1115_events="ns1115_events";
 window.ns1115_eventTemplate="ns1115_eventTemplate";
 window.ns1115_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1115"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1115_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1115_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1115_events);;
 
 }
 
@@ -274,7 +240,7 @@ window.ns1115_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1119_modal">3</p><div class="modal fade" id="ns1119_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1119_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1119_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1119_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1119_modal">3</p><div class="modal fade" id="ns1119_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1119_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1119_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1119_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1119_time="8am";
 window.ns1119_name="Fun event";
@@ -285,7 +251,6 @@ window.ns1119_name=document.getElementById( window.ns1119_nameEl ) .value;
 ;
  window.ns1119_time=document.getElementById( window.ns1119_timeEl ) .options[ document.getElementById( window.ns1119_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1119_time);
   $(' #ns1119_modal ').modal('hide') ;
  window.ns1118_createAndAddEvent(window.ns1119_name , window.ns1119_time);
 
@@ -310,24 +275,7 @@ document.getElementById( window.ns1120_nameSpan ) .innerHTML = n;
 window.ns1118_events="ns1118_events";
 window.ns1118_eventTemplate="ns1118_eventTemplate";
 window.ns1118_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1118"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1118_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1118_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1118_events);;
 
 }
 
@@ -342,7 +290,7 @@ window.ns1118_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1122_modal">4</p><div class="modal fade" id="ns1122_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1122_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1122_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1122_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1122_modal">4</p><div class="modal fade" id="ns1122_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1122_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1122_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1122_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1122_time="8am";
 window.ns1122_name="Fun event";
@@ -353,7 +301,6 @@ window.ns1122_name=document.getElementById( window.ns1122_nameEl ) .value;
 ;
  window.ns1122_time=document.getElementById( window.ns1122_timeEl ) .options[ document.getElementById( window.ns1122_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1122_time);
   $(' #ns1122_modal ').modal('hide') ;
  window.ns1121_createAndAddEvent(window.ns1122_name , window.ns1122_time);
 
@@ -378,24 +325,7 @@ document.getElementById( window.ns1123_nameSpan ) .innerHTML = n;
 window.ns1121_events="ns1121_events";
 window.ns1121_eventTemplate="ns1121_eventTemplate";
 window.ns1121_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1121"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1121_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1121_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1121_events);;
 
 }
 
@@ -410,7 +340,7 @@ window.ns1121_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1125_modal">5</p><div class="modal fade" id="ns1125_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1125_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1125_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1125_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1125_modal">5</p><div class="modal fade" id="ns1125_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1125_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1125_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1125_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1125_time="8am";
 window.ns1125_name="Fun event";
@@ -421,7 +351,6 @@ window.ns1125_name=document.getElementById( window.ns1125_nameEl ) .value;
 ;
  window.ns1125_time=document.getElementById( window.ns1125_timeEl ) .options[ document.getElementById( window.ns1125_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1125_time);
   $(' #ns1125_modal ').modal('hide') ;
  window.ns1124_createAndAddEvent(window.ns1125_name , window.ns1125_time);
 
@@ -458,24 +387,7 @@ document.getElementById( window.ns1107_nameSpan ) .innerHTML = n;
 window.ns1124_events="ns1124_events";
 window.ns1124_eventTemplate="ns1124_eventTemplate";
 window.ns1124_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1124"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1124_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1124_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1124_events);;
 
 }
 
@@ -490,7 +402,7 @@ window.ns1124_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1128_modal">6</p><div class="modal fade" id="ns1128_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1128_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1128_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1128_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1128_modal">6</p><div class="modal fade" id="ns1128_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1128_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1128_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1128_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1128_time="8am";
 window.ns1128_name="Fun event";
@@ -501,7 +413,6 @@ window.ns1128_name=document.getElementById( window.ns1128_nameEl ) .value;
 ;
  window.ns1128_time=document.getElementById( window.ns1128_timeEl ) .options[ document.getElementById( window.ns1128_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1128_time);
   $(' #ns1128_modal ').modal('hide') ;
  window.ns1127_createAndAddEvent(window.ns1128_name , window.ns1128_time);
 
@@ -526,24 +437,7 @@ document.getElementById( window.ns1129_nameSpan ) .innerHTML = n;
 window.ns1127_events="ns1127_events";
 window.ns1127_eventTemplate="ns1127_eventTemplate";
 window.ns1127_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1127"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1127_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1127_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1127_events);;
 
 }
 
@@ -558,7 +452,7 @@ window.ns1127_addEvent ( (function(){
 
 
 //]]>
-</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1131_modal">7</p><div class="modal fade" id="ns1131_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1131_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1131_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1131_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1131_modal">7</p><div class="modal fade" id="ns1131_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1131_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1131_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1131_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1131_time="8am";
 window.ns1131_name="Fun event";
@@ -569,7 +463,6 @@ window.ns1131_name=document.getElementById( window.ns1131_nameEl ) .value;
 ;
  window.ns1131_time=document.getElementById( window.ns1131_timeEl ) .options[ document.getElementById( window.ns1131_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1131_time);
   $(' #ns1131_modal ').modal('hide') ;
  window.ns1130_createAndAddEvent(window.ns1131_name , window.ns1131_time);
 
@@ -594,24 +487,7 @@ document.getElementById( window.ns1132_nameSpan ) .innerHTML = n;
 window.ns1130_events="ns1130_events";
 window.ns1130_eventTemplate="ns1130_eventTemplate";
 window.ns1130_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1130"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1130_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1130_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1130_events);;
 
 }
 
@@ -626,7 +502,7 @@ window.ns1130_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1134_modal">8</p><div class="modal fade" id="ns1134_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1134_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1134_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1134_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1134_modal">8</p><div class="modal fade" id="ns1134_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1134_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1134_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1134_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1134_time="8am";
 window.ns1134_name="Fun event";
@@ -637,7 +513,6 @@ window.ns1134_name=document.getElementById( window.ns1134_nameEl ) .value;
 ;
  window.ns1134_time=document.getElementById( window.ns1134_timeEl ) .options[ document.getElementById( window.ns1134_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1134_time);
   $(' #ns1134_modal ').modal('hide') ;
  window.ns1133_createAndAddEvent(window.ns1134_name , window.ns1134_time);
 
@@ -662,24 +537,7 @@ document.getElementById( window.ns1135_nameSpan ) .innerHTML = n;
 window.ns1133_events="ns1133_events";
 window.ns1133_eventTemplate="ns1133_eventTemplate";
 window.ns1133_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1133"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1133_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1133_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1133_events);;
 
 }
 
@@ -694,7 +552,7 @@ window.ns1133_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1137_modal">9</p><div class="modal fade" id="ns1137_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1137_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1137_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1137_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1137_modal">9</p><div class="modal fade" id="ns1137_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1137_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1137_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1137_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1137_time="8am";
 window.ns1137_name="Fun event";
@@ -705,7 +563,6 @@ window.ns1137_name=document.getElementById( window.ns1137_nameEl ) .value;
 ;
  window.ns1137_time=document.getElementById( window.ns1137_timeEl ) .options[ document.getElementById( window.ns1137_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1137_time);
   $(' #ns1137_modal ').modal('hide') ;
  window.ns1136_createAndAddEvent(window.ns1137_name , window.ns1137_time);
 
@@ -730,24 +587,7 @@ document.getElementById( window.ns1138_nameSpan ) .innerHTML = n;
 window.ns1136_events="ns1136_events";
 window.ns1136_eventTemplate="ns1136_eventTemplate";
 window.ns1136_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1136"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1136_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1136_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1136_events);;
 
 }
 
@@ -762,7 +602,7 @@ window.ns1136_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1140_modal">10</p><div class="modal fade" id="ns1140_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1140_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1140_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1140_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1140_modal">10</p><div class="modal fade" id="ns1140_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1140_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1140_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1140_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1140_time="8am";
 window.ns1140_name="Fun event";
@@ -773,7 +613,6 @@ window.ns1140_name=document.getElementById( window.ns1140_nameEl ) .value;
 ;
  window.ns1140_time=document.getElementById( window.ns1140_timeEl ) .options[ document.getElementById( window.ns1140_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1140_time);
   $(' #ns1140_modal ').modal('hide') ;
  window.ns1139_createAndAddEvent(window.ns1140_name , window.ns1140_time);
 
@@ -798,24 +637,7 @@ document.getElementById( window.ns1141_nameSpan ) .innerHTML = n;
 window.ns1139_events="ns1139_events";
 window.ns1139_eventTemplate="ns1139_eventTemplate";
 window.ns1139_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1139"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1139_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1139_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1139_events);;
 
 }
 
@@ -830,7 +652,7 @@ window.ns1139_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1143_modal">11</p><div class="modal fade" id="ns1143_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1143_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1143_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1143_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1143_modal">11</p><div class="modal fade" id="ns1143_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1143_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1143_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1143_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1143_time="8am";
 window.ns1143_name="Fun event";
@@ -841,7 +663,6 @@ window.ns1143_name=document.getElementById( window.ns1143_nameEl ) .value;
 ;
  window.ns1143_time=document.getElementById( window.ns1143_timeEl ) .options[ document.getElementById( window.ns1143_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1143_time);
   $(' #ns1143_modal ').modal('hide') ;
  window.ns1142_createAndAddEvent(window.ns1143_name , window.ns1143_time);
 
@@ -866,24 +687,7 @@ document.getElementById( window.ns1144_nameSpan ) .innerHTML = n;
 window.ns1142_events="ns1142_events";
 window.ns1142_eventTemplate="ns1142_eventTemplate";
 window.ns1142_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1142"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1142_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1142_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1142_events);;
 
 }
 
@@ -898,7 +702,7 @@ window.ns1142_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1146_modal">12</p><div class="modal fade" id="ns1146_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1146_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1146_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1146_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1146_modal">12</p><div class="modal fade" id="ns1146_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1146_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1146_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1146_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1146_time="8am";
 window.ns1146_name="Fun event";
@@ -909,7 +713,6 @@ window.ns1146_name=document.getElementById( window.ns1146_nameEl ) .value;
 ;
  window.ns1146_time=document.getElementById( window.ns1146_timeEl ) .options[ document.getElementById( window.ns1146_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1146_time);
   $(' #ns1146_modal ').modal('hide') ;
  window.ns1145_createAndAddEvent(window.ns1146_name , window.ns1146_time);
 
@@ -934,24 +737,7 @@ document.getElementById( window.ns1147_nameSpan ) .innerHTML = n;
 window.ns1145_events="ns1145_events";
 window.ns1145_eventTemplate="ns1145_eventTemplate";
 window.ns1145_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1145"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1145_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1145_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1145_events);;
 
 }
 
@@ -966,7 +752,7 @@ window.ns1145_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1149_modal">13</p><div class="modal fade" id="ns1149_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1149_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1149_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1149_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1149_modal">13</p><div class="modal fade" id="ns1149_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1149_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1149_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1149_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1149_time="8am";
 window.ns1149_name="Fun event";
@@ -977,7 +763,6 @@ window.ns1149_name=document.getElementById( window.ns1149_nameEl ) .value;
 ;
  window.ns1149_time=document.getElementById( window.ns1149_timeEl ) .options[ document.getElementById( window.ns1149_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1149_time);
   $(' #ns1149_modal ').modal('hide') ;
  window.ns1148_createAndAddEvent(window.ns1149_name , window.ns1149_time);
 
@@ -1002,24 +787,7 @@ document.getElementById( window.ns1150_nameSpan ) .innerHTML = n;
 window.ns1148_events="ns1148_events";
 window.ns1148_eventTemplate="ns1148_eventTemplate";
 window.ns1148_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1148"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1148_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1148_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1148_events);;
 
 }
 
@@ -1034,7 +802,7 @@ window.ns1148_addEvent ( (function(){
 
 
 //]]>
-</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1152_modal">14</p><div class="modal fade" id="ns1152_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1152_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1152_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1152_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1152_modal">14</p><div class="modal fade" id="ns1152_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1152_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1152_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1152_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1152_time="8am";
 window.ns1152_name="Fun event";
@@ -1045,7 +813,6 @@ window.ns1152_name=document.getElementById( window.ns1152_nameEl ) .value;
 ;
  window.ns1152_time=document.getElementById( window.ns1152_timeEl ) .options[ document.getElementById( window.ns1152_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1152_time);
   $(' #ns1152_modal ').modal('hide') ;
  window.ns1151_createAndAddEvent(window.ns1152_name , window.ns1152_time);
 
@@ -1070,24 +837,7 @@ document.getElementById( window.ns1153_nameSpan ) .innerHTML = n;
 window.ns1151_events="ns1151_events";
 window.ns1151_eventTemplate="ns1151_eventTemplate";
 window.ns1151_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1151"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1151_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1151_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1151_events);;
 
 }
 
@@ -1102,7 +852,7 @@ window.ns1151_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1155_modal">15</p><div class="modal fade" id="ns1155_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1155_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1155_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1155_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1155_modal">15</p><div class="modal fade" id="ns1155_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1155_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1155_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1155_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1155_time="8am";
 window.ns1155_name="Fun event";
@@ -1113,7 +863,6 @@ window.ns1155_name=document.getElementById( window.ns1155_nameEl ) .value;
 ;
  window.ns1155_time=document.getElementById( window.ns1155_timeEl ) .options[ document.getElementById( window.ns1155_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1155_time);
   $(' #ns1155_modal ').modal('hide') ;
  window.ns1154_createAndAddEvent(window.ns1155_name , window.ns1155_time);
 
@@ -1138,24 +887,7 @@ document.getElementById( window.ns1156_nameSpan ) .innerHTML = n;
 window.ns1154_events="ns1154_events";
 window.ns1154_eventTemplate="ns1154_eventTemplate";
 window.ns1154_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1154"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1154_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1154_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1154_events);;
 
 }
 
@@ -1170,7 +902,7 @@ window.ns1154_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1158_modal">16</p><div class="modal fade" id="ns1158_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1158_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1158_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1158_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1158_modal">16</p><div class="modal fade" id="ns1158_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1158_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1158_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1158_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1158_time="8am";
 window.ns1158_name="Fun event";
@@ -1181,7 +913,6 @@ window.ns1158_name=document.getElementById( window.ns1158_nameEl ) .value;
 ;
  window.ns1158_time=document.getElementById( window.ns1158_timeEl ) .options[ document.getElementById( window.ns1158_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1158_time);
   $(' #ns1158_modal ').modal('hide') ;
  window.ns1157_createAndAddEvent(window.ns1158_name , window.ns1158_time);
 
@@ -1206,24 +937,7 @@ document.getElementById( window.ns1159_nameSpan ) .innerHTML = n;
 window.ns1157_events="ns1157_events";
 window.ns1157_eventTemplate="ns1157_eventTemplate";
 window.ns1157_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1157"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1157_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1157_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1157_events);;
 
 }
 
@@ -1238,7 +952,7 @@ window.ns1157_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1161_modal">17</p><div class="modal fade" id="ns1161_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1161_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1161_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1161_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1161_modal">17</p><div class="modal fade" id="ns1161_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1161_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1161_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1161_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1161_time="8am";
 window.ns1161_name="Fun event";
@@ -1249,7 +963,6 @@ window.ns1161_name=document.getElementById( window.ns1161_nameEl ) .value;
 ;
  window.ns1161_time=document.getElementById( window.ns1161_timeEl ) .options[ document.getElementById( window.ns1161_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1161_time);
   $(' #ns1161_modal ').modal('hide') ;
  window.ns1160_createAndAddEvent(window.ns1161_name , window.ns1161_time);
 
@@ -1274,24 +987,7 @@ document.getElementById( window.ns1162_nameSpan ) .innerHTML = n;
 window.ns1160_events="ns1160_events";
 window.ns1160_eventTemplate="ns1160_eventTemplate";
 window.ns1160_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1160"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1160_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1160_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1160_events);;
 
 }
 
@@ -1306,7 +1002,7 @@ window.ns1160_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1164_modal">18</p><div class="modal fade" id="ns1164_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1164_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1164_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1164_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1164_modal">18</p><div class="modal fade" id="ns1164_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1164_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1164_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1164_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1164_time="8am";
 window.ns1164_name="Fun event";
@@ -1317,7 +1013,6 @@ window.ns1164_name=document.getElementById( window.ns1164_nameEl ) .value;
 ;
  window.ns1164_time=document.getElementById( window.ns1164_timeEl ) .options[ document.getElementById( window.ns1164_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1164_time);
   $(' #ns1164_modal ').modal('hide') ;
  window.ns1163_createAndAddEvent(window.ns1164_name , window.ns1164_time);
 
@@ -1342,24 +1037,7 @@ document.getElementById( window.ns1165_nameSpan ) .innerHTML = n;
 window.ns1163_events="ns1163_events";
 window.ns1163_eventTemplate="ns1163_eventTemplate";
 window.ns1163_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1163"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1163_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1163_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1163_events);;
 
 }
 
@@ -1374,7 +1052,7 @@ window.ns1163_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1167_modal">19</p><div class="modal fade" id="ns1167_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1167_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1167_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1167_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1167_modal">19</p><div class="modal fade" id="ns1167_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1167_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1167_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1167_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1167_time="8am";
 window.ns1167_name="Fun event";
@@ -1385,7 +1063,6 @@ window.ns1167_name=document.getElementById( window.ns1167_nameEl ) .value;
 ;
  window.ns1167_time=document.getElementById( window.ns1167_timeEl ) .options[ document.getElementById( window.ns1167_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1167_time);
   $(' #ns1167_modal ').modal('hide') ;
  window.ns1166_createAndAddEvent(window.ns1167_name , window.ns1167_time);
 
@@ -1410,24 +1087,7 @@ document.getElementById( window.ns1168_nameSpan ) .innerHTML = n;
 window.ns1166_events="ns1166_events";
 window.ns1166_eventTemplate="ns1166_eventTemplate";
 window.ns1166_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1166"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1166_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1166_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1166_events);;
 
 }
 
@@ -1442,7 +1102,7 @@ window.ns1166_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1170_modal">20</p><div class="modal fade" id="ns1170_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1170_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1170_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1170_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1170_modal">20</p><div class="modal fade" id="ns1170_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1170_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1170_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1170_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1170_time="8am";
 window.ns1170_name="Fun event";
@@ -1453,7 +1113,6 @@ window.ns1170_name=document.getElementById( window.ns1170_nameEl ) .value;
 ;
  window.ns1170_time=document.getElementById( window.ns1170_timeEl ) .options[ document.getElementById( window.ns1170_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1170_time);
   $(' #ns1170_modal ').modal('hide') ;
  window.ns1169_createAndAddEvent(window.ns1170_name , window.ns1170_time);
 
@@ -1478,24 +1137,7 @@ document.getElementById( window.ns1171_nameSpan ) .innerHTML = n;
 window.ns1169_events="ns1169_events";
 window.ns1169_eventTemplate="ns1169_eventTemplate";
 window.ns1169_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1169"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1169_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1169_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1169_events);;
 
 }
 
@@ -1510,7 +1152,7 @@ window.ns1169_addEvent ( (function(){
 
 
 //]]>
-</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1173_modal">21</p><div class="modal fade" id="ns1173_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1173_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1173_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1173_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1173_modal">21</p><div class="modal fade" id="ns1173_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1173_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1173_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1173_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1173_time="8am";
 window.ns1173_name="Fun event";
@@ -1521,7 +1163,6 @@ window.ns1173_name=document.getElementById( window.ns1173_nameEl ) .value;
 ;
  window.ns1173_time=document.getElementById( window.ns1173_timeEl ) .options[ document.getElementById( window.ns1173_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1173_time);
   $(' #ns1173_modal ').modal('hide') ;
  window.ns1172_createAndAddEvent(window.ns1173_name , window.ns1173_time);
 
@@ -1546,24 +1187,7 @@ document.getElementById( window.ns1174_nameSpan ) .innerHTML = n;
 window.ns1172_events="ns1172_events";
 window.ns1172_eventTemplate="ns1172_eventTemplate";
 window.ns1172_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1172"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1172_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1172_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1172_events);;
 
 }
 
@@ -1578,7 +1202,7 @@ window.ns1172_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1176_modal">22</p><div class="modal fade" id="ns1176_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1176_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1176_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1176_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1176_modal">22</p><div class="modal fade" id="ns1176_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1176_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1176_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1176_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1176_time="8am";
 window.ns1176_name="Fun event";
@@ -1589,7 +1213,6 @@ window.ns1176_name=document.getElementById( window.ns1176_nameEl ) .value;
 ;
  window.ns1176_time=document.getElementById( window.ns1176_timeEl ) .options[ document.getElementById( window.ns1176_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1176_time);
   $(' #ns1176_modal ').modal('hide') ;
  window.ns1175_createAndAddEvent(window.ns1176_name , window.ns1176_time);
 
@@ -1614,24 +1237,7 @@ document.getElementById( window.ns1177_nameSpan ) .innerHTML = n;
 window.ns1175_events="ns1175_events";
 window.ns1175_eventTemplate="ns1175_eventTemplate";
 window.ns1175_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1175"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1175_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1175_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1175_events);;
 
 }
 
@@ -1646,7 +1252,7 @@ window.ns1175_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1179_modal">23</p><div class="modal fade" id="ns1179_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1179_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1179_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1179_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1179_modal">23</p><div class="modal fade" id="ns1179_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1179_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1179_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1179_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1179_time="8am";
 window.ns1179_name="Fun event";
@@ -1657,7 +1263,6 @@ window.ns1179_name=document.getElementById( window.ns1179_nameEl ) .value;
 ;
  window.ns1179_time=document.getElementById( window.ns1179_timeEl ) .options[ document.getElementById( window.ns1179_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1179_time);
   $(' #ns1179_modal ').modal('hide') ;
  window.ns1178_createAndAddEvent(window.ns1179_name , window.ns1179_time);
 
@@ -1682,24 +1287,7 @@ document.getElementById( window.ns1180_nameSpan ) .innerHTML = n;
 window.ns1178_events="ns1178_events";
 window.ns1178_eventTemplate="ns1178_eventTemplate";
 window.ns1178_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1178"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1178_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1178_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1178_events);;
 
 }
 
@@ -1714,7 +1302,7 @@ window.ns1178_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1182_modal">24</p><div class="modal fade" id="ns1182_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1182_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1182_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1182_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1182_modal">24</p><div class="modal fade" id="ns1182_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1182_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1182_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1182_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1182_time="8am";
 window.ns1182_name="Fun event";
@@ -1725,7 +1313,6 @@ window.ns1182_name=document.getElementById( window.ns1182_nameEl ) .value;
 ;
  window.ns1182_time=document.getElementById( window.ns1182_timeEl ) .options[ document.getElementById( window.ns1182_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1182_time);
   $(' #ns1182_modal ').modal('hide') ;
  window.ns1181_createAndAddEvent(window.ns1182_name , window.ns1182_time);
 
@@ -1750,24 +1337,7 @@ document.getElementById( window.ns1183_nameSpan ) .innerHTML = n;
 window.ns1181_events="ns1181_events";
 window.ns1181_eventTemplate="ns1181_eventTemplate";
 window.ns1181_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1181"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1181_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1181_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1181_events);;
 
 }
 
@@ -1782,7 +1352,7 @@ window.ns1181_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1185_modal">25</p><div class="modal fade" id="ns1185_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1185_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1185_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1185_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1185_modal">25</p><div class="modal fade" id="ns1185_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1185_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1185_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1185_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1185_time="8am";
 window.ns1185_name="Fun event";
@@ -1793,7 +1363,6 @@ window.ns1185_name=document.getElementById( window.ns1185_nameEl ) .value;
 ;
  window.ns1185_time=document.getElementById( window.ns1185_timeEl ) .options[ document.getElementById( window.ns1185_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1185_time);
   $(' #ns1185_modal ').modal('hide') ;
  window.ns1184_createAndAddEvent(window.ns1185_name , window.ns1185_time);
 
@@ -1818,24 +1387,7 @@ document.getElementById( window.ns1186_nameSpan ) .innerHTML = n;
 window.ns1184_events="ns1184_events";
 window.ns1184_eventTemplate="ns1184_eventTemplate";
 window.ns1184_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1184"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1184_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1184_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1184_events);;
 
 }
 
@@ -1850,7 +1402,7 @@ window.ns1184_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1188_modal">26</p><div class="modal fade" id="ns1188_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1188_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1188_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1188_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1188_modal">26</p><div class="modal fade" id="ns1188_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1188_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1188_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1188_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1188_time="8am";
 window.ns1188_name="Fun event";
@@ -1861,7 +1413,6 @@ window.ns1188_name=document.getElementById( window.ns1188_nameEl ) .value;
 ;
  window.ns1188_time=document.getElementById( window.ns1188_timeEl ) .options[ document.getElementById( window.ns1188_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1188_time);
   $(' #ns1188_modal ').modal('hide') ;
  window.ns1187_createAndAddEvent(window.ns1188_name , window.ns1188_time);
 
@@ -1886,24 +1437,7 @@ document.getElementById( window.ns1189_nameSpan ) .innerHTML = n;
 window.ns1187_events="ns1187_events";
 window.ns1187_eventTemplate="ns1187_eventTemplate";
 window.ns1187_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1187"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1187_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1187_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1187_events);;
 
 }
 
@@ -1918,7 +1452,7 @@ window.ns1187_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1191_modal">27</p><div class="modal fade" id="ns1191_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1191_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1191_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1191_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1191_modal">27</p><div class="modal fade" id="ns1191_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1191_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1191_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1191_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1191_time="8am";
 window.ns1191_name="Fun event";
@@ -1929,7 +1463,6 @@ window.ns1191_name=document.getElementById( window.ns1191_nameEl ) .value;
 ;
  window.ns1191_time=document.getElementById( window.ns1191_timeEl ) .options[ document.getElementById( window.ns1191_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1191_time);
   $(' #ns1191_modal ').modal('hide') ;
  window.ns1190_createAndAddEvent(window.ns1191_name , window.ns1191_time);
 
@@ -1954,24 +1487,7 @@ document.getElementById( window.ns1192_nameSpan ) .innerHTML = n;
 window.ns1190_events="ns1190_events";
 window.ns1190_eventTemplate="ns1190_eventTemplate";
 window.ns1190_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1190"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1190_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1190_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1190_events);;
 
 }
 
@@ -1986,7 +1502,7 @@ window.ns1190_addEvent ( (function(){
 
 
 //]]>
-</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1194_modal">28</p><div class="modal fade" id="ns1194_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1194_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1194_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1194_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1194_modal">28</p><div class="modal fade" id="ns1194_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1194_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1194_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1194_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1194_time="8am";
 window.ns1194_name="Fun event";
@@ -1997,7 +1513,6 @@ window.ns1194_name=document.getElementById( window.ns1194_nameEl ) .value;
 ;
  window.ns1194_time=document.getElementById( window.ns1194_timeEl ) .options[ document.getElementById( window.ns1194_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1194_time);
   $(' #ns1194_modal ').modal('hide') ;
  window.ns1193_createAndAddEvent(window.ns1194_name , window.ns1194_time);
 
@@ -2022,24 +1537,7 @@ document.getElementById( window.ns1195_nameSpan ) .innerHTML = n;
 window.ns1193_events="ns1193_events";
 window.ns1193_eventTemplate="ns1193_eventTemplate";
 window.ns1193_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1193"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1193_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1193_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1193_events);;
 
 }
 
@@ -2054,7 +1552,7 @@ window.ns1193_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1197_modal">29</p><div class="modal fade" id="ns1197_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1197_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1197_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1197_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1197_modal">29</p><div class="modal fade" id="ns1197_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1197_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1197_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1197_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1197_time="8am";
 window.ns1197_name="Fun event";
@@ -2065,7 +1563,6 @@ window.ns1197_name=document.getElementById( window.ns1197_nameEl ) .value;
 ;
  window.ns1197_time=document.getElementById( window.ns1197_timeEl ) .options[ document.getElementById( window.ns1197_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1197_time);
   $(' #ns1197_modal ').modal('hide') ;
  window.ns1196_createAndAddEvent(window.ns1197_name , window.ns1197_time);
 
@@ -2090,24 +1587,7 @@ document.getElementById( window.ns1198_nameSpan ) .innerHTML = n;
 window.ns1196_events="ns1196_events";
 window.ns1196_eventTemplate="ns1196_eventTemplate";
 window.ns1196_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1196"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1196_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1196_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1196_events);;
 
 }
 
@@ -2122,7 +1602,7 @@ window.ns1196_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1200_modal">30</p><div class="modal fade" id="ns1200_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1200_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1200_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1200_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1200_modal">30</p><div class="modal fade" id="ns1200_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1200_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1200_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1200_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1200_time="8am";
 window.ns1200_name="Fun event";
@@ -2133,7 +1613,6 @@ window.ns1200_name=document.getElementById( window.ns1200_nameEl ) .value;
 ;
  window.ns1200_time=document.getElementById( window.ns1200_timeEl ) .options[ document.getElementById( window.ns1200_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1200_time);
   $(' #ns1200_modal ').modal('hide') ;
  window.ns1199_createAndAddEvent(window.ns1200_name , window.ns1200_time);
 
@@ -2158,24 +1637,7 @@ document.getElementById( window.ns1201_nameSpan ) .innerHTML = n;
 window.ns1199_events="ns1199_events";
 window.ns1199_eventTemplate="ns1199_eventTemplate";
 window.ns1199_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1199"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1199_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1199_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1199_events);;
 
 }
 
@@ -2190,7 +1652,7 @@ window.ns1199_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1203_modal">1</p><div class="modal fade" id="ns1203_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1203_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1203_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1203_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1203_modal">1</p><div class="modal fade" id="ns1203_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1203_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1203_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1203_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1203_time="8am";
 window.ns1203_name="Fun event";
@@ -2201,7 +1663,6 @@ window.ns1203_name=document.getElementById( window.ns1203_nameEl ) .value;
 ;
  window.ns1203_time=document.getElementById( window.ns1203_timeEl ) .options[ document.getElementById( window.ns1203_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1203_time);
   $(' #ns1203_modal ').modal('hide') ;
  window.ns1202_createAndAddEvent(window.ns1203_name , window.ns1203_time);
 
@@ -2226,24 +1687,7 @@ document.getElementById( window.ns1204_nameSpan ) .innerHTML = n;
 window.ns1202_events="ns1202_events";
 window.ns1202_eventTemplate="ns1202_eventTemplate";
 window.ns1202_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1202"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1202_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1202_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1202_events);;
 
 }
 
@@ -2258,7 +1702,7 @@ window.ns1202_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1206_modal">2</p><div class="modal fade" id="ns1206_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1206_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1206_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1206_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1206_modal">2</p><div class="modal fade" id="ns1206_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1206_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1206_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1206_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1206_time="8am";
 window.ns1206_name="Fun event";
@@ -2269,7 +1713,6 @@ window.ns1206_name=document.getElementById( window.ns1206_nameEl ) .value;
 ;
  window.ns1206_time=document.getElementById( window.ns1206_timeEl ) .options[ document.getElementById( window.ns1206_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1206_time);
   $(' #ns1206_modal ').modal('hide') ;
  window.ns1205_createAndAddEvent(window.ns1206_name , window.ns1206_time);
 
@@ -2294,24 +1737,7 @@ document.getElementById( window.ns1207_nameSpan ) .innerHTML = n;
 window.ns1205_events="ns1205_events";
 window.ns1205_eventTemplate="ns1205_eventTemplate";
 window.ns1205_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1205"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1205_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1205_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1205_events);;
 
 }
 
@@ -2326,7 +1752,7 @@ window.ns1205_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1209_modal">3</p><div class="modal fade" id="ns1209_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1209_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1209_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1209_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1209_modal">3</p><div class="modal fade" id="ns1209_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1209_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1209_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1209_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1209_time="8am";
 window.ns1209_name="Fun event";
@@ -2337,7 +1763,6 @@ window.ns1209_name=document.getElementById( window.ns1209_nameEl ) .value;
 ;
  window.ns1209_time=document.getElementById( window.ns1209_timeEl ) .options[ document.getElementById( window.ns1209_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1209_time);
   $(' #ns1209_modal ').modal('hide') ;
  window.ns1208_createAndAddEvent(window.ns1209_name , window.ns1209_time);
 
@@ -2362,24 +1787,7 @@ document.getElementById( window.ns1210_nameSpan ) .innerHTML = n;
 window.ns1208_events="ns1208_events";
 window.ns1208_eventTemplate="ns1208_eventTemplate";
 window.ns1208_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1208"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1208_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1208_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1208_events);;
 
 }
 
@@ -2394,7 +1802,7 @@ window.ns1208_addEvent ( (function(){
 
 
 //]]>
-</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1212_modal">4</p><div class="modal fade" id="ns1212_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1212_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1212_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1212_createEvent()">Create Event</button></div></div></div></div></span><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1212_modal">4</p><div class="modal fade" id="ns1212_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1212_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1212_name" type="text" class="form-control" placeholder="FunEvent" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1212_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
 window.ns1212_time="8am";
 window.ns1212_name="Fun event";
@@ -2405,7 +1813,6 @@ window.ns1212_name=document.getElementById( window.ns1212_nameEl ) .value;
 ;
  window.ns1212_time=document.getElementById( window.ns1212_timeEl ) .options[ document.getElementById( window.ns1212_timeEl ) .selectedIndex].value;
 ;
- console.log(window.ns1212_time);
   $(' #ns1212_modal ').modal('hide') ;
  window.ns1211_createAndAddEvent(window.ns1212_name , window.ns1212_time);
 
@@ -2430,24 +1837,7 @@ document.getElementById( window.ns1213_nameSpan ) .innerHTML = n;
 window.ns1211_events="ns1211_events";
 window.ns1211_eventTemplate="ns1211_eventTemplate";
 window.ns1211_addEvent = function(c){
-var actualTemplate = null;
-if(typeof(c) == "string")
-    actualTemplate = document.getElementById(c);
-else
-    actualTemplate = c;
-
-var s = actualTemplate.innerHTML
-var oldNamespace = "ns1211"
-
-var content = actualTemplate.content
-var clonedContent = document.importNode(content, true)
-replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-document.getElementById(window.ns1211_events).appendChild(clonedContent)
-
-window.injected = document.getElementById(window.ns1211_events).lastChild
-if (actualTemplate.afterInject)
-   actualTemplate.afterInject(window.injected);
+injectComponent(c, window.ns1211_events);;
 
 }
 

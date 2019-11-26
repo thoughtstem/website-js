@@ -112,24 +112,7 @@
 (define (inject-component template target)
   (string->symbol
     @~a{
-    var actualTemplate = null;
-    if(typeof(@template) == "string")
-        actualTemplate = document.getElementById(@template);
-    else
-        actualTemplate = @template;
-
-    var s = actualTemplate.innerHTML
-    var oldNamespace = "@(namespace)"
-
-    var content = actualTemplate.content
-    var clonedContent = document.importNode(content, true) 
-    replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
-
-    document.getElementById(@target).appendChild(clonedContent)
-
-    window.injected = document.getElementById(@target).lastChild 
-    if (actualTemplate.afterInject)
-       actualTemplate.afterInject(window.injected)
+     injectComponent(@template, @target);
     }))
 
 

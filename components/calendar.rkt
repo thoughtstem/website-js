@@ -2,6 +2,42 @@
 
 (require website-js)
 
+(define (time-select . content)
+   (apply select (flatten
+                     (list
+                         content
+                         class: "custom-select mr-sm-2"
+                         (option 'value: "12am" "12am")
+                         (option 'value: "1am" "1am")
+                         (option 'value: "2am" "2am")
+                         (option 'value: "3am" "3am")
+                         (option 'value: "4am" "4am")
+                         (option 'value: "5am" "5am")
+                         (option 'selected: #t 'value: "6am" "6am")
+                         (option 'value: "7am" "7am")
+                         (option 'value: "8am" "8am")
+                         (option 'value: "9am" "9am")
+                         (option 'value: "10am" "10am")
+                         (option 'value: "11am" "11am")
+                         (option 'value: "12pm" "12pm")
+                         (option 'value: "1pm" "1pm")
+                         (option 'value: "2pm" "2pm")
+                         (option 'value: "3pm" "3pm")
+                         (option 'value: "4pm" "4pm")
+                         (option 'value: "5pm" "5pm")
+                         (option 'value: "6pm" "6pm")
+                         (option 'value: "7pm" "7pm")
+                         (option 'value: "8pm" "8pm")
+                         (option 'value: "9pm" "9pm")
+                         (option 'value: "10pm" "10pm")
+                         (option 'value: "11pm" "11pm")))))
+
+(define (form-row the-label the-input)
+ (div class: "form-group row"
+  (label class: "col-sm-2 col-form-label" the-label)
+  (div class: "col-sm-10"
+   the-input)))
+
 (define (new-event-picker
          button-f
          #:callback (callback noop))
@@ -16,44 +52,8 @@
         (modal-title "New Event"))
 
        (modal-body
-        (div class: "form-group row"
-             (label
-              class: "col-sm-2 col-form-label"
-              "Time")
-             (div class: "col-sm-10"
-                  (select id: (ns "time")
-                          class: "custom-select mr-sm-2"
-                          (option 'value: "12am" "12am")
-                          (option 'value: "1am" "1am")
-                          (option 'value: "2am" "2am")
-                          (option 'value: "3am" "3am")
-                          (option 'value: "4am" "4am")
-                          (option 'value: "5am" "5am")
-                          (option 'selected: #t 'value: "6am" "6am")
-                          (option 'value: "7am" "7am")
-                          (option 'value: "8am" "8am")
-                          (option 'value: "9am" "9am")
-                          (option 'value: "10am" "10am")
-                          (option 'value: "11am" "11am")
-                          (option 'value: "12pm" "12pm")
-                          (option 'value: "1pm" "1pm")
-                          (option 'value: "2pm" "2pm")
-                          (option 'value: "3pm" "3pm")
-                          (option 'value: "4pm" "4pm")
-                          (option 'value: "5pm" "5pm")
-                          (option 'value: "6pm" "6pm")
-                          (option 'value: "7pm" "7pm")
-                          (option 'value: "8pm" "8pm")
-                          (option 'value: "9pm" "9pm")
-                          (option 'value: "10pm" "10pm")
-                          (option 'value: "11pm" "11pm"))))
-        (div class: "form-group row"
-             (label
-              class: "col-sm-2 col-form-label"
-              "Name")
-             (div class: "col-sm-10"
-                  (input id: (ns "name") type: "text" class: "form-control"
-                         'placeholder: "Fun Event"))))
+        (form-row "Time" (time-select id: (ns "time")))
+        (form-row "Name" (input id: (ns "name") type: "text" class: "form-control" 'placeholder: "FunEvent")))
 
        (modal-footer
         (button-secondary 'data-dismiss: "modal" "Cancel")
@@ -67,7 +67,6 @@
      (function (createEvent)
        (set-var name @js{@getEl{@nameEl}.value}) 
        (set-var time @js{@getEl{@timeEl}.options[@getEl{@timeEl}.selectedIndex].value}) 
-       (log time)
        @js{ $('@(ns# 'modal)').modal('hide') }
        (callback name time)))))
 

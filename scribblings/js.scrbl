@@ -294,3 +294,26 @@ Update: Ignored the previous next steps and continued building calendar componen
 (TODO: Remove the material date time picker, which proved to be a misadventure.)
 
 
+Extracted injectComponent into a function.  (Way less generated code.)
+
+TODOs
+
+Add constructor function support for scripts.
+  Possibly render function support too.
+
+Consider adding and documenting AspectJ-style cutpoints as a way of extending the compiler.  Use cases: 
+  local storage? 
+  ajax backend communication?
+  call render after any function that updates a state var
+
+Consider local storage support for state variables...
+  > Every set-var writes to local storage...
+  > Component comes online, it reads from local storage...  
+  
+
+
+Unity integration? (Fun flashy project...).
+  Games enclosed in components...
+
+
+

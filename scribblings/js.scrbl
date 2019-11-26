@@ -237,10 +237,60 @@ Okay, so we want some kind of way for parents to affect the runtime state of the
 
 Figured out that if you have a reference to some dom element with a component inside, you can extract the namespace (brittle process atm), and call whatever functions you want.  It's like having an object reference and calling the object's methods.  I THINK this is enough to start building out cool components.  Maybe it's not as slick as React, but I have a feeling its flexibilty will be its strength.
 
+@section{Abstractions I'm Cobbling Together}
+
+See: components/calendar.rkt
+
+I'm trying to build a calendar that's extensible.  I want the calendar to take its controls as input (i.e. widgets to add events, etc).  I don't what the calendar to have to decide what those look like.
+
+So the calendar's interface will take a component that it will grant addEvent access to.  This other component will call addEvent whenever it wants -- likely in response to user input, and some kind of text field (for the event name) and time picker (for the event time). 
+
+Weird thing is, the controls way of constructing an event object is to store it in a template.  But that's not a real object.  It's more of a prototype.  Its instance methods can't be called until it is constructed.  Should we be constructing it locally?  WHat does that mean?  Inject it into the dom?  That feels dirty for some reason. 
+
+So my workaround was to pass along a callback to be applied wherever the event object gets injected.  It's like applying a change lazily.
+
+Anyway, it works, but it was frought with syntactic difficulties, and I don't love the story as it stands.  Feels like we should cover up as much of that channel as possible.  Or we need to figure out a different way.
+
+On the other hand, it is kind of cool that the event's way of letting you change its name is to provide a changeName function, which is what the controls ultimately call after injection.
+
+So far, we've managed to build everything on top of namespaced functions and an extremely tight security model.  You get to reason object-orientedly on the front end, and functionally on the back end.
 
 
+@code{
+(calendar "July"
+           #:controls add-event-controls 
+
+	   (hash
+	      5 (event "2pm" "Test" button-danger)))
+}
+
+This makes a calendar, with controls for adding an event.  The construction of the calendar component happens at compile time.  But the event controls demonstrate the construction of components (an event, in this case) can also happen at runtime.
+
+@code{
+(define (add-event-controls cb)
+  (enclose
+   (span id: (ns 'eventControls)
+    (button-danger on-click: (call 'addEvent)
+                   "Test add event...")
+    (template id: (ns 'testEvent)
+              (event #:id (ns 'testEvent) "6am" "First Day of Work")))
+   (script ([testEvent (ns 'testEvent)]) 
+
+           (function (addEvent)
+                     @js{var e = document.getElementById(@testEvent)}
+                     (cb @js{Math.floor(Math.random()*30) + 1}
+                         'e (window. 'fixName)))
+
+           (function (fixName e)
+                     (js-call 'e 'changeName "Yo")))))
+}
+
+We get to leverage the fact that components are such simple things -- just dom objects that obey certain rules.  They can construct other components, provided they know how (i.e. have them stored in a local template) .  A lot of that is cool.  It's just the construction story that feels like it needs some help.
+
+Next steps: Try to formally document the runtime model, and the definition of a component.  And other key domain vocab: Component reference, component method, component injection, etc...
 
 
-
+Update: Ignored the previous next steps and continued building calendar component.  Have a reasonable, working event time/name picker.   Some technical debt to pay off, but so far the overall framework is getting easier for me to navigate.
+(TODO: Remove the material date time picker, which proved to be a misadventure.)
 
 

@@ -48,9 +48,8 @@
   (string->symbol
     @~a{@name(@params[(map val args)])}))
 
-;For calling on child elements, or anything you have the runtime namespace for
-(define (js-call elem fun . args)
-  @js{window[getNamespace(@elem) + @(val (~a "_" fun))](@params[(map val args)])})
+(define-syntax-rule (-> elem fun args ...)
+  @js{window[getNamespace(@elem) + @(val (~a "_" 'fun))](@params[(map val (list args ...))])})
 
 ;Simple currying mechanic
 (define (callback fun . args)
@@ -77,7 +76,12 @@
   ;No string->symbol because it's for generating HTML ids, and for use with getEl()
   (~a  (namespace) "_" s))
 
+(define (id# s)
+  ;No string->symbol because it's for generating HTML ids, and for use with getEl()
+  (~a  "#" (namespace) "_" s))
+
 (define ns id)
+(define ns# id#)
 
 ;/END Namespace-aware stuff
 
@@ -104,19 +108,28 @@
     (string-join 
       (map ~a (flatten s)))))
 
+;Make this take dom objects and strings alike
 (define (inject-component template target)
   (string->symbol
     @~a{
-    var s = document.getElementById(@template).innerHTML
+    var actualTemplate = null;
+    if(typeof(@template) == "string")
+        actualTemplate = document.getElementById(@template);
+    else
+        actualTemplate = @template;
+
+    var s = actualTemplate.innerHTML
     var oldNamespace = "@(namespace)"
 
-    var content = document.getElementById(@template).content
+    var content = actualTemplate.content
     var clonedContent = document.importNode(content, true) 
     replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
 
     document.getElementById(@target).appendChild(clonedContent)
 
     window.injected = document.getElementById(@target).lastChild 
+    if (actualTemplate.afterInject)
+       actualTemplate.afterInject(window.injected)
     }))
 
 
@@ -139,7 +152,8 @@
     (list
       (set-var k v)
       ...
-      (let ([ps 'ps] ...)
+      (let ([ps 'ps] ...
+            [name (window. 'name)] ...)
         (function 'name '(ps ...)
                   statements ...)) 
       ... )))
@@ -147,6 +161,55 @@
 (define-syntax-rule (script stuff ...)
   (script/inline
     (state stuff ...)))
+
+
+;Hack for now
+(define-syntax-rule (script-id id stuff ...)
+  (script/inline id: id
+    (state stuff ...)))
+
+(define (html->string element
+                      #:keep-script-tags? (keep-script-tags #f))
+  (define with-tags
+    (string-replace 
+      (~s
+        (with-output-to-string ;TODO shorten
+          (thunk
+            (output-xml element))))
+      "\n" ""))
+
+  (define fix-end-tags
+    (string-replace
+      with-tags 
+      "</script>" 
+      (if keep-script-tags "</scr\"+\"pt>" "")))
+
+
+  (if keep-script-tags
+    fix-end-tags
+    (regexp-replaces fix-end-tags 
+                     '(
+                       [#rx"<script>" ""]
+                       [#rx"</script>" ""]
+                       [#rx"//<!\\[CDATA\\[" ""] 
+                       [#rx"//\\]\\]>" ""]))) )
+
+
+(define-syntax-rule (instantiate id #:then (meth ps ...))
+  @js{
+      (function(){
+        var e = @(getEl id);
+        e.afterInject = function(e){@(-> 'e meth ps ...)};
+        return e;
+      }())
+   })
+
+(define noop (const ""))
+
+;DOM Helpers
+
+(define (getEl . stuff)
+  @js{document.getElementById(@stuff)})
 
 
 

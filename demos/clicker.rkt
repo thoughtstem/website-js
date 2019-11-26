@@ -77,7 +77,7 @@
       (function (clearAll)
                 @js{
                    for(var c of @children) 
-                     @(js-call 'c 'clear)  
+                     @(-> 'c clear)  
                  })
 
       (function (newClicker)

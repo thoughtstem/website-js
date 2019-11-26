@@ -1,4 +1,4 @@
-<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><script src="/js/jquery-3.2.1.slim.min.js"></script><script>
+<html><head><link rel="stylesheet" type="text/css" href="https:/fonts.googleapis.com/icon?family=Material+Icons" /><link rel="stylesheet" type="text/css" href="https:/fonts.googleapis.com/css?family=Roboto" /><link rel="stylesheet" type="text/css" href="/material-datetime-picker.css" /><script src="https:/cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script><script src="https:/cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script><script src="/material-datetime-picker.js"></script><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><script src="/js/jquery-3.2.1.slim.min.js"></script><script>
 //<![CDATA[
    function replaceAllText(root, find, replace) {
 
@@ -49,267 +49,2433 @@ function getNamespace(component){
   return component.innerHTML.match(/ns\d+/)[0]
 }
 //]]>
-</script><div class="jumbotron" id="ns564_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns565_main()" id="ns565_clicker">0</button></div></div><script>
+</script><div class="container"><div class="card-group"><div class="card"><div class="card-header"><h3>July</h3></div><div class="card-body"><span id="ns1214_eventControls"></span><script>
 //<![CDATA[
-window.ns565_button="ns565_clicker";
-window.ns565_count=0;
-window.ns565_main = function(){
-window.ns565_inc(1);
+window.ns1214_testEvent="ns1214_testEvent";
+window.ns1214_nextEventName="";
+window.ns1214_nextEventTime="";
+window.ns1214_setNameAndTime = function(name , time){
+window.ns1214_nextEventName=name;
+;
+ window.ns1214_nextEventTime=time;
+;
+ window.ns1214_addEvent();
 
 }
 
-window.ns565_clear = function(){
-window.ns565_count  = 0;
- window.ns565_render();
-
-}
-
-window.ns565_inc = function(amount){
-window.ns565_count  +=  amount;
- window.ns565_render();
- window.ns564_main(window.ns565_count);
-
-}
-
-window.ns565_render = function(){
-document.getElementById( window.ns565_button ).innerHTML =  window.ns565_count;
+window.ns1214_addEvent = function(){
+window.ns1108_addEvent(Math.floor(Math.random()*30) + 1);
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns566_main()" id="ns566_clicker">0</button></div></div><script>
+</script><div class="card-group"><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Sun</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Mon</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Tue</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Wed</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Thu</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Fri</div></div><div class="card bg-success text-white" class="bg-success text-white"><div class="card-header">Sat</div></div></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1110_modal">31</p><div class="modal fade" id="ns1110_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1110_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1110_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1110_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
-window.ns566_button="ns566_clicker";
-window.ns566_count=0;
-window.ns566_main = function(){
-window.ns566_inc(1);
-
-}
-
-window.ns566_clear = function(){
-window.ns566_count  = 0;
- window.ns566_render();
-
-}
-
-window.ns566_inc = function(amount){
-window.ns566_count  +=  amount;
- window.ns566_render();
- window.ns564_main(window.ns566_count);
-
-}
-
-window.ns566_render = function(){
-document.getElementById( window.ns566_button ).innerHTML =  window.ns566_count;
+window.ns1110_time="8am";
+window.ns1110_name="Fun event";
+window.ns1110_nameEl="ns1110_name";
+window.ns1110_timeEl="ns1110_time";
+window.ns1110_createEvent = function(){
+window.ns1110_name=document.getElementById( window.ns1110_nameEl ) .value;
+;
+ window.ns1110_time=document.getElementById( window.ns1110_timeEl ) .options[ document.getElementById( window.ns1110_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1110_time);
+  $(' #ns1110_modal ').modal('hide') ;
+ window.ns1109_createAndAddEvent(window.ns1110_name , window.ns1110_time);
 
 }
 
 
 //]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns567_main()" id="ns567_clicker">0</button></div></div><script>
+</script></div><template id="ns1109_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1111_timeSpan">6am</b> <span id="ns1111_nameSpan">First Day of Work</span></span></button><script id="ns1109_eventTemplate">
 //<![CDATA[
-window.ns567_button="ns567_clicker";
-window.ns567_count=0;
-window.ns567_main = function(){
-window.ns567_inc(1);
-
-}
-
-window.ns567_clear = function(){
-window.ns567_count  = 0;
- window.ns567_render();
-
-}
-
-window.ns567_inc = function(amount){
-window.ns567_count  +=  amount;
- window.ns567_render();
- window.ns564_main(window.ns567_count);
-
-}
-
-window.ns567_render = function(){
-document.getElementById( window.ns567_button ).innerHTML =  window.ns567_count;
+window.ns1111_nameSpan="ns1111_nameSpan";
+window.ns1111_timeSpan="ns1111_timeSpan";
+window.ns1111_construct = function(n , t){
+document.getElementById( window.ns1111_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1111_timeSpan ) .innerHTML = t;
 
 }
 
 
 //]]>
-</script></div></div></div></div><script>
+</script></template><div id="ns1109_events"></div></div><script>
 //<![CDATA[
-window.ns564_count=0;
-window.ns564_jumbo="ns564_jumbo";
-window.ns564_main = function(amount){
-window.ns564_count  = amount 
- if( window.ns564_count  == 10){ 
- document.getElementById( window.ns564_jumbo ).style.backgroundColor = "red" 
- };
+window.ns1109_events="ns1109_events";
+window.ns1109_eventTemplate="ns1109_eventTemplate";
+window.ns1109_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
 
-}
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1109"
 
-
-//]]>
-</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns568_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns568_total"></span><hr /><div class="row" id="ns568_target"></div><template id="ns568_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns569_main()" id="ns569_clicker">0</button></div></div><script>
-//<![CDATA[
-window.ns569_button="ns569_clicker";
-window.ns569_count=0;
-window.ns569_main = function(){
-window.ns569_inc(1);
-
-}
-
-window.ns569_clear = function(){
-window.ns569_count  = 0;
- window.ns569_render();
-
-}
-
-window.ns569_inc = function(amount){
-window.ns569_count  +=  amount;
- window.ns569_render();
- window.ns568_updateTotal(window.ns569_count);
-
-}
-
-window.ns569_render = function(){
-document.getElementById( window.ns569_button ).innerHTML =  window.ns569_count;
-
-}
-
-
-//]]>
-</script></div></template><button type="button" class="btn btn-danger" onClick="window.ns568_clearAll()">Clear All</button></div></div><script>
-//<![CDATA[
-window.ns568_target="ns568_target";
-window.ns568_template="ns568_template";
-window.ns568_totalDiv="ns568_total";
-window.ns568_total=0;
-window.ns568_children=[];
-window.ns568_clearAll = function(){
-for(var c of  window.ns568_children ) 
-    window[getNamespace( c ) +  "_clear" ](  );
-
-}
-
-window.ns568_newClicker = function(){
-var s = document.getElementById(window.ns568_template).innerHTML
-var oldNamespace = "ns568"
-
-var content = document.getElementById(window.ns568_template).content
+var content = actualTemplate.content
 var clonedContent = document.importNode(content, true)
 replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
 
-document.getElementById(window.ns568_target).appendChild(clonedContent)
+document.getElementById(window.ns1109_events).appendChild(clonedContent)
 
-window.injected = document.getElementById(window.ns568_target).lastChild;
-   window.ns568_children .push(injected) ;
- window[getNamespace( injected ) +  "_inc" ]( 5 );
-
-}
-
-window.ns568_updateTotal = function(){
-window.ns568_total  += 1 
- document.getElementById( window.ns568_totalDiv ).innerHTML = "Total:" +  window.ns568_total;
- ;
+window.injected = document.getElementById(window.ns1109_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
 
 }
 
-
-//]]>
-</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns570_newClicker()">I make clicker-makers</button><span class="badge badge-pill badge-primary" id="ns570_total"></span><hr /><div class="row" id="ns570_target"></div><template id="ns570_template"><div class="col"><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns571_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns571_total"></span><hr /><div class="row" id="ns571_target"></div><template id="ns571_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns572_main()" id="ns572_clicker">0</button></div></div><script>
-//<![CDATA[
-window.ns572_button="ns572_clicker";
-window.ns572_count=0;
-window.ns572_main = function(){
-window.ns572_inc(1);
-
-}
-
-window.ns572_clear = function(){
-window.ns572_count  = 0;
- window.ns572_render();
-
-}
-
-window.ns572_inc = function(amount){
-window.ns572_count  +=  amount;
- window.ns572_render();
- window.ns571_updateTotal(window.ns572_count);
-
-}
-
-window.ns572_render = function(){
-document.getElementById( window.ns572_button ).innerHTML =  window.ns572_count;
+window.ns1109_createAndAddEvent = function(name , time){
+window.ns1109_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1109_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
 
 }
 
 
 //]]>
-</script></div></template><button type="button" class="btn btn-danger" onClick="window.ns571_clearAll()">Clear All</button></div></div><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1113_modal">1</p><div class="modal fade" id="ns1113_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1113_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1113_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1113_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
-window.ns571_target="ns571_target";
-window.ns571_template="ns571_template";
-window.ns571_totalDiv="ns571_total";
-window.ns571_total=0;
-window.ns571_children=[];
-window.ns571_clearAll = function(){
-for(var c of  window.ns571_children ) 
-    window[getNamespace( c ) +  "_clear" ](  );
+window.ns1113_time="8am";
+window.ns1113_name="Fun event";
+window.ns1113_nameEl="ns1113_name";
+window.ns1113_timeEl="ns1113_time";
+window.ns1113_createEvent = function(){
+window.ns1113_name=document.getElementById( window.ns1113_nameEl ) .value;
+;
+ window.ns1113_time=document.getElementById( window.ns1113_timeEl ) .options[ document.getElementById( window.ns1113_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1113_time);
+  $(' #ns1113_modal ').modal('hide') ;
+ window.ns1112_createAndAddEvent(window.ns1113_name , window.ns1113_time);
 
 }
 
-window.ns571_newClicker = function(){
-var s = document.getElementById(window.ns571_template).innerHTML
-var oldNamespace = "ns571"
 
-var content = document.getElementById(window.ns571_template).content
+//]]>
+</script></div><template id="ns1112_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1114_timeSpan">6am</b> <span id="ns1114_nameSpan">First Day of Work</span></span></button><script id="ns1112_eventTemplate">
+//<![CDATA[
+window.ns1114_nameSpan="ns1114_nameSpan";
+window.ns1114_timeSpan="ns1114_timeSpan";
+window.ns1114_construct = function(n , t){
+document.getElementById( window.ns1114_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1114_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1112_events"></div></div><script>
+//<![CDATA[
+window.ns1112_events="ns1112_events";
+window.ns1112_eventTemplate="ns1112_eventTemplate";
+window.ns1112_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1112"
+
+var content = actualTemplate.content
 var clonedContent = document.importNode(content, true)
 replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
 
-document.getElementById(window.ns571_target).appendChild(clonedContent)
+document.getElementById(window.ns1112_events).appendChild(clonedContent)
 
-window.injected = document.getElementById(window.ns571_target).lastChild;
-   window.ns571_children .push(injected) ;
- window[getNamespace( injected ) +  "_inc" ]( 5 );
+window.injected = document.getElementById(window.ns1112_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
 
 }
 
-window.ns571_updateTotal = function(){
-window.ns571_total  += 1 
- document.getElementById( window.ns571_totalDiv ).innerHTML = "Total:" +  window.ns571_total;
- window.ns570_updateTotal(window.ns571_total);
+window.ns1112_createAndAddEvent = function(name , time){
+window.ns1112_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1112_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
 
 }
 
 
 //]]>
-</script></div></template></div></div><script>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1116_modal">2</p><div class="modal fade" id="ns1116_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1116_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1116_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1116_createEvent()">Create Event</button></div></div></div></div></span><script>
 //<![CDATA[
-window.ns570_target="ns570_target";
-window.ns570_template="ns570_template";
-window.ns570_totalDiv="ns570_total";
-window.ns570_total=0;
-window.ns570_newClicker = function(){
-var s = document.getElementById(window.ns570_template).innerHTML
-var oldNamespace = "ns570"
+window.ns1116_time="8am";
+window.ns1116_name="Fun event";
+window.ns1116_nameEl="ns1116_name";
+window.ns1116_timeEl="ns1116_time";
+window.ns1116_createEvent = function(){
+window.ns1116_name=document.getElementById( window.ns1116_nameEl ) .value;
+;
+ window.ns1116_time=document.getElementById( window.ns1116_timeEl ) .options[ document.getElementById( window.ns1116_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1116_time);
+  $(' #ns1116_modal ').modal('hide') ;
+ window.ns1115_createAndAddEvent(window.ns1116_name , window.ns1116_time);
 
-var content = document.getElementById(window.ns570_template).content
+}
+
+
+//]]>
+</script></div><template id="ns1115_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1117_timeSpan">6am</b> <span id="ns1117_nameSpan">First Day of Work</span></span></button><script id="ns1115_eventTemplate">
+//<![CDATA[
+window.ns1117_nameSpan="ns1117_nameSpan";
+window.ns1117_timeSpan="ns1117_timeSpan";
+window.ns1117_construct = function(n , t){
+document.getElementById( window.ns1117_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1117_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1115_events"></div></div><script>
+//<![CDATA[
+window.ns1115_events="ns1115_events";
+window.ns1115_eventTemplate="ns1115_eventTemplate";
+window.ns1115_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1115"
+
+var content = actualTemplate.content
 var clonedContent = document.importNode(content, true)
 replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
 
-document.getElementById(window.ns570_target).appendChild(clonedContent)
+document.getElementById(window.ns1115_events).appendChild(clonedContent)
 
-window.injected = document.getElementById(window.ns570_target).lastChild;
+window.injected = document.getElementById(window.ns1115_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
 
 }
 
-window.ns570_updateTotal = function(){
-window.ns570_total  += 1 
- document.getElementById( window.ns570_totalDiv ).innerHTML = "Total:" +  window.ns570_total;
+window.ns1115_createAndAddEvent = function(name , time){
+window.ns1115_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1115_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
 
 }
 
 
 //]]>
-</script><script src="/js/bootstrap.bundle.min.js"></script></body></html>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1119_modal">3</p><div class="modal fade" id="ns1119_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1119_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1119_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1119_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1119_time="8am";
+window.ns1119_name="Fun event";
+window.ns1119_nameEl="ns1119_name";
+window.ns1119_timeEl="ns1119_time";
+window.ns1119_createEvent = function(){
+window.ns1119_name=document.getElementById( window.ns1119_nameEl ) .value;
+;
+ window.ns1119_time=document.getElementById( window.ns1119_timeEl ) .options[ document.getElementById( window.ns1119_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1119_time);
+  $(' #ns1119_modal ').modal('hide') ;
+ window.ns1118_createAndAddEvent(window.ns1119_name , window.ns1119_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1118_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1120_timeSpan">6am</b> <span id="ns1120_nameSpan">First Day of Work</span></span></button><script id="ns1118_eventTemplate">
+//<![CDATA[
+window.ns1120_nameSpan="ns1120_nameSpan";
+window.ns1120_timeSpan="ns1120_timeSpan";
+window.ns1120_construct = function(n , t){
+document.getElementById( window.ns1120_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1120_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1118_events"></div></div><script>
+//<![CDATA[
+window.ns1118_events="ns1118_events";
+window.ns1118_eventTemplate="ns1118_eventTemplate";
+window.ns1118_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1118"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1118_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1118_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1118_createAndAddEvent = function(name , time){
+window.ns1118_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1118_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1122_modal">4</p><div class="modal fade" id="ns1122_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1122_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1122_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1122_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1122_time="8am";
+window.ns1122_name="Fun event";
+window.ns1122_nameEl="ns1122_name";
+window.ns1122_timeEl="ns1122_time";
+window.ns1122_createEvent = function(){
+window.ns1122_name=document.getElementById( window.ns1122_nameEl ) .value;
+;
+ window.ns1122_time=document.getElementById( window.ns1122_timeEl ) .options[ document.getElementById( window.ns1122_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1122_time);
+  $(' #ns1122_modal ').modal('hide') ;
+ window.ns1121_createAndAddEvent(window.ns1122_name , window.ns1122_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1121_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1123_timeSpan">6am</b> <span id="ns1123_nameSpan">First Day of Work</span></span></button><script id="ns1121_eventTemplate">
+//<![CDATA[
+window.ns1123_nameSpan="ns1123_nameSpan";
+window.ns1123_timeSpan="ns1123_timeSpan";
+window.ns1123_construct = function(n , t){
+document.getElementById( window.ns1123_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1123_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1121_events"></div></div><script>
+//<![CDATA[
+window.ns1121_events="ns1121_events";
+window.ns1121_eventTemplate="ns1121_eventTemplate";
+window.ns1121_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1121"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1121_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1121_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1121_createAndAddEvent = function(name , time){
+window.ns1121_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1121_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1125_modal">5</p><div class="modal fade" id="ns1125_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1125_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1125_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1125_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1125_time="8am";
+window.ns1125_name="Fun event";
+window.ns1125_nameEl="ns1125_name";
+window.ns1125_timeEl="ns1125_time";
+window.ns1125_createEvent = function(){
+window.ns1125_name=document.getElementById( window.ns1125_nameEl ) .value;
+;
+ window.ns1125_time=document.getElementById( window.ns1125_timeEl ) .options[ document.getElementById( window.ns1125_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1125_time);
+  $(' #ns1125_modal ').modal('hide') ;
+ window.ns1124_createAndAddEvent(window.ns1125_name , window.ns1125_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1124_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1126_timeSpan">6am</b> <span id="ns1126_nameSpan">First Day of Work</span></span></button><script id="ns1124_eventTemplate">
+//<![CDATA[
+window.ns1126_nameSpan="ns1126_nameSpan";
+window.ns1126_timeSpan="ns1126_timeSpan";
+window.ns1126_construct = function(n , t){
+document.getElementById( window.ns1126_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1126_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1124_events"><button type="button" class="btn btn-danger btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1107_timeSpan">2pm</b> <span id="ns1107_nameSpan">Test</span></span></button><script id="">
+//<![CDATA[
+window.ns1107_nameSpan="ns1107_nameSpan";
+window.ns1107_timeSpan="ns1107_timeSpan";
+window.ns1107_construct = function(n , t){
+document.getElementById( window.ns1107_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1107_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></div></div><script>
+//<![CDATA[
+window.ns1124_events="ns1124_events";
+window.ns1124_eventTemplate="ns1124_eventTemplate";
+window.ns1124_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1124"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1124_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1124_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1124_createAndAddEvent = function(name , time){
+window.ns1124_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1124_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1128_modal">6</p><div class="modal fade" id="ns1128_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1128_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1128_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1128_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1128_time="8am";
+window.ns1128_name="Fun event";
+window.ns1128_nameEl="ns1128_name";
+window.ns1128_timeEl="ns1128_time";
+window.ns1128_createEvent = function(){
+window.ns1128_name=document.getElementById( window.ns1128_nameEl ) .value;
+;
+ window.ns1128_time=document.getElementById( window.ns1128_timeEl ) .options[ document.getElementById( window.ns1128_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1128_time);
+  $(' #ns1128_modal ').modal('hide') ;
+ window.ns1127_createAndAddEvent(window.ns1128_name , window.ns1128_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1127_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1129_timeSpan">6am</b> <span id="ns1129_nameSpan">First Day of Work</span></span></button><script id="ns1127_eventTemplate">
+//<![CDATA[
+window.ns1129_nameSpan="ns1129_nameSpan";
+window.ns1129_timeSpan="ns1129_timeSpan";
+window.ns1129_construct = function(n , t){
+document.getElementById( window.ns1129_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1129_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1127_events"></div></div><script>
+//<![CDATA[
+window.ns1127_events="ns1127_events";
+window.ns1127_eventTemplate="ns1127_eventTemplate";
+window.ns1127_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1127"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1127_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1127_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1127_createAndAddEvent = function(name , time){
+window.ns1127_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1127_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1131_modal">7</p><div class="modal fade" id="ns1131_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1131_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1131_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1131_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1131_time="8am";
+window.ns1131_name="Fun event";
+window.ns1131_nameEl="ns1131_name";
+window.ns1131_timeEl="ns1131_time";
+window.ns1131_createEvent = function(){
+window.ns1131_name=document.getElementById( window.ns1131_nameEl ) .value;
+;
+ window.ns1131_time=document.getElementById( window.ns1131_timeEl ) .options[ document.getElementById( window.ns1131_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1131_time);
+  $(' #ns1131_modal ').modal('hide') ;
+ window.ns1130_createAndAddEvent(window.ns1131_name , window.ns1131_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1130_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1132_timeSpan">6am</b> <span id="ns1132_nameSpan">First Day of Work</span></span></button><script id="ns1130_eventTemplate">
+//<![CDATA[
+window.ns1132_nameSpan="ns1132_nameSpan";
+window.ns1132_timeSpan="ns1132_timeSpan";
+window.ns1132_construct = function(n , t){
+document.getElementById( window.ns1132_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1132_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1130_events"></div></div><script>
+//<![CDATA[
+window.ns1130_events="ns1130_events";
+window.ns1130_eventTemplate="ns1130_eventTemplate";
+window.ns1130_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1130"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1130_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1130_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1130_createAndAddEvent = function(name , time){
+window.ns1130_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1130_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1134_modal">8</p><div class="modal fade" id="ns1134_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1134_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1134_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1134_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1134_time="8am";
+window.ns1134_name="Fun event";
+window.ns1134_nameEl="ns1134_name";
+window.ns1134_timeEl="ns1134_time";
+window.ns1134_createEvent = function(){
+window.ns1134_name=document.getElementById( window.ns1134_nameEl ) .value;
+;
+ window.ns1134_time=document.getElementById( window.ns1134_timeEl ) .options[ document.getElementById( window.ns1134_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1134_time);
+  $(' #ns1134_modal ').modal('hide') ;
+ window.ns1133_createAndAddEvent(window.ns1134_name , window.ns1134_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1133_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1135_timeSpan">6am</b> <span id="ns1135_nameSpan">First Day of Work</span></span></button><script id="ns1133_eventTemplate">
+//<![CDATA[
+window.ns1135_nameSpan="ns1135_nameSpan";
+window.ns1135_timeSpan="ns1135_timeSpan";
+window.ns1135_construct = function(n , t){
+document.getElementById( window.ns1135_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1135_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1133_events"></div></div><script>
+//<![CDATA[
+window.ns1133_events="ns1133_events";
+window.ns1133_eventTemplate="ns1133_eventTemplate";
+window.ns1133_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1133"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1133_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1133_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1133_createAndAddEvent = function(name , time){
+window.ns1133_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1133_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1137_modal">9</p><div class="modal fade" id="ns1137_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1137_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1137_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1137_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1137_time="8am";
+window.ns1137_name="Fun event";
+window.ns1137_nameEl="ns1137_name";
+window.ns1137_timeEl="ns1137_time";
+window.ns1137_createEvent = function(){
+window.ns1137_name=document.getElementById( window.ns1137_nameEl ) .value;
+;
+ window.ns1137_time=document.getElementById( window.ns1137_timeEl ) .options[ document.getElementById( window.ns1137_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1137_time);
+  $(' #ns1137_modal ').modal('hide') ;
+ window.ns1136_createAndAddEvent(window.ns1137_name , window.ns1137_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1136_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1138_timeSpan">6am</b> <span id="ns1138_nameSpan">First Day of Work</span></span></button><script id="ns1136_eventTemplate">
+//<![CDATA[
+window.ns1138_nameSpan="ns1138_nameSpan";
+window.ns1138_timeSpan="ns1138_timeSpan";
+window.ns1138_construct = function(n , t){
+document.getElementById( window.ns1138_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1138_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1136_events"></div></div><script>
+//<![CDATA[
+window.ns1136_events="ns1136_events";
+window.ns1136_eventTemplate="ns1136_eventTemplate";
+window.ns1136_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1136"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1136_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1136_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1136_createAndAddEvent = function(name , time){
+window.ns1136_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1136_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1140_modal">10</p><div class="modal fade" id="ns1140_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1140_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1140_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1140_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1140_time="8am";
+window.ns1140_name="Fun event";
+window.ns1140_nameEl="ns1140_name";
+window.ns1140_timeEl="ns1140_time";
+window.ns1140_createEvent = function(){
+window.ns1140_name=document.getElementById( window.ns1140_nameEl ) .value;
+;
+ window.ns1140_time=document.getElementById( window.ns1140_timeEl ) .options[ document.getElementById( window.ns1140_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1140_time);
+  $(' #ns1140_modal ').modal('hide') ;
+ window.ns1139_createAndAddEvent(window.ns1140_name , window.ns1140_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1139_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1141_timeSpan">6am</b> <span id="ns1141_nameSpan">First Day of Work</span></span></button><script id="ns1139_eventTemplate">
+//<![CDATA[
+window.ns1141_nameSpan="ns1141_nameSpan";
+window.ns1141_timeSpan="ns1141_timeSpan";
+window.ns1141_construct = function(n , t){
+document.getElementById( window.ns1141_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1141_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1139_events"></div></div><script>
+//<![CDATA[
+window.ns1139_events="ns1139_events";
+window.ns1139_eventTemplate="ns1139_eventTemplate";
+window.ns1139_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1139"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1139_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1139_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1139_createAndAddEvent = function(name , time){
+window.ns1139_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1139_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1143_modal">11</p><div class="modal fade" id="ns1143_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1143_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1143_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1143_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1143_time="8am";
+window.ns1143_name="Fun event";
+window.ns1143_nameEl="ns1143_name";
+window.ns1143_timeEl="ns1143_time";
+window.ns1143_createEvent = function(){
+window.ns1143_name=document.getElementById( window.ns1143_nameEl ) .value;
+;
+ window.ns1143_time=document.getElementById( window.ns1143_timeEl ) .options[ document.getElementById( window.ns1143_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1143_time);
+  $(' #ns1143_modal ').modal('hide') ;
+ window.ns1142_createAndAddEvent(window.ns1143_name , window.ns1143_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1142_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1144_timeSpan">6am</b> <span id="ns1144_nameSpan">First Day of Work</span></span></button><script id="ns1142_eventTemplate">
+//<![CDATA[
+window.ns1144_nameSpan="ns1144_nameSpan";
+window.ns1144_timeSpan="ns1144_timeSpan";
+window.ns1144_construct = function(n , t){
+document.getElementById( window.ns1144_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1144_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1142_events"></div></div><script>
+//<![CDATA[
+window.ns1142_events="ns1142_events";
+window.ns1142_eventTemplate="ns1142_eventTemplate";
+window.ns1142_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1142"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1142_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1142_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1142_createAndAddEvent = function(name , time){
+window.ns1142_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1142_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1146_modal">12</p><div class="modal fade" id="ns1146_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1146_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1146_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1146_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1146_time="8am";
+window.ns1146_name="Fun event";
+window.ns1146_nameEl="ns1146_name";
+window.ns1146_timeEl="ns1146_time";
+window.ns1146_createEvent = function(){
+window.ns1146_name=document.getElementById( window.ns1146_nameEl ) .value;
+;
+ window.ns1146_time=document.getElementById( window.ns1146_timeEl ) .options[ document.getElementById( window.ns1146_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1146_time);
+  $(' #ns1146_modal ').modal('hide') ;
+ window.ns1145_createAndAddEvent(window.ns1146_name , window.ns1146_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1145_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1147_timeSpan">6am</b> <span id="ns1147_nameSpan">First Day of Work</span></span></button><script id="ns1145_eventTemplate">
+//<![CDATA[
+window.ns1147_nameSpan="ns1147_nameSpan";
+window.ns1147_timeSpan="ns1147_timeSpan";
+window.ns1147_construct = function(n , t){
+document.getElementById( window.ns1147_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1147_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1145_events"></div></div><script>
+//<![CDATA[
+window.ns1145_events="ns1145_events";
+window.ns1145_eventTemplate="ns1145_eventTemplate";
+window.ns1145_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1145"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1145_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1145_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1145_createAndAddEvent = function(name , time){
+window.ns1145_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1145_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1149_modal">13</p><div class="modal fade" id="ns1149_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1149_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1149_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1149_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1149_time="8am";
+window.ns1149_name="Fun event";
+window.ns1149_nameEl="ns1149_name";
+window.ns1149_timeEl="ns1149_time";
+window.ns1149_createEvent = function(){
+window.ns1149_name=document.getElementById( window.ns1149_nameEl ) .value;
+;
+ window.ns1149_time=document.getElementById( window.ns1149_timeEl ) .options[ document.getElementById( window.ns1149_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1149_time);
+  $(' #ns1149_modal ').modal('hide') ;
+ window.ns1148_createAndAddEvent(window.ns1149_name , window.ns1149_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1148_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1150_timeSpan">6am</b> <span id="ns1150_nameSpan">First Day of Work</span></span></button><script id="ns1148_eventTemplate">
+//<![CDATA[
+window.ns1150_nameSpan="ns1150_nameSpan";
+window.ns1150_timeSpan="ns1150_timeSpan";
+window.ns1150_construct = function(n , t){
+document.getElementById( window.ns1150_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1150_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1148_events"></div></div><script>
+//<![CDATA[
+window.ns1148_events="ns1148_events";
+window.ns1148_eventTemplate="ns1148_eventTemplate";
+window.ns1148_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1148"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1148_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1148_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1148_createAndAddEvent = function(name , time){
+window.ns1148_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1148_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1152_modal">14</p><div class="modal fade" id="ns1152_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1152_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1152_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1152_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1152_time="8am";
+window.ns1152_name="Fun event";
+window.ns1152_nameEl="ns1152_name";
+window.ns1152_timeEl="ns1152_time";
+window.ns1152_createEvent = function(){
+window.ns1152_name=document.getElementById( window.ns1152_nameEl ) .value;
+;
+ window.ns1152_time=document.getElementById( window.ns1152_timeEl ) .options[ document.getElementById( window.ns1152_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1152_time);
+  $(' #ns1152_modal ').modal('hide') ;
+ window.ns1151_createAndAddEvent(window.ns1152_name , window.ns1152_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1151_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1153_timeSpan">6am</b> <span id="ns1153_nameSpan">First Day of Work</span></span></button><script id="ns1151_eventTemplate">
+//<![CDATA[
+window.ns1153_nameSpan="ns1153_nameSpan";
+window.ns1153_timeSpan="ns1153_timeSpan";
+window.ns1153_construct = function(n , t){
+document.getElementById( window.ns1153_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1153_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1151_events"></div></div><script>
+//<![CDATA[
+window.ns1151_events="ns1151_events";
+window.ns1151_eventTemplate="ns1151_eventTemplate";
+window.ns1151_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1151"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1151_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1151_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1151_createAndAddEvent = function(name , time){
+window.ns1151_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1151_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1155_modal">15</p><div class="modal fade" id="ns1155_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1155_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1155_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1155_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1155_time="8am";
+window.ns1155_name="Fun event";
+window.ns1155_nameEl="ns1155_name";
+window.ns1155_timeEl="ns1155_time";
+window.ns1155_createEvent = function(){
+window.ns1155_name=document.getElementById( window.ns1155_nameEl ) .value;
+;
+ window.ns1155_time=document.getElementById( window.ns1155_timeEl ) .options[ document.getElementById( window.ns1155_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1155_time);
+  $(' #ns1155_modal ').modal('hide') ;
+ window.ns1154_createAndAddEvent(window.ns1155_name , window.ns1155_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1154_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1156_timeSpan">6am</b> <span id="ns1156_nameSpan">First Day of Work</span></span></button><script id="ns1154_eventTemplate">
+//<![CDATA[
+window.ns1156_nameSpan="ns1156_nameSpan";
+window.ns1156_timeSpan="ns1156_timeSpan";
+window.ns1156_construct = function(n , t){
+document.getElementById( window.ns1156_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1156_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1154_events"></div></div><script>
+//<![CDATA[
+window.ns1154_events="ns1154_events";
+window.ns1154_eventTemplate="ns1154_eventTemplate";
+window.ns1154_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1154"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1154_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1154_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1154_createAndAddEvent = function(name , time){
+window.ns1154_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1154_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1158_modal">16</p><div class="modal fade" id="ns1158_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1158_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1158_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1158_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1158_time="8am";
+window.ns1158_name="Fun event";
+window.ns1158_nameEl="ns1158_name";
+window.ns1158_timeEl="ns1158_time";
+window.ns1158_createEvent = function(){
+window.ns1158_name=document.getElementById( window.ns1158_nameEl ) .value;
+;
+ window.ns1158_time=document.getElementById( window.ns1158_timeEl ) .options[ document.getElementById( window.ns1158_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1158_time);
+  $(' #ns1158_modal ').modal('hide') ;
+ window.ns1157_createAndAddEvent(window.ns1158_name , window.ns1158_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1157_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1159_timeSpan">6am</b> <span id="ns1159_nameSpan">First Day of Work</span></span></button><script id="ns1157_eventTemplate">
+//<![CDATA[
+window.ns1159_nameSpan="ns1159_nameSpan";
+window.ns1159_timeSpan="ns1159_timeSpan";
+window.ns1159_construct = function(n , t){
+document.getElementById( window.ns1159_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1159_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1157_events"></div></div><script>
+//<![CDATA[
+window.ns1157_events="ns1157_events";
+window.ns1157_eventTemplate="ns1157_eventTemplate";
+window.ns1157_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1157"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1157_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1157_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1157_createAndAddEvent = function(name , time){
+window.ns1157_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1157_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1161_modal">17</p><div class="modal fade" id="ns1161_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1161_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1161_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1161_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1161_time="8am";
+window.ns1161_name="Fun event";
+window.ns1161_nameEl="ns1161_name";
+window.ns1161_timeEl="ns1161_time";
+window.ns1161_createEvent = function(){
+window.ns1161_name=document.getElementById( window.ns1161_nameEl ) .value;
+;
+ window.ns1161_time=document.getElementById( window.ns1161_timeEl ) .options[ document.getElementById( window.ns1161_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1161_time);
+  $(' #ns1161_modal ').modal('hide') ;
+ window.ns1160_createAndAddEvent(window.ns1161_name , window.ns1161_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1160_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1162_timeSpan">6am</b> <span id="ns1162_nameSpan">First Day of Work</span></span></button><script id="ns1160_eventTemplate">
+//<![CDATA[
+window.ns1162_nameSpan="ns1162_nameSpan";
+window.ns1162_timeSpan="ns1162_timeSpan";
+window.ns1162_construct = function(n , t){
+document.getElementById( window.ns1162_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1162_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1160_events"></div></div><script>
+//<![CDATA[
+window.ns1160_events="ns1160_events";
+window.ns1160_eventTemplate="ns1160_eventTemplate";
+window.ns1160_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1160"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1160_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1160_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1160_createAndAddEvent = function(name , time){
+window.ns1160_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1160_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1164_modal">18</p><div class="modal fade" id="ns1164_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1164_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1164_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1164_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1164_time="8am";
+window.ns1164_name="Fun event";
+window.ns1164_nameEl="ns1164_name";
+window.ns1164_timeEl="ns1164_time";
+window.ns1164_createEvent = function(){
+window.ns1164_name=document.getElementById( window.ns1164_nameEl ) .value;
+;
+ window.ns1164_time=document.getElementById( window.ns1164_timeEl ) .options[ document.getElementById( window.ns1164_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1164_time);
+  $(' #ns1164_modal ').modal('hide') ;
+ window.ns1163_createAndAddEvent(window.ns1164_name , window.ns1164_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1163_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1165_timeSpan">6am</b> <span id="ns1165_nameSpan">First Day of Work</span></span></button><script id="ns1163_eventTemplate">
+//<![CDATA[
+window.ns1165_nameSpan="ns1165_nameSpan";
+window.ns1165_timeSpan="ns1165_timeSpan";
+window.ns1165_construct = function(n , t){
+document.getElementById( window.ns1165_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1165_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1163_events"></div></div><script>
+//<![CDATA[
+window.ns1163_events="ns1163_events";
+window.ns1163_eventTemplate="ns1163_eventTemplate";
+window.ns1163_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1163"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1163_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1163_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1163_createAndAddEvent = function(name , time){
+window.ns1163_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1163_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1167_modal">19</p><div class="modal fade" id="ns1167_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1167_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1167_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1167_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1167_time="8am";
+window.ns1167_name="Fun event";
+window.ns1167_nameEl="ns1167_name";
+window.ns1167_timeEl="ns1167_time";
+window.ns1167_createEvent = function(){
+window.ns1167_name=document.getElementById( window.ns1167_nameEl ) .value;
+;
+ window.ns1167_time=document.getElementById( window.ns1167_timeEl ) .options[ document.getElementById( window.ns1167_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1167_time);
+  $(' #ns1167_modal ').modal('hide') ;
+ window.ns1166_createAndAddEvent(window.ns1167_name , window.ns1167_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1166_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1168_timeSpan">6am</b> <span id="ns1168_nameSpan">First Day of Work</span></span></button><script id="ns1166_eventTemplate">
+//<![CDATA[
+window.ns1168_nameSpan="ns1168_nameSpan";
+window.ns1168_timeSpan="ns1168_timeSpan";
+window.ns1168_construct = function(n , t){
+document.getElementById( window.ns1168_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1168_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1166_events"></div></div><script>
+//<![CDATA[
+window.ns1166_events="ns1166_events";
+window.ns1166_eventTemplate="ns1166_eventTemplate";
+window.ns1166_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1166"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1166_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1166_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1166_createAndAddEvent = function(name , time){
+window.ns1166_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1166_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1170_modal">20</p><div class="modal fade" id="ns1170_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1170_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1170_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1170_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1170_time="8am";
+window.ns1170_name="Fun event";
+window.ns1170_nameEl="ns1170_name";
+window.ns1170_timeEl="ns1170_time";
+window.ns1170_createEvent = function(){
+window.ns1170_name=document.getElementById( window.ns1170_nameEl ) .value;
+;
+ window.ns1170_time=document.getElementById( window.ns1170_timeEl ) .options[ document.getElementById( window.ns1170_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1170_time);
+  $(' #ns1170_modal ').modal('hide') ;
+ window.ns1169_createAndAddEvent(window.ns1170_name , window.ns1170_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1169_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1171_timeSpan">6am</b> <span id="ns1171_nameSpan">First Day of Work</span></span></button><script id="ns1169_eventTemplate">
+//<![CDATA[
+window.ns1171_nameSpan="ns1171_nameSpan";
+window.ns1171_timeSpan="ns1171_timeSpan";
+window.ns1171_construct = function(n , t){
+document.getElementById( window.ns1171_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1171_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1169_events"></div></div><script>
+//<![CDATA[
+window.ns1169_events="ns1169_events";
+window.ns1169_eventTemplate="ns1169_eventTemplate";
+window.ns1169_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1169"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1169_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1169_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1169_createAndAddEvent = function(name , time){
+window.ns1169_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1169_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1173_modal">21</p><div class="modal fade" id="ns1173_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1173_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1173_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1173_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1173_time="8am";
+window.ns1173_name="Fun event";
+window.ns1173_nameEl="ns1173_name";
+window.ns1173_timeEl="ns1173_time";
+window.ns1173_createEvent = function(){
+window.ns1173_name=document.getElementById( window.ns1173_nameEl ) .value;
+;
+ window.ns1173_time=document.getElementById( window.ns1173_timeEl ) .options[ document.getElementById( window.ns1173_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1173_time);
+  $(' #ns1173_modal ').modal('hide') ;
+ window.ns1172_createAndAddEvent(window.ns1173_name , window.ns1173_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1172_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1174_timeSpan">6am</b> <span id="ns1174_nameSpan">First Day of Work</span></span></button><script id="ns1172_eventTemplate">
+//<![CDATA[
+window.ns1174_nameSpan="ns1174_nameSpan";
+window.ns1174_timeSpan="ns1174_timeSpan";
+window.ns1174_construct = function(n , t){
+document.getElementById( window.ns1174_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1174_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1172_events"></div></div><script>
+//<![CDATA[
+window.ns1172_events="ns1172_events";
+window.ns1172_eventTemplate="ns1172_eventTemplate";
+window.ns1172_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1172"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1172_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1172_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1172_createAndAddEvent = function(name , time){
+window.ns1172_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1172_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1176_modal">22</p><div class="modal fade" id="ns1176_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1176_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1176_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1176_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1176_time="8am";
+window.ns1176_name="Fun event";
+window.ns1176_nameEl="ns1176_name";
+window.ns1176_timeEl="ns1176_time";
+window.ns1176_createEvent = function(){
+window.ns1176_name=document.getElementById( window.ns1176_nameEl ) .value;
+;
+ window.ns1176_time=document.getElementById( window.ns1176_timeEl ) .options[ document.getElementById( window.ns1176_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1176_time);
+  $(' #ns1176_modal ').modal('hide') ;
+ window.ns1175_createAndAddEvent(window.ns1176_name , window.ns1176_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1175_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1177_timeSpan">6am</b> <span id="ns1177_nameSpan">First Day of Work</span></span></button><script id="ns1175_eventTemplate">
+//<![CDATA[
+window.ns1177_nameSpan="ns1177_nameSpan";
+window.ns1177_timeSpan="ns1177_timeSpan";
+window.ns1177_construct = function(n , t){
+document.getElementById( window.ns1177_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1177_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1175_events"></div></div><script>
+//<![CDATA[
+window.ns1175_events="ns1175_events";
+window.ns1175_eventTemplate="ns1175_eventTemplate";
+window.ns1175_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1175"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1175_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1175_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1175_createAndAddEvent = function(name , time){
+window.ns1175_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1175_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1179_modal">23</p><div class="modal fade" id="ns1179_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1179_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1179_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1179_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1179_time="8am";
+window.ns1179_name="Fun event";
+window.ns1179_nameEl="ns1179_name";
+window.ns1179_timeEl="ns1179_time";
+window.ns1179_createEvent = function(){
+window.ns1179_name=document.getElementById( window.ns1179_nameEl ) .value;
+;
+ window.ns1179_time=document.getElementById( window.ns1179_timeEl ) .options[ document.getElementById( window.ns1179_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1179_time);
+  $(' #ns1179_modal ').modal('hide') ;
+ window.ns1178_createAndAddEvent(window.ns1179_name , window.ns1179_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1178_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1180_timeSpan">6am</b> <span id="ns1180_nameSpan">First Day of Work</span></span></button><script id="ns1178_eventTemplate">
+//<![CDATA[
+window.ns1180_nameSpan="ns1180_nameSpan";
+window.ns1180_timeSpan="ns1180_timeSpan";
+window.ns1180_construct = function(n , t){
+document.getElementById( window.ns1180_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1180_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1178_events"></div></div><script>
+//<![CDATA[
+window.ns1178_events="ns1178_events";
+window.ns1178_eventTemplate="ns1178_eventTemplate";
+window.ns1178_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1178"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1178_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1178_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1178_createAndAddEvent = function(name , time){
+window.ns1178_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1178_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1182_modal">24</p><div class="modal fade" id="ns1182_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1182_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1182_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1182_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1182_time="8am";
+window.ns1182_name="Fun event";
+window.ns1182_nameEl="ns1182_name";
+window.ns1182_timeEl="ns1182_time";
+window.ns1182_createEvent = function(){
+window.ns1182_name=document.getElementById( window.ns1182_nameEl ) .value;
+;
+ window.ns1182_time=document.getElementById( window.ns1182_timeEl ) .options[ document.getElementById( window.ns1182_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1182_time);
+  $(' #ns1182_modal ').modal('hide') ;
+ window.ns1181_createAndAddEvent(window.ns1182_name , window.ns1182_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1181_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1183_timeSpan">6am</b> <span id="ns1183_nameSpan">First Day of Work</span></span></button><script id="ns1181_eventTemplate">
+//<![CDATA[
+window.ns1183_nameSpan="ns1183_nameSpan";
+window.ns1183_timeSpan="ns1183_timeSpan";
+window.ns1183_construct = function(n , t){
+document.getElementById( window.ns1183_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1183_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1181_events"></div></div><script>
+//<![CDATA[
+window.ns1181_events="ns1181_events";
+window.ns1181_eventTemplate="ns1181_eventTemplate";
+window.ns1181_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1181"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1181_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1181_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1181_createAndAddEvent = function(name , time){
+window.ns1181_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1181_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1185_modal">25</p><div class="modal fade" id="ns1185_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1185_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1185_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1185_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1185_time="8am";
+window.ns1185_name="Fun event";
+window.ns1185_nameEl="ns1185_name";
+window.ns1185_timeEl="ns1185_time";
+window.ns1185_createEvent = function(){
+window.ns1185_name=document.getElementById( window.ns1185_nameEl ) .value;
+;
+ window.ns1185_time=document.getElementById( window.ns1185_timeEl ) .options[ document.getElementById( window.ns1185_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1185_time);
+  $(' #ns1185_modal ').modal('hide') ;
+ window.ns1184_createAndAddEvent(window.ns1185_name , window.ns1185_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1184_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1186_timeSpan">6am</b> <span id="ns1186_nameSpan">First Day of Work</span></span></button><script id="ns1184_eventTemplate">
+//<![CDATA[
+window.ns1186_nameSpan="ns1186_nameSpan";
+window.ns1186_timeSpan="ns1186_timeSpan";
+window.ns1186_construct = function(n , t){
+document.getElementById( window.ns1186_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1186_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1184_events"></div></div><script>
+//<![CDATA[
+window.ns1184_events="ns1184_events";
+window.ns1184_eventTemplate="ns1184_eventTemplate";
+window.ns1184_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1184"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1184_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1184_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1184_createAndAddEvent = function(name , time){
+window.ns1184_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1184_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1188_modal">26</p><div class="modal fade" id="ns1188_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1188_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1188_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1188_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1188_time="8am";
+window.ns1188_name="Fun event";
+window.ns1188_nameEl="ns1188_name";
+window.ns1188_timeEl="ns1188_time";
+window.ns1188_createEvent = function(){
+window.ns1188_name=document.getElementById( window.ns1188_nameEl ) .value;
+;
+ window.ns1188_time=document.getElementById( window.ns1188_timeEl ) .options[ document.getElementById( window.ns1188_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1188_time);
+  $(' #ns1188_modal ').modal('hide') ;
+ window.ns1187_createAndAddEvent(window.ns1188_name , window.ns1188_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1187_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1189_timeSpan">6am</b> <span id="ns1189_nameSpan">First Day of Work</span></span></button><script id="ns1187_eventTemplate">
+//<![CDATA[
+window.ns1189_nameSpan="ns1189_nameSpan";
+window.ns1189_timeSpan="ns1189_timeSpan";
+window.ns1189_construct = function(n , t){
+document.getElementById( window.ns1189_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1189_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1187_events"></div></div><script>
+//<![CDATA[
+window.ns1187_events="ns1187_events";
+window.ns1187_eventTemplate="ns1187_eventTemplate";
+window.ns1187_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1187"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1187_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1187_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1187_createAndAddEvent = function(name , time){
+window.ns1187_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1187_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1191_modal">27</p><div class="modal fade" id="ns1191_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1191_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1191_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1191_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1191_time="8am";
+window.ns1191_name="Fun event";
+window.ns1191_nameEl="ns1191_name";
+window.ns1191_timeEl="ns1191_time";
+window.ns1191_createEvent = function(){
+window.ns1191_name=document.getElementById( window.ns1191_nameEl ) .value;
+;
+ window.ns1191_time=document.getElementById( window.ns1191_timeEl ) .options[ document.getElementById( window.ns1191_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1191_time);
+  $(' #ns1191_modal ').modal('hide') ;
+ window.ns1190_createAndAddEvent(window.ns1191_name , window.ns1191_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1190_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1192_timeSpan">6am</b> <span id="ns1192_nameSpan">First Day of Work</span></span></button><script id="ns1190_eventTemplate">
+//<![CDATA[
+window.ns1192_nameSpan="ns1192_nameSpan";
+window.ns1192_timeSpan="ns1192_timeSpan";
+window.ns1192_construct = function(n , t){
+document.getElementById( window.ns1192_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1192_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1190_events"></div></div><script>
+//<![CDATA[
+window.ns1190_events="ns1190_events";
+window.ns1190_eventTemplate="ns1190_eventTemplate";
+window.ns1190_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1190"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1190_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1190_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1190_createAndAddEvent = function(name , time){
+window.ns1190_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1190_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script></div><div class="card-group"><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1194_modal">28</p><div class="modal fade" id="ns1194_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1194_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1194_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1194_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1194_time="8am";
+window.ns1194_name="Fun event";
+window.ns1194_nameEl="ns1194_name";
+window.ns1194_timeEl="ns1194_time";
+window.ns1194_createEvent = function(){
+window.ns1194_name=document.getElementById( window.ns1194_nameEl ) .value;
+;
+ window.ns1194_time=document.getElementById( window.ns1194_timeEl ) .options[ document.getElementById( window.ns1194_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1194_time);
+  $(' #ns1194_modal ').modal('hide') ;
+ window.ns1193_createAndAddEvent(window.ns1194_name , window.ns1194_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1193_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1195_timeSpan">6am</b> <span id="ns1195_nameSpan">First Day of Work</span></span></button><script id="ns1193_eventTemplate">
+//<![CDATA[
+window.ns1195_nameSpan="ns1195_nameSpan";
+window.ns1195_timeSpan="ns1195_timeSpan";
+window.ns1195_construct = function(n , t){
+document.getElementById( window.ns1195_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1195_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1193_events"></div></div><script>
+//<![CDATA[
+window.ns1193_events="ns1193_events";
+window.ns1193_eventTemplate="ns1193_eventTemplate";
+window.ns1193_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1193"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1193_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1193_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1193_createAndAddEvent = function(name , time){
+window.ns1193_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1193_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1197_modal">29</p><div class="modal fade" id="ns1197_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1197_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1197_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1197_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1197_time="8am";
+window.ns1197_name="Fun event";
+window.ns1197_nameEl="ns1197_name";
+window.ns1197_timeEl="ns1197_time";
+window.ns1197_createEvent = function(){
+window.ns1197_name=document.getElementById( window.ns1197_nameEl ) .value;
+;
+ window.ns1197_time=document.getElementById( window.ns1197_timeEl ) .options[ document.getElementById( window.ns1197_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1197_time);
+  $(' #ns1197_modal ').modal('hide') ;
+ window.ns1196_createAndAddEvent(window.ns1197_name , window.ns1197_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1196_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1198_timeSpan">6am</b> <span id="ns1198_nameSpan">First Day of Work</span></span></button><script id="ns1196_eventTemplate">
+//<![CDATA[
+window.ns1198_nameSpan="ns1198_nameSpan";
+window.ns1198_timeSpan="ns1198_timeSpan";
+window.ns1198_construct = function(n , t){
+document.getElementById( window.ns1198_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1198_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1196_events"></div></div><script>
+//<![CDATA[
+window.ns1196_events="ns1196_events";
+window.ns1196_eventTemplate="ns1196_eventTemplate";
+window.ns1196_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1196"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1196_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1196_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1196_createAndAddEvent = function(name , time){
+window.ns1196_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1196_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:black;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1200_modal">30</p><div class="modal fade" id="ns1200_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1200_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1200_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1200_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1200_time="8am";
+window.ns1200_name="Fun event";
+window.ns1200_nameEl="ns1200_name";
+window.ns1200_timeEl="ns1200_time";
+window.ns1200_createEvent = function(){
+window.ns1200_name=document.getElementById( window.ns1200_nameEl ) .value;
+;
+ window.ns1200_time=document.getElementById( window.ns1200_timeEl ) .options[ document.getElementById( window.ns1200_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1200_time);
+  $(' #ns1200_modal ').modal('hide') ;
+ window.ns1199_createAndAddEvent(window.ns1200_name , window.ns1200_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1199_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1201_timeSpan">6am</b> <span id="ns1201_nameSpan">First Day of Work</span></span></button><script id="ns1199_eventTemplate">
+//<![CDATA[
+window.ns1201_nameSpan="ns1201_nameSpan";
+window.ns1201_timeSpan="ns1201_timeSpan";
+window.ns1201_construct = function(n , t){
+document.getElementById( window.ns1201_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1201_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1199_events"></div></div><script>
+//<![CDATA[
+window.ns1199_events="ns1199_events";
+window.ns1199_eventTemplate="ns1199_eventTemplate";
+window.ns1199_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1199"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1199_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1199_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1199_createAndAddEvent = function(name , time){
+window.ns1199_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1199_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1203_modal">1</p><div class="modal fade" id="ns1203_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1203_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1203_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1203_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1203_time="8am";
+window.ns1203_name="Fun event";
+window.ns1203_nameEl="ns1203_name";
+window.ns1203_timeEl="ns1203_time";
+window.ns1203_createEvent = function(){
+window.ns1203_name=document.getElementById( window.ns1203_nameEl ) .value;
+;
+ window.ns1203_time=document.getElementById( window.ns1203_timeEl ) .options[ document.getElementById( window.ns1203_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1203_time);
+  $(' #ns1203_modal ').modal('hide') ;
+ window.ns1202_createAndAddEvent(window.ns1203_name , window.ns1203_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1202_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1204_timeSpan">6am</b> <span id="ns1204_nameSpan">First Day of Work</span></span></button><script id="ns1202_eventTemplate">
+//<![CDATA[
+window.ns1204_nameSpan="ns1204_nameSpan";
+window.ns1204_timeSpan="ns1204_timeSpan";
+window.ns1204_construct = function(n , t){
+document.getElementById( window.ns1204_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1204_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1202_events"></div></div><script>
+//<![CDATA[
+window.ns1202_events="ns1202_events";
+window.ns1202_eventTemplate="ns1202_eventTemplate";
+window.ns1202_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1202"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1202_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1202_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1202_createAndAddEvent = function(name , time){
+window.ns1202_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1202_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1206_modal">2</p><div class="modal fade" id="ns1206_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1206_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1206_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1206_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1206_time="8am";
+window.ns1206_name="Fun event";
+window.ns1206_nameEl="ns1206_name";
+window.ns1206_timeEl="ns1206_time";
+window.ns1206_createEvent = function(){
+window.ns1206_name=document.getElementById( window.ns1206_nameEl ) .value;
+;
+ window.ns1206_time=document.getElementById( window.ns1206_timeEl ) .options[ document.getElementById( window.ns1206_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1206_time);
+  $(' #ns1206_modal ').modal('hide') ;
+ window.ns1205_createAndAddEvent(window.ns1206_name , window.ns1206_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1205_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1207_timeSpan">6am</b> <span id="ns1207_nameSpan">First Day of Work</span></span></button><script id="ns1205_eventTemplate">
+//<![CDATA[
+window.ns1207_nameSpan="ns1207_nameSpan";
+window.ns1207_timeSpan="ns1207_timeSpan";
+window.ns1207_construct = function(n , t){
+document.getElementById( window.ns1207_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1207_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1205_events"></div></div><script>
+//<![CDATA[
+window.ns1205_events="ns1205_events";
+window.ns1205_eventTemplate="ns1205_eventTemplate";
+window.ns1205_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1205"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1205_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1205_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1205_createAndAddEvent = function(name , time){
+window.ns1205_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1205_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1209_modal">3</p><div class="modal fade" id="ns1209_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1209_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1209_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1209_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1209_time="8am";
+window.ns1209_name="Fun event";
+window.ns1209_nameEl="ns1209_name";
+window.ns1209_timeEl="ns1209_time";
+window.ns1209_createEvent = function(){
+window.ns1209_name=document.getElementById( window.ns1209_nameEl ) .value;
+;
+ window.ns1209_time=document.getElementById( window.ns1209_timeEl ) .options[ document.getElementById( window.ns1209_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1209_time);
+  $(' #ns1209_modal ').modal('hide') ;
+ window.ns1208_createAndAddEvent(window.ns1209_name , window.ns1209_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1208_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1210_timeSpan">6am</b> <span id="ns1210_nameSpan">First Day of Work</span></span></button><script id="ns1208_eventTemplate">
+//<![CDATA[
+window.ns1210_nameSpan="ns1210_nameSpan";
+window.ns1210_timeSpan="ns1210_timeSpan";
+window.ns1210_construct = function(n , t){
+document.getElementById( window.ns1210_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1210_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1208_events"></div></div><script>
+//<![CDATA[
+window.ns1208_events="ns1208_events";
+window.ns1208_eventTemplate="ns1208_eventTemplate";
+window.ns1208_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1208"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1208_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1208_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1208_createAndAddEvent = function(name , time){
+window.ns1208_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1208_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script><div class="card"><div class="card-body"><span><p style="cursor:pointer;color:gray;" class="badge badge-pill badge-light" data-toggle="modal" data-target="#ns1212_modal">4</p><div class="modal fade" id="ns1212_modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">New Event</h5></div><div class="modal-body"><div class="form-group row"><label class="col-sm-2 col-form-label">Time</label><div class="col-sm-10"><select id="ns1212_time" class="custom-select mr-sm-2"><option value="12am">12am</option><option value="1am">1am</option><option value="2am">2am</option><option value="3am">3am</option><option value="4am">4am</option><option value="5am">5am</option><option selected value="6am">6am</option><option value="7am">7am</option><option value="8am">8am</option><option value="9am">9am</option><option value="10am">10am</option><option value="11am">11am</option><option value="12pm">12pm</option><option value="1pm">1pm</option><option value="2pm">2pm</option><option value="3pm">3pm</option><option value="4pm">4pm</option><option value="5pm">5pm</option><option value="6pm">6pm</option><option value="7pm">7pm</option><option value="8pm">8pm</option><option value="9pm">9pm</option><option value="10pm">10pm</option><option value="11pm">11pm</option></select></div></div><div class="form-group row"><label class="col-sm-2 col-form-label">Name</label><div class="col-sm-10"><input id="ns1212_name" type="text" class="form-control" placeholder="Fun Event" /></div></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onClick="window.ns1212_createEvent()">Create Event</button></div></div></div></div></span><script>
+//<![CDATA[
+window.ns1212_time="8am";
+window.ns1212_name="Fun event";
+window.ns1212_nameEl="ns1212_name";
+window.ns1212_timeEl="ns1212_time";
+window.ns1212_createEvent = function(){
+window.ns1212_name=document.getElementById( window.ns1212_nameEl ) .value;
+;
+ window.ns1212_time=document.getElementById( window.ns1212_timeEl ) .options[ document.getElementById( window.ns1212_timeEl ) .selectedIndex].value;
+;
+ console.log(window.ns1212_time);
+  $(' #ns1212_modal ').modal('hide') ;
+ window.ns1211_createAndAddEvent(window.ns1212_name , window.ns1212_time);
+
+}
+
+
+//]]>
+</script></div><template id="ns1211_eventTemplate"><button type="button" class="btn btn-primary btn btn-primary btn-block" class="btn btn-primary btn-block" onClick=""><span><b id="ns1213_timeSpan">6am</b> <span id="ns1213_nameSpan">First Day of Work</span></span></button><script id="ns1211_eventTemplate">
+//<![CDATA[
+window.ns1213_nameSpan="ns1213_nameSpan";
+window.ns1213_timeSpan="ns1213_timeSpan";
+window.ns1213_construct = function(n , t){
+document.getElementById( window.ns1213_nameSpan ) .innerHTML = n;
+ document.getElementById( window.ns1213_timeSpan ) .innerHTML = t;
+
+}
+
+
+//]]>
+</script></template><div id="ns1211_events"></div></div><script>
+//<![CDATA[
+window.ns1211_events="ns1211_events";
+window.ns1211_eventTemplate="ns1211_eventTemplate";
+window.ns1211_addEvent = function(c){
+var actualTemplate = null;
+if(typeof(c) == "string")
+    actualTemplate = document.getElementById(c);
+else
+    actualTemplate = c;
+
+var s = actualTemplate.innerHTML
+var oldNamespace = "ns1211"
+
+var content = actualTemplate.content
+var clonedContent = document.importNode(content, true)
+replaceAllText(clonedContent, /ns\d+/g, newNamespaceKeeping(oldNamespace))
+
+document.getElementById(window.ns1211_events).appendChild(clonedContent)
+
+window.injected = document.getElementById(window.ns1211_events).lastChild
+if (actualTemplate.afterInject)
+   actualTemplate.afterInject(window.injected);
+
+}
+
+window.ns1211_createAndAddEvent = function(name , time){
+window.ns1211_addEvent ( (function(){ 
+    var e =  document.getElementById( window.ns1211_eventTemplate ) ; 
+    e.afterInject = function(e){ window[getNamespace( e ) +  "_construct" ]( name , time ) }; 
+    return e; 
+ }()) );
+
+}
+
+
+//]]>
+</script></div></div></div><script>
+//<![CDATA[
+window.ns1108_dayTarget="ns1108_dayTarget";
+window.ns1108_addEvent = function(day , event){
+window[getNamespace( document.getElementById( window.ns1108_dayTarget  + day ) ) +  "_addEvent" ]( event );
+
+}
+
+
+//]]>
+</script></div></div><script src="/js/bootstrap.bundle.min.js"></script><script>
+//<![CDATA[
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+//]]>
+</script><script src="/js/font-awesome.js"></script></body></html>

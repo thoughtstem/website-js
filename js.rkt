@@ -56,6 +56,7 @@
      }
 
      function injectComponent(template, target, oldNamespace){
+            console.log([template, target, oldNamespace])
             var actualTemplate = null;
             if(typeof(template) == "string")
                 actualTemplate = document.getElementById(template);

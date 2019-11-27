@@ -35,13 +35,12 @@
        (callback name time)))))
 
 (define (day-square day-num 
+                    #:id (id "")
                     #:active? (active? #t)
-                    
                     (events (hash)))
   (enclose
-   
-   (card
-    (card-body 
+   (card id: id class: "dayTarget" 
+    (card-body id: (ns 'main)
      (new-event-picker (lambda (content . more)
                          (apply p
                                 (flatten
@@ -61,7 +60,12 @@
            (hash-ref events day-num))))
 
    (script ([events (ns 'events)]
-            [eventTemplate (ns 'eventTemplate)])
+            [eventTemplate (ns 'eventTemplate)]
+            [main (ns 'main)])
+    (function (setCurrent)
+              @js{$(@(getEl main)).addClass("bg-danger")})
+    (function (setNotCurrent)
+              @js{$(@(getEl main)).removeClass("bg-danger")})
     (function (addEvent c)
               (inject-component c events))
     (function (createAndAddEvent name time)
@@ -76,12 +80,10 @@
     class: "bg-success text-white"
     (card-header n)))
 
-(define (calendar month-name
-                  #:controls (controls (const ""))
-                  (events (hash)))
+(define (calendar month-name (events (hash)))
   (enclose
    (define (normal-day n)
-     (day-square n events))
+     (day-square #:id (~a (ns 'dayTarget) n) n events))
 
     (define day-names
       (div
@@ -119,17 +121,29 @@
         (day-square 3 #:active? #f)
         (day-square 4 #:active? #f)))
 
-    (card 
+    (card id: (ns 'main) 
      (card-header 
       (h3 month-name))
-     (card-body (controls (callback 'addEvent))
-                day-names
-                week-1 
-                week-2
-                week-3
-                week-4
-                week-5))
-    (script ([dayTarget (ns 'dayTarget)])
+     (card-body 
+      (button-danger on-click: (call 'advanceDay) (i class: "fas fa-clock") " Advance")
+      day-names
+      week-1 
+      week-2
+      week-3
+      week-4
+      week-5))
+    (script ([dayTarget (ns 'dayTarget)]
+             [currentDay 0]
+             [contruct @js{setTimeout(()=>{@(call 'advanceDay)},1)}])
+            (function (advanceDay)
+               (set-var currentDay @js{@currentDay + 1})
+               @js{
+                 document.querySelectorAll("@(id# 'main) .dayTarget").forEach(function(e){ 
+                   @(-> 'e setNotCurrent)
+                 })
+               }
+               (-> @getEl{@dayTarget + @currentDay}
+                         setCurrent))
             (function (addEvent day event)
                       (-> @getEl{@dayTarget + day}
                           addEvent
@@ -148,66 +162,23 @@
                [timeSpan (ns 'timeSpan)])
               (function (construct n t)
                         @js{@getEl{@nameSpan}.innerHTML = n}
-                        @js{@getEl{@timeSpan}.innerHTML = t}
-                        ))))
-
+                        @js{@getEl{@timeSpan}.innerHTML = t}))))
    
 
-(define (add-event-controls add-event)
-  (enclose
-   (span id: (ns 'eventControls)
-    )
-   (script ([testEvent (ns 'testEvent)]
-            [nextEventName ""]
-            [nextEventTime ""]) 
-           (function (setNameAndTime name time)
-                     (set-var nextEventName name)
-                     (set-var nextEventTime time)
-                     (call 'addEvent))
-           (function (addEvent)
-                     (add-event
-                      @js{Math.floor(Math.random()*30) + 1}
-                      )))))
-
-
-
 (require website-js/demos/clicker)
-
-
-;<script src="material-datetime-picker.js" charset="utf-8"></script>
-
 (require racket/runtime-path)
 
 (define-runtime-path here "./calendar/")
 
 (module+ main
   (render (list
-           (page material-datetime-picker.css
-                 (file->string (build-path here "material-datetime-picker.css")))
-           (page material-datetime-picker.js
-                 (file->string (build-path here "material-datetime-picker.js")))
            (bootstrap
            
             (page index.html
                   (content 
-                   #:head (list
-                           (include-css "https://fonts.googleapis.com/icon?family=Material+Icons")
-                           (include-css "https://fonts.googleapis.com/css?family=Roboto")
-                           (include-css "material-datetime-picker.css")
-                           (include-js "https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js")
-                           (include-js "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js")
-                           (include-js "material-datetime-picker.js"))
                     (js-runtime)
                     (container
                       (card-group
-                        (calendar "July"
-                                  #:controls add-event-controls 
-                                  (hash
-                                    5 (event
-                                        "2pm"
-                                        "Test"
-                                        button-danger))
-                                  ))
-                      )))))
+                        (calendar "July")))))))
           #:to "out"))
 

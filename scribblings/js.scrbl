@@ -12,9 +12,9 @@ It's a way to author front-end web components that are:
   @list-item{Syntactically like HTML, but with encapsulated behavior.}
   @list-item{Can be defined from other components -- like building blocks.}
   @list-item{Can produce other component at runtime.}
-  @list-item{Can only affect themselves and components they may have produced.}
   @list-item{Are first-class values that can be returned from functions and manipulated as data structures at Racket run-time (which, btw, is compile-time for the program that runs in the browser)}
   @list-item{Can be defined to receive callbacks from their parents (components that embed or produce them)}
+  @list-item{Can define methods that other components' methods can call}
 }
 
 It's like React, but with a Lispy twist.  
@@ -128,17 +128,9 @@ Here's a stab at getting all of the above:
      ))
 }
 
-<<Short overview of above changes, to aid the reader.>>
-
-
-<<Also note that the use of @racket[(call ...)] still requires a quote.  I need to convert it to a syntax rule.>>
-
-
-Let's conside the abtractions above in light of what it hides and what it shows, and let us as if it is hiding and showing the right things.
-
 The @code[@"@"js{}] abstraction tells us when we're in "Raw javascript land" -- where we may run wild with our code, unprotected by other abstractions.  It is literal code.
 
-But within, we can demark returns to sanity with at-identifiers.  Local state variable references are marked -- e.g. @code[@"@"count].  What more do we want within a function definition?   
+But within, we can demark returns to sanity with @"@"-identifiers.  Local state variable references are marked -- e.g. @code[@"@"count].  What more do we want within a function definition?   
 
 I suppose JavaScript haters would say: A lot more.  But I would argue that you can straightforwardly lispify whatever you want:
 
@@ -205,7 +197,7 @@ I'm sure the reader would believe that the same is easily accomplished for the r
      ))
 }
 
-We leave the above as exercises to the reader (which would be welcomed into the @racket[website-js] repository).  I'll likely make such abstractions for my own personal use.
+We leave the above as exercises to the reader (which would be welcomed into the @racket[website-js] repository).  I'll likely make such abstractions for my own personal use.  
 
 Anyway, the main point is accomplished -- and indeed was accomplished even before our digression to prove that the remaining JS can be converted into a substance condusive for further language skulpting.   
 
@@ -314,6 +306,12 @@ Consider local storage support for state variables...
 
 Unity integration? (Fun flashy project...).
   Games enclosed in components...
+
+
+Docs idea: Show common refactorings.  Pushing down, lifting out.
+
+Slight visual stutter when components load.  Might be reasonable to move them to the bottom of the page during compilation.
+
 
 
 

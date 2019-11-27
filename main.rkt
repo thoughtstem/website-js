@@ -112,7 +112,7 @@
 (define (inject-component template target)
   (string->symbol
     @~a{
-     injectComponent(@template, @target);
+     injectComponent(@template, @target, "@(namespace)");
     }))
 
 
@@ -139,7 +139,9 @@
             [name (window. 'name)] ...)
         (function 'name '(ps ...)
                   statements ...)) 
-      ... )))
+      ... 
+
+)))
 
 (define-syntax-rule (script stuff ...)
   (script/inline

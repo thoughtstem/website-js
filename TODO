@@ -1,4 +1,8 @@
 
+Calendar project
+ * Day square constructs event, event is clicked, that event is deleted.
+  (Crude buggy hack atm: Any event clicked, delete all events.)
+  - How to register callbacks with children components instantiated at runtime.
 
 
 ===

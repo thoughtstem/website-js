@@ -313,5 +313,6 @@ Docs idea: Show common refactorings.  Pushing down, lifting out.
 Slight visual stutter when components load.  Might be reasonable to move them to the bottom of the page during compilation.
 
 
+Need to write tests.  Starting to make mistakes without knowing it...
 
 

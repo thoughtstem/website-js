@@ -54,24 +54,34 @@
                                   day-num))))
                        #:callback (callback 'createAndAddEvent)))
     (template id: (ns 'eventTemplate)
-             (event #:id (ns 'eventTemplate) "6am" "First Day of Work"))
+             (event 
+                #:on-click (callback 'eventTrigger )
+                "6am" "First Day of Work"))
     (div id: (ns 'events)
          (when (hash-has-key? events day-num)
            (hash-ref events day-num))))
 
    (script ([events (ns 'events)]
             [eventTemplate (ns 'eventTemplate)]
-            [main (ns 'main)])
+            [main (ns 'main)]
+            [numEvents 0])
+    (function (eventTrigger e)
+               ;Umm.. gross.  Can we have a better way of deleting components please?
+                 ;Leaves behind the script tag
+
+              @js{@getEl{@events}.removeChild(e)}
+)
     (function (setCurrent)
               @js{$(@(getEl main)).addClass("bg-danger")})
     (function (setNotCurrent)
               @js{$(@(getEl main)).removeClass("bg-danger")})
     (function (addEvent c)
-              (inject-component c events))
+              (inject-component c events)
+              @js{@numEvents += 1})
     (function (createAndAddEvent name time)
              @js{
                  @addEvent(@(instantiate eventTemplate
-                                #:then (construct name time)))
+                                #:then (construct eventTrigger name time)))
                  }))))
 
 
@@ -150,19 +160,24 @@
                           event)))))
 
 (define (event time name
-               #:id (id "")
                (button-f button-primary)
                #:on-click (cb noop))
-  (enclose
-   (button-f class: "btn btn-primary btn-block"
-             on-click: (cb time name)
+  (enclose 
+   (button-f 
+       id: (ns 'main)
+       class: "btn btn-primary btn-block"
+             on-click: (call 'clicked)
              (span (b id: (ns 'timeSpan) time) " " (span id: (ns 'nameSpan) name)))
-   (script-id id
-              ([nameSpan (ns 'nameSpan)]
-               [timeSpan (ns 'timeSpan)])
-              (function (construct n t)
-                        @js{@getEl{@nameSpan}.innerHTML = n}
-                        @js{@getEl{@timeSpan}.innerHTML = t}))))
+   (script ([nameSpan (ns 'nameSpan)]
+            [timeSpan (ns 'timeSpan)]
+            [myCb @js{()=>{@(cb @getEl{@main})}}]
+            [main (ns 'main)])
+           (function (clicked)
+             @js{@myCb(@getEl{@main})})
+           (function (construct runtimeCallback n t)
+             (set-var myCb runtimeCallback)
+             @js{@getEl{@nameSpan}.innerHTML = n}
+             @js{@getEl{@timeSpan}.innerHTML = t}))))
    
 
 (require website-js/demos/clicker)

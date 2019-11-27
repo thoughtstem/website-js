@@ -55,11 +55,12 @@
 (define (callback fun . args)
   (define name (~a "window." (namespace) "_" fun))
 
-  (lambda (x . xs)
-    (define all-args (append args
-                             (cons x xs)))
+  (define (the-fun . xs)
+    (define all-args (append args xs))
     (string->symbol
-      @~a{@name(@params[(map val all-args)])})))
+      @~a{@name(@params[(map val all-args)])}))
+
+  the-fun)
 
 (define (params . args)
   @(string->symbol (string-join (add-between (map ~a (flatten args)) ","))))
@@ -133,15 +134,14 @@
   (let ([k (window. 'k)]
         ...)
     (list
-      (set-var k v)
-      ...
       (let ([ps 'ps] ...
             [name (window. 'name)] ...)
         (function 'name '(ps ...)
                   statements ...)) 
       ... 
-
-)))
+      ;Putting state vars after functions allows for "constructors" in the form of variables that call previously defined functions.
+      (set-var k v)
+      ...)))
 
 (define-syntax-rule (script stuff ...)
   (script/inline

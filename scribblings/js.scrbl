@@ -9,12 +9,12 @@
 It's a way to author front-end web components that are:
 
 @list{
-  @list-item{Syntactically like HTML, but with encapsulated behavior.}
-  @list-item{Can be defined from other components -- like building blocks.}
-  @list-item{Can produce other component at runtime.}
-  @list-item{Are first-class values that can be returned from functions and manipulated as data structures at Racket run-time (which, btw, is compile-time for the program that runs in the browser)}
-  @list-item{Can be defined to receive callbacks from their parents (components that embed or produce them)}
-  @list-item{Can define methods that other components' methods can call}
+  @item{Syntactically like HTML, but with encapsulated behavior.}
+  @item{Can be defined from other components -- like building blocks.}
+  @item{Can produce other component at runtime.}
+  @item{Are first-class values that can be returned from functions and manipulated as data structures at Racket run-time (which, btw, is compile-time for the program that runs in the browser)}
+  @item{Can be defined to receive callbacks from their parents (components that embed or produce them)}
+  @item{Can define methods that other components' methods can call}
 }
 
 It's like React, but with a Lispy twist.  
@@ -89,10 +89,10 @@ But if you're committed to syntactic simplicity and further component encapsulat
 First, I let's observe that good composable UI components have a few things in common.  In fact, they happen to be the things that React provides nice abstractions for: 
 
 @list{
-  @list-item{State, which values that change at runtime and are local to instances of the component.}
-  @list-item{Props, which are values known at compile time and passed in by parent components, and which are local to instances of the component.}
-  @list-item{A way for parents to pass in callbacks as props.}
-  @list-item{A way to define functions that are local to the component -- with names that can be referenced within the current scope, and which can be supplied as callbacks to child components.}
+  @item{State, which values that change at runtime and are local to instances of the component.}
+  @item{Props, which are values known at compile time and passed in by parent components, and which are local to instances of the component.}
+  @item{A way for parents to pass in callbacks as props.}
+  @item{A way to define functions that are local to the component -- with names that can be referenced within the current scope, and which can be supplied as callbacks to child components.}
  
 }
 

@@ -8,7 +8,7 @@
 
 It's a way to author front-end web components that are:
 
-@list{
+@itemize{
   @item{Syntactically like HTML, but with encapsulated behavior.}
   @item{Can be defined from other components -- like building blocks.}
   @item{Can produce other component at runtime.}
@@ -21,7 +21,7 @@ It's like React, but with a Lispy twist.
 
 The basic idea that we'll build on is that we can already (without @racket[website-js]) do the following:
 
-@code{
+@tt{
   (require website/bootstrap)
 
   (define (my-component)
@@ -43,7 +43,7 @@ The basic idea that we'll build on is that we can already (without @racket[websi
 
 When this goes into @racket[output-xml], the implied HTML get's popped out.  Or you can get a website with:
 
-@code{
+@tt{
   (render (page index.html
                 (html 
                   (body 
@@ -59,7 +59,7 @@ What is nice is that we can use the fact that the HTML/JS pair are so close to e
 
 It's not pleasant, but it 's a simple idea -- namespace everything that gets used in as a form of identification -- HTML ids, JavaScript function defintions/calls, and JavaScript variable definitions/references.
 
-@code{
+@tt{
   #lang racket 
   
   (require website-js)
@@ -67,7 +67,7 @@ It's not pleasant, but it 's a simple idea -- namespace everything that gets use
   (define (my-component)
     (with-namespace (next-namespace) 
       ;The HTML
-      (button-primary id: @(ns 'button) on-click: @"@"js{@(id 'main)()}
+      (button-primary id: @"@"(ns 'button) on-click: @"@"js{@"@"(id 'main)()}
         0)
 
       ;The JS
@@ -82,13 +82,13 @@ It's not pleasant, but it 's a simple idea -- namespace everything that gets use
 }
 
 
-But now, two instances of @(my-component) can be happy together on a page, at least.  This might even be a preferable strategy in some cases.  It is the most flexible -- i.e., you can commit whatever JavaScript attrocities you might want, including having one component mess with the other if you so desire.  
+But now, two instances of (my-component) can be happy together on a page, at least.  This might even be a preferable strategy in some cases.  It is the most flexible -- i.e., you can commit whatever JavaScript attrocities you might want, including having one component mess with the other if you so desire.  
 
 But if you're committed to syntactic simplicity and further component encapsulation, we can use the above to start building nice linguistic abstractions. 
 
 First, I let's observe that good composable UI components have a few things in common.  In fact, they happen to be the things that React provides nice abstractions for: 
 
-@list{
+@itemize{
   @item{State, which values that change at runtime and are local to instances of the component.}
   @item{Props, which are values known at compile time and passed in by parent components, and which are local to instances of the component.}
   @item{A way for parents to pass in callbacks as props.}
@@ -104,7 +104,7 @@ This helps component designers trust the components they are using to build thei
 
 Here's a stab at getting all of the above:
 
-@code{
+@tt{
   #lang racket 
   
   (require website-js)
@@ -123,33 +123,33 @@ Here's a stab at getting all of the above:
         (function (main)
            @"@"js{
              @"@"count += 1
-             document.getElementById(@id).innerHTML = @"@"count
+             document.getElementById(@"@"id).innerHTML = @"@"count
            })) 
      ))
 }
 
-The @code[@"@"js{}] abstraction tells us when we're in "Raw javascript land" -- where we may run wild with our code, unprotected by other abstractions.  It is literal code.
+The @code{@"@"js{}} abstraction tells us when we're in "Raw javascript land" -- where we may run wild with our code, unprotected by other abstractions.  It is literal code.
 
-But within, we can demark returns to sanity with @"@"-identifiers.  Local state variable references are marked -- e.g. @code[@"@"count].  What more do we want within a function definition?   
+But within, we can demark returns to sanity with @"@"-identifiers.  Local state variable references are marked -- e.g. @code{@"@"count}.  What more do we want within a function definition?   
 
 I suppose JavaScript haters would say: A lot more.  But I would argue that you can straightforwardly lispify whatever you want:
 
-@code{
+@tt{
   (define (+= var val)
     @"@"js{@"@"var += @"@"val})
 }
 
 And those who want to add forms of type safety as a language feature could also do so at this stage:
 
-@code{
+@tt{
   (define/contract (+= var val)
     (-> any/c number?)
-    @js{@"@"var += @"@"val})
+    @"@"js{@"@"var += @"@"val})
 }
 
 Type safety or not, by the power of Racket, the above successfully gobbles one sort of of JavaScript line into Lisp.  Our particular program gets one line moved out of the dangerous JavaScript territory into the save embrace of its fellow s-expressions:
 
-@code{
+@tt{
   #lang racket 
   
   (require website-js)
@@ -168,14 +168,14 @@ Type safety or not, by the power of Racket, the above successfully gobbles one s
         (function (main)
            (+= count 1) ;I am safe now!  Parens are like friendly hugs! 
            @"@"js{
-             document.getElementById(@"@"id).innerHTML = @count
+             document.getElementById(@"@"id).innerHTML = @"@"count
            })) 
      ))
 }
 
 I'm sure the reader would believe that the same is easily accomplished for the remaining JavaScript line:
 
-@code{
+@tt{
   #lang racket 
   
   (require website-js)
@@ -248,7 +248,7 @@ On the other hand, it is kind of cool that the event's way of letting you change
 So far, we've managed to build everything on top of namespaced functions and an extremely tight security model.  You get to reason object-orientedly on the front end, and functionally on the back end.
 
 
-@code{
+@tt{
 (calendar "July"
            #:controls add-event-controls 
 
@@ -258,7 +258,7 @@ So far, we've managed to build everything on top of namespaced functions and an 
 
 This makes a calendar, with controls for adding an event.  The construction of the calendar component happens at compile time.  But the event controls demonstrate the construction of components (an event, in this case) can also happen at runtime.
 
-@code{
+@tt{
 (define (add-event-controls cb)
   (enclose
    (span id: (ns 'eventControls)
@@ -270,7 +270,7 @@ This makes a calendar, with controls for adding an event.  The construction of t
 
            (function (addEvent)
                      @"@"js{var e = document.getElementById(@"@"testEvent)}
-                     (cb @js{Math.floor(Math.random()*30) + 1}
+                     (cb @"@"js{Math.floor(Math.random()*30) + 1}
                          'e (window. 'fixName)))
 
            (function (fixName e)

@@ -31,7 +31,7 @@ The basic idea that we'll build on is that we can already (without @racket[websi
         0)
 
       ;The JS
-      @script/inline{
+      @"@"script/inline{
         var count = 0
         function main(){
           count += 1
@@ -71,11 +71,11 @@ It's not pleasant, but it 's a simple idea -- namespace everything that gets use
         0)
 
       ;The JS
-      @script/inline{
-        var @(ns 'count) = 0
+      @"@"script/inline{
+        var @"@"(ns 'count) = 0
         function (ns 'main)(){
-          @(ns 'count) += 1
-          document.getElementById("@(ns 'id)").innerHTML = @(ns 'count) 
+          @"@"(ns 'count) += 1
+          document.getElementById("@"@"(ns 'id)").innerHTML = @"@"(ns 'count) 
         } 
       })
    )
@@ -122,8 +122,8 @@ Here's a stab at getting all of the above:
                [id (ns 'button)])
         (function (main)
            @"@"js{
-             @count += 1
-             document.getElementById(@id).innerHTML = @count
+             @"@"count += 1
+             document.getElementById(@id).innerHTML = @"@"count
            })) 
      ))
 }
@@ -136,7 +136,7 @@ I suppose JavaScript haters would say: A lot more.  But I would argue that you c
 
 @code{
   (define (+= var val)
-    @js{@var += @val})
+    @"@"js{@"@"var += @"@"val})
 }
 
 And those who want to add forms of type safety as a language feature could also do so at this stage:
@@ -144,7 +144,7 @@ And those who want to add forms of type safety as a language feature could also 
 @code{
   (define/contract (+= var val)
     (-> any/c number?)
-    @js{@var += @val})
+    @js{@"@"var += @"@"val})
 }
 
 Type safety or not, by the power of Racket, the above successfully gobbles one sort of of JavaScript line into Lisp.  Our particular program gets one line moved out of the dangerous JavaScript territory into the save embrace of its fellow s-expressions:
@@ -167,8 +167,8 @@ Type safety or not, by the power of Racket, the above successfully gobbles one s
                [id (ns 'button)])
         (function (main)
            (+= count 1) ;I am safe now!  Parens are like friendly hugs! 
-           @js{
-             document.getElementById(@id).innerHTML = @count
+           @"@"js{
+             document.getElementById(@"@"id).innerHTML = @count
            })) 
      ))
 }
@@ -269,7 +269,7 @@ This makes a calendar, with controls for adding an event.  The construction of t
    (script ([testEvent (ns 'testEvent)]) 
 
            (function (addEvent)
-                     @js{var e = document.getElementById(@testEvent)}
+                     @"@"js{var e = document.getElementById(@"@"testEvent)}
                      (cb @js{Math.floor(Math.random()*30) + 1}
                          'e (window. 'fixName)))
 

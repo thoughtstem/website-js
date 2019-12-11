@@ -27,7 +27,7 @@ The basic idea that we'll build on is that we can already (without @racket[websi
   (define (my-component)
     (list
       ;The HTML
-      (button-primary id: "button" on-click: @js{main()}
+      (button-primary id: "button" on-click: @"@"js{main()}
         0)
 
       ;The JS
@@ -67,7 +67,7 @@ It's not pleasant, but it 's a simple idea -- namespace everything that gets use
   (define (my-component)
     (with-namespace (next-namespace) 
       ;The HTML
-      (button-primary id: @(ns 'button) on-click: @js{@(id 'main)()}
+      (button-primary id: @(ns 'button) on-click: @"@"js{@(id 'main)()}
         0)
 
       ;The JS
@@ -121,7 +121,7 @@ Here's a stab at getting all of the above:
       (script ([count 0]
                [id (ns 'button)])
         (function (main)
-           @js{
+           @"@"js{
              @count += 1
              document.getElementById(@id).innerHTML = @count
            })) 

@@ -8,7 +8,7 @@
  (enclose
   (div
    @style/inline{
-      #sketch-container {
+      #pointilism-sketch-container {
         position:absolute;
         width:100%;
         height:100%;
@@ -40,7 +40,7 @@ var alph = 10;
 function setup() {
   var parent = document.getElementById("@(id 'main)");
   var canvas = createCanvas(windowWidth, windowHeight);
-  canvas.id('sketch-container');
+  canvas.id('pointilism-sketch-container');
   canvas.style('display','block');
   canvas.parent("@(id 'main)");
   
@@ -79,9 +79,9 @@ function draw() {
 
   angle += 0.02;
 }
-@;function windowResized() {
-@;  resizeCanvas(windowWidth, windowHeight);
-@;}
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 }
   )
 

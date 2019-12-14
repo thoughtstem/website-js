@@ -8,7 +8,8 @@
  (enclose
   (div
    @style/inline{
-      #sketch-container {
+      #boids-sketch-container {
+        position:absolute;
         width:100%;
         height:100%;
         z-index:-1;
@@ -30,7 +31,7 @@
  function setup() {
   var parent = document.getElementById("@(id 'main)");
   var canvas = createCanvas(windowWidth, windowHeight);
-  canvas.id('sketch-container');
+  canvas.id('boids-sketch-container');
   canvas.parent("@(id 'main)");
   
   flock = new Flock();
@@ -43,7 +44,7 @@
  }
 
  function draw() {
-  background(233,236,239);
+  background(255);
   flock.run();
   mouseV.set(mouseX, mouseY);
  }
@@ -276,9 +277,9 @@
    return createVector(0,0);
   }
  }
-@;function windowResized() {
-@;  resizeCanvas(windowWidth, windowHeight);
-@;}
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 }
   )
 

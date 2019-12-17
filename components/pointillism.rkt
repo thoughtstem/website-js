@@ -22,7 +22,7 @@
   z-index:-1;
  }
 })))
-   (pointillism-script c1 c2)
+   (pointillism-script c1 c2 bg-color)
    ))
 
 (define (pointillism-script c1 c2 bg)

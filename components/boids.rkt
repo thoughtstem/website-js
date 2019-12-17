@@ -34,7 +34,7 @@
   p.setup = function(){
    var parent = document.getElementById("@(id 'main)");
                                          
-   var canvas = p.createCanvas(parent.offsetWidth, parent.offsetWidth);
+   var canvas = p.createCanvas(parent.offsetWidth, parent.offsetHeight);
    
    canvas.id('@(id 'canvas)');
    canvas.parent("@(id 'main)");

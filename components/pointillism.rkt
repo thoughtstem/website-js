@@ -4,86 +4,101 @@
 
 (require website-js)
 
-(define (pointillism . content)
- (enclose
-  (div
-   @style/inline{
-      #pointilism-sketch-container {
-        position:absolute;
-        width:100%;
-        height:100%;
-        z-index:-1;
-      }
-    }
-    (apply div (flatten (list id: (id 'main)
-                              content))))
-  (pointillism-script)
-  
-  ))
+(define (pointillism #:color-1 [c1 "rgba(255, 200, 0, 0.024)"]
+                     #:color-2 [c2 "rgba(237, 70, 41, 0.004)"]
+                     #:bg-color [bg-color "white"]
+                     . content)
+  (enclose
+   (apply div (flatten (list id: (id 'main)
+                             content
+                             @style/inline{
+ @(id# 'canvas) {
+  @;#pointilism-sketch-container {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+ }
+})))
+   (pointillism-script c1 c2)
+   ))
 
-(define (pointillism-script)
+(define (pointillism-script c1 c2 bg)
   @script/inline{
- var img;
-var smallPoint, largePoint;
+var @(id 'sketch) = function(p){
+  var img;
+  var smallPoint, largePoint;
 
-var colors = [];
-var index = 0;
+  var colors = [];
+  var index = 0;
 
-var angle = 0;
+  var angle = 0;
 
-// function preload() {
-//   img = loadImage("../images/bg.jpg");
+  // function preload() {
+   //   img = loadImage("../images/bg.jpg");
 
-// }
-var alph = 10;
+   // }
+  var alph = 10;
 
-function setup() {
-  var parent = document.getElementById("@(id 'main)");
-  var canvas = createCanvas(windowWidth, windowHeight);
-  canvas.id('pointilism-sketch-container');
-  canvas.style('display','block');
-  canvas.parent("@(id 'main)");
+  p.setup = function(){
+   var parent = document.getElementById("@(id 'main)");
+                                         
+   //var canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+   var canvas = p.createCanvas(parent.offsetWidth, parent.offsetHeight);
+   
+   canvas.id('@(id 'canvas)');
+   canvas.style('display','block');
+   canvas.parent("@(id 'main)");
   
-  colors.push(color(255, 200, 0, 6));
-  colors.push(color(237, 70, 47, 1));
-  //colors.push(color(123, 123, 98, alph));
-  // colors.push(color(64, 64, 64, alph));  
-  smallPoint = 20;
-  largePoint = 60;
-  imageMode(CENTER);
-  noStroke();
-  clear();
-  angleMode(RADIANS);
-}
+   colors.push(p.color('@c1'));
+   colors.push(p.color('@c2'));
+   //colors.push(p.color(123, 123, 98, alph));
+   // colors.push(p.color(64, 64, 64, alph));  
+   smallPoint = 20;
+   largePoint = 60;
+   p.imageMode(p.CENTER);
+   p.noStroke();
+   p.clear();
+   p.angleMode(p.RADIANS);
+   p.background('@bg');
+   };
 
-function draw() {
+  p.draw = function() {
 
-  for (var i = 0; i < 15; i++) {
+   for (var i = 0; i < 15; i++) {
     var v = p5.Vector.random2D();
 
-    var wave = map(sin(angle), -1, 1, 0, 4);
+    var wave = p.map(p.sin(angle), -1, 1, 0, 4);
 
-    v.mult(random(1, 20*wave));
-    var pointillize = random(smallPoint, largePoint);
-    var x = mouseX + v.x;//floor(random(img.width));
-    var y = mouseY + v.y;//floor(random(img.height));
-    //var pix = img.get(x, y);
-    //fill(pix[0],pix[1], pix[2], 52);
-    fill(colors[index]);
-    ellipse(x, y, pointillize, pointillize);
-  }
+    v.mult(p.random(1, 20*wave));
+    var pointillize = p.random(smallPoint, largePoint);
+    var x = p.mouseX + v.x;//floor(p.random(img.width));
+    var y = p.mouseY + v.y;//floor(p.random(img.height));
+    //var pix = p.img.get(x, y);
+    //p.fill(pix[0],pix[1], pix[2], 52);
+    p.fill(colors[index]);
+    p.ellipse(x, y, pointillize, pointillize);
+   }
 
-  if (random(1) < 0.01) {
+   if (p.random(1) < 0.01) {
     index = (index + 1) % colors.length;
-  }
+   }
 
-  angle += 0.02;
-}
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
-}
-  )
+   angle += 0.02;
+   };
+    
+  p.windowResized = function() {
+   var parent = document.getElementById("@(id 'main)");
+                                         
+   //p.resizeCanvas(p.windowWidth, p.windowHeight);
+   p.resizeCanvas(parent.offsetWidth, parent.offsetHeight);
+   
+   };
+};
+ var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+}  )
 
 (module+ main
   (render (list
@@ -92,12 +107,25 @@ function windowResized() {
                   (content
                     (js-runtime)
                     (include-p5-js)
-                    (pointillism class: "p-5 card bg-transparent"
-                           style: (properties 'overflow: "hidden"
-                                              height: "50%")
+                    (jumbotron class: "mb-0" style: (properties height: "400"))
+                    (pointillism 
+                                 class: "p-5 card bg-transparent"
+                                 style: (properties 'overflow: "hidden"
+                                              height: "300")
                       (button-primary "HI") 
                       (button-success "HI") 
                       (button-warning "HI") 
                       (button-danger "HI") 
-                      )))))
+                      )
+                    (pointillism #:color-1 "rgba(0, 255, 255, 0.024)"
+                                 #:color-2 "rgba(255, 0, 255, 0.004)"
+                                 class: "p-5 card bg-transparent"
+                                 style: (properties 'overflow: "hidden"
+                                              height: "300")
+                      (button-primary "BYE") 
+                      (button-success "BYE") 
+                      (button-warning "BYE") 
+                      (button-danger "BYE") 
+                      )
+                    ))))
           #:to "out"))

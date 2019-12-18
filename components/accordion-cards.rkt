@@ -11,14 +11,32 @@
   (enclose
    (card
     (card-header 
-     (button-link 'data-toggle: "collapse" 'data-target: (id# 'collapse1) header))
+     (button-link on-click: (call 'toggle)
+       header))
     (div id: (id 'collapse1)
          class: (~a "collapse " (if shown? "show" ""))
       (card-body content)))
-   (script ())))
+   (script ([toToggle (id 'collapse1)])
+     (function (toggle)
+       @js{$("#"+@toToggle).toggle()}))))
 
 (define (accordion-cards . content)
  (enclose
   (accordion id: (id 'main)
    content)
   (script ())))
+
+(module+ main
+  (render (list
+           (bootstrap
+            (page index.html
+                  (content
+                    (js-runtime)
+                    (include-p5-js)
+                    (accordion-cards
+                      (accordion-card
+                        #:header (p "Click to see!")
+                        (p "Now you see!")
+                        (p "Click again to hide!")))
+                    ))))
+          #:to "out"))

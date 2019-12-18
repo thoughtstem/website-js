@@ -1,4 +1,4 @@
-<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /></head><body><script src="/js/jquery-3.4.1.min.js"></script><script src="/js/moment.min.js"></script><script>
+<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /><meta charset="utf-8" /></head><body><script src="/js/jquery-3.4.1.min.js"></script><script src="/js/moment.min.js"></script><script>
 //<![CDATA[
    function replaceAllText(root, find, replace) {
 
@@ -69,25 +69,17 @@ function injectComponent(template, target, oldNamespace){
           actualTemplate.afterInject(window.injected)
 }
 //]]>
-</script><div><style>
-#ns2557_main {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+</script><script src="/js/p5.min.js"></script><div class="accordion" id="ns2783_main"><div class="card"><div class="card-header"><button type="button" class="btn btn-link" onClick="window.ns2782_toggle()" data-toggle="collapse" data-target="#ns2782_collapse1"><p>Click to see!</p></button></div><div id="ns2782_collapse1" class="collapse "><div class="card-body"><p>Now you see!</p><p>Click again to hide!</p></div></div></div><script>
+//<![CDATA[
+window.ns2782_toggle = function(){
+$( window.ns2782_toToggle ).toggle();
+
 }
 
-@keyframes gradientBG {
-        0% {
-                background-position: 0% 50%;
-        }
-        50% {
-                background-position: 100% 50%;
-        }
-        100% {
-                background-position: 0% 50%;
-        }
-}
-</style><div id="ns2557_main" class="p-5"><button type="button" class="btn btn-primary">HI</button><button type="button" class="btn btn-success">HI</button><button type="button" class="btn btn-warning">HI</button><button type="button" class="btn btn-danger">HI</button></div></div><script>
+window.ns2782_toToggle="ns2782_collapse1";
+
+//]]>
+</script></div><script>
 //<![CDATA[
 
 //]]>

@@ -43,9 +43,8 @@ var @(id 'sketch) = function(p){
   var alph = 10;
 
   p.setup = function(){
-   var parent = document.getElementById("@(id 'main)");
-                                         
    //var canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+   var parent = document.getElementById("@(id 'main)");
    var canvas = p.createCanvas(parent.offsetWidth, parent.offsetHeight);
    
    canvas.id('@(id 'canvas)');
@@ -108,7 +107,7 @@ var @(id 'sketch) = function(p){
                     (js-runtime)
                     (include-p5-js)
                     (jumbotron class: "mb-0" style: (properties height: "400"))
-                    (pointillism 
+                    (pointillism #:bg-color "#6c757d"
                                  class: "p-5 card bg-transparent"
                                  style: (properties 'overflow: "hidden"
                                               height: "300")

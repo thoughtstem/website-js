@@ -38,7 +38,8 @@
    
    canvas.id('@(id 'canvas)');
    canvas.parent("@(id 'main)");
-  
+
+   p.background('@bg');
    flock = new Flock();
    // Add an initial set of boids into the system
    for (var i = 0; i < 50; i++) {
@@ -286,7 +287,7 @@
   p.windowResized = function() {
    var parent = document.getElementById("@(id 'main)");
    p.resizeCanvas(parent.offsetWidth, parent.offsetHeight);
-   
+   p.background('@bg');
    };
  };
   var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');

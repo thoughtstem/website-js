@@ -1,5 +1,7 @@
 #lang at-exp racket
 
+; https://creativecommons.org/licenses/by-nc-sa/4.0/
+
 (provide boids)
 
 (require website-js)
@@ -22,7 +24,6 @@
                              })))
    (script ([mainDivId (id 'main)]
             [canvasId (id 'canvas)]
-            [test @js{@(log "BOOOOOIDS!!!")}]
             [myp5 (call 'start)])
      (function (start)
        @js{
@@ -290,13 +291,13 @@
             p.windowResized = function() {
              var parent = document.getElementById(@mainDivId);
              p.resizeCanvas(parent.offsetWidth, parent.offsetHeight);
+             p.background('@bg');
             };
            };
            return new p5(@(id 'sketch),'@(id 'canvas)');
        })
        
        )))
-
 
 (module+ main
   (render (list

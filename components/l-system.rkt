@@ -178,10 +178,10 @@
                   (content
                     (js-runtime)
                     (include-p5-js)
-                    (l-system #:x "100"
+                    (l-system #:x "240"
                               #:y "p.height/3*2"
-                              #:start-angle -90
-                              #:step 10
+                              #:start-angle -150
+                              #:step 18
                               #:angle 90
                               #:axiom "FX"
                               #:loops 16

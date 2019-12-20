@@ -59,13 +59,30 @@
 (define (params . args)
   @(string->symbol (string-join (add-between (map ~a (flatten args)) ","))))
 
+
+
+(provide with-cuts)
+(define cuts (make-parameter '()))
+
+(define (do-end-cuts f-name)
+  (string-join (map (compose ~a
+                             (lambda (c)
+                               (c f-name))) (cuts))
+               ";\n"))
+
+(define-syntax-rule (with-cuts c stuff ...)
+  (parameterize ([cuts (append (cuts) c)])
+    stuff ...))
+
 (define (function name args . body)
   (string->symbol
     @~a{
     window.@(~a (namespace) "_" name) = function(@(params args)){
     @(string-join (map ~a (map statement body)))
+    @(do-end-cuts name)
     }
     @"\n"}))
+
 
 (define (id s)
   ;No string->symbol because it's for generating HTML ids, and for use with getEl()
@@ -131,19 +148,6 @@
                   (list html js)))
 
 
-(provide with-cuts)
-(define cuts (make-parameter '()))
-
-(define-syntax (do-cuts stx)
-  (syntax-parse stx
-    [(_ func)
-     ;Does the order matter?
-     #'((apply compose (cuts)) func)
-     ]))
-
-(define-syntax-rule (with-cuts c stuff ...)
-  (parameterize ([cuts (append (cuts) c)])
-    stuff ...))
 
 (define-syntax-rule (state ([k v] ...)
                            (function (name ps ...) statements ...) ...)
@@ -152,15 +156,12 @@
     (list
       (let ([ps 'ps] ...
             [name (window. 'name)] ...)
-        (do-cuts
         (function 'name '(ps ...)
-                  statements ...)
-        )
-        )
+                  statements ...))
       ... 
       ;Putting state vars after functions allows for "constructors" in the form of variables that call previously defined functions.
       (set-var k v)
-      ...)))
+      ...))
 
 (define-syntax-rule (script stuff ...)
    (script/inline

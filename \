@@ -154,8 +154,7 @@
             [name (window. 'name)] ...)
         (do-cuts
         (function 'name '(ps ...)
-                  statements ...)
-        )
+                   statements ...) )
         )
       ... 
       ;Putting state vars after functions allows for "constructors" in the form of variables that call previously defined functions.
@@ -163,8 +162,9 @@
       ...)))
 
 (define-syntax-rule (script stuff ...)
+  (thunk
    (script/inline
-    (state stuff ...)))
+    (state stuff ...))))
 
 
 ;Hack for now

@@ -69,18 +69,33 @@ function injectComponent(template, target, oldNamespace){
           actualTemplate.afterInject(window.injected)
 }
 //]]>
-</script><script src="/js/p5.min.js"></script><div class="accordion" id="ns2783_main"><div class="card"><div class="card-header"><button type="button" class="btn btn-link" onClick="window.ns2782_toggle()" data-toggle="collapse" data-target="#ns2782_collapse1"><p>Click to see!</p></button></div><div id="ns2782_collapse1" class="collapse "><div class="card-body"><p>Now you see!</p><p>Click again to hide!</p></div></div></div><script>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns1416_main()" id="ns1416_clicker"><span id="ns1416_count">0</span></button></div></div><script>
 //<![CDATA[
-window.ns2782_toggle = function(){
-$( window.ns2782_toToggle ).toggle();
+window.ns1416_main = function(){
+window.ns1416_inc(1);
 
 }
 
-window.ns2782_toToggle="ns2782_collapse1";
+window.ns1416_clear = function(){
+window.ns1416_count  = 0;
+ window.ns1416_render();
 
-//]]>
-</script></div><script>
-//<![CDATA[
+}
+
+window.ns1416_inc = function(amount){
+window.ns1416_count  +=  amount;
+ window.ns1416_render();
+ ;
+
+}
+
+window.ns1416_render = function(){
+document.getElementById( " ns1416_count ".trim() ) .innerHTML =  ns1416_count;
+
+}
+
+window.ns1416_button="ns1416_clicker";
+window.ns1416_count=0;
 
 //]]>
 </script><script src="/js/bootstrap.bundle.min.js"></script><script>

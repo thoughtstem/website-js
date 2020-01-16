@@ -27,7 +27,26 @@
 
 (define (recursive-trees-script c1 c2 bg)
   @script/inline{
-
+var isMobile = {
+            Android: function () {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function () {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function () {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function () {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function () {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function () {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
 var @(id 'sketch) = function(p){
   let theta;
 
@@ -101,7 +120,14 @@ var @(id 'sketch) = function(p){
    };
 };
 
-var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+if (isMobile.any()){
+   var parent = document.getElementById("@(id 'main)");
+   parent.classList.remove('bg-transparent');
+   parent.style.backgroundColor = '@bg';
+  }
+ else {
+  var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+ }
 }  )
 
 (module+ main

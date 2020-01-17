@@ -53,7 +53,7 @@
                          line-color
                          bg-color)
   @script/inline{
- var isMobile = {
+ var @(id 'isMobile) = {
             Android: function () {
                 return navigator.userAgent.match(/Android/i);
             },
@@ -70,7 +70,7 @@
                 return navigator.userAgent.match(/IEMobile/i);
             },
             any: function () {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                return (@(id 'isMobile).Android() || @(id 'isMobile).BlackBerry() || @(id 'isMobile).iOS() || @(id 'isMobile).Opera() || @(id 'isMobile).Windows());
             }
         };
  var @(id 'sketch) = function(p){
@@ -188,14 +188,16 @@
    whereinstring = 0;
    };
   };
- if (isMobile.any()){
-   var parent = document.getElementById("@(id 'main)");
-   parent.classList.remove('bg-transparent');
-   parent.style.backgroundColor = '@bg-color';
-  }
+window.onload = function(){
+ if (@(id 'isMobile).any()){
+  var parent = document.getElementById("@(id 'main)");
+  parent.classList.remove('bg-transparent');
+  parent.style.backgroundColor = '@bg-color';
+ }
  else {
   var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
  }
+}
  }  )
 
 (module+ main

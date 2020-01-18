@@ -1,38 +1,11 @@
 #lang at-exp racket
 
-(require website-js "./time-select.rkt" "./form-row.rkt")
+(provide calendar event)
 
-(define (new-event-picker
-         button-f
-         #:callback (callback noop))
-  (enclose
-   (span
-    (button-f 'data-toggle: "modal"
-              'data-target: (ns# 'modal))
-    (modal id: (ns 'modal)
-     (modal-dialog
-      (modal-content
-       (modal-header
-        (modal-title "New Event"))
-
-       (modal-body
-        (form-row "Time" (time-select id: (ns "time")))
-        (form-row "Name" (input id: (ns "name") type: "text" class: "form-control" 'placeholder: "FunEvent")))
-
-       (modal-footer
-        (button-secondary 'data-dismiss: "modal" "Cancel")
-        (button-primary on-click: (call 'createEvent)
-                        "Create Event"))))))
-
-   (script ([time "8am"]
-            [name "Fun event"]
-            [nameEl (ns 'name)]
-            [timeEl (ns 'time)])
-     (function (createEvent)
-       (set-var name @js{@getEl{@nameEl}.value}) 
-       (set-var time @js{@getEl{@timeEl}.options[@getEl{@timeEl}.selectedIndex].value}) 
-       @js{ $('@(ns# 'modal)').modal('hide') }
-       (callback name time)))))
+(require website-js
+         "./time-select.rkt"
+         "./form-row.rkt"
+         gregor)
 
 (define (day-square day-num 
                     #:id (id "")
@@ -41,48 +14,12 @@
   (enclose
    (card id: id class: "dayTarget" 
     (card-body id: (ns 'main)
-     (new-event-picker (lambda (content . more)
-                         (apply p
-                                (flatten
-                                 (list
-                                  style: (properties
-                                          cursor: "pointer"
-                                          color: (if active? "black"
-                                                     "gray"))
-                                  class: "badge badge-pill badge-light"
-                                  content more
-                                  day-num))))
-                       #:callback (callback 'createAndAddEvent)))
-    (template id: (ns 'eventTemplate)
-             (event 
-                #:on-click (callback 'eventTrigger )
-                "6am" "First Day of Work"))
+               (p class: "badge badge-pill badge-light"
+                  day-num))
     (div id: (ns 'events)
          (when (hash-has-key? events day-num)
            (hash-ref events day-num))))
-
-   (script ([events (ns 'events)]
-            [eventTemplate (ns 'eventTemplate)]
-            [main (ns 'main)]
-            [numEvents 0])
-    (function (eventTrigger e)
-               ;Umm.. gross.  Can we have a better way of deleting components please?
-                 ;Leaves behind the script tag
-
-              @js{@getEl{@events}.removeChild(e)}
-)
-    (function (setCurrent)
-              @js{$(@(getEl main)).addClass("bg-danger")})
-    (function (setNotCurrent)
-              @js{$(@(getEl main)).removeClass("bg-danger")})
-    (function (addEvent c)
-              (inject-component c events)
-              @js{@numEvents += 1})
-    (function (createAndAddEvent name time)
-             @js{
-                 @addEvent(@(instantiate eventTemplate
-                                #:then (construct eventTrigger name time)))
-                 }))))
+   (script ())))
 
 
 (define (day-name n)
@@ -90,7 +27,13 @@
     class: "bg-success text-white"
     (card-header n)))
 
-(define (calendar month-name (events (hash)))
+(define (calendar the-date (events (hash)))
+  (define month-name
+    (~t the-date "MMMM"))
+
+  (define start-wday
+    (->wday the-date))
+
   (enclose
    (define (normal-day n)
      (day-square #:id (~a (ns 'dayTarget) n) n events))
@@ -106,36 +49,55 @@
         (day-name "Fri") 
         (day-name "Sat")))
 
+    (define week-1-end-wday
+      (- 7 (sub1 start-wday)))
+
     (define week-1 
       (card-group
-        (day-square 31 #:active? #f)
-        (map normal-day (range 1 7))))
+       (map (thunk* (day-square "" #:active? #f))
+            (range start-wday))
+       (map normal-day (range 1 week-1-end-wday))))
+
+    (define week-2-end-wday (+ 7 week-1-end-wday))
 
     (define week-2
       (card-group
-       (map normal-day (range 7 14))))
+       (map normal-day (range week-1-end-wday week-2-end-wday))))
+
+    (define week-3-end-wday (+ 7 week-2-end-wday))
 
     (define week-3
       (card-group
-       (map normal-day (range 14 21))))
+       (map normal-day (range week-2-end-wday week-3-end-wday))))
+
+    (define week-4-end-wday (+ 7 week-3-end-wday))
 
     (define week-4
       (card-group
-       (map normal-day (range 21 28))))
+       (map normal-day (range week-3-end-wday week-4-end-wday))))
+
+    (define week-5-end-day
+      (days-in-month (->year the-date)
+                     (->month the-date)))
+
+    (define week-5-end-wday
+      (->wday (date (->year the-date)
+                    (->month the-date)
+                    week-5-end-day)))
 
     (define week-5
       (card-group
-        (map normal-day (range 28 31))
-        (day-square 1 #:active? #f)
-        (day-square 2 #:active? #f)
-        (day-square 3 #:active? #f)
-        (day-square 4 #:active? #f)))
+       (map normal-day (range week-4-end-wday
+                              (add1 week-5-end-day)))
+
+       (map (thunk* (day-square "" #:active? #f))
+            (range (- 7 (add1 week-5-end-wday))))))
 
     (card id: (ns 'main) 
      (card-header 
       (h3 month-name))
      (card-body 
-      (button-danger on-click: (call 'advanceDay) (i class: "fas fa-clock") " Advance")
+      ;(button-danger on-click: (call 'advanceDay) (i class: "fas fa-clock") " Advance")
       day-names
       week-1 
       week-2
@@ -164,10 +126,9 @@
                #:on-click (cb noop))
   (enclose 
    (button-f 
-       id: (ns 'main)
-       class: "btn btn-primary btn-block"
-             on-click: (call 'clicked)
-             (span (b id: (ns 'timeSpan) time) " " (span id: (ns 'nameSpan) name)))
+    id: (ns 'main)
+    on-click: (call 'clicked)
+    (span (b id: (ns 'timeSpan) time) " " (span id: (ns 'nameSpan) name)))
    (script ([nameSpan (ns 'nameSpan)]
             [timeSpan (ns 'timeSpan)]
             [myCb @js{()=>{@(cb @getEl{@main})}}]
@@ -194,6 +155,6 @@
                     (js-runtime)
                     (container
                       (card-group
-                        (calendar "July")))))))
+                        (calendar (date 2020 7))))))))
           #:to "out"))
 

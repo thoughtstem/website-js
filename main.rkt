@@ -161,7 +161,7 @@
       ... 
       ;Putting state vars after functions allows for "constructors" in the form of variables that call previously defined functions.
       (set-var k v)
-      ...))
+      ...)))
 
 (define-syntax-rule (script stuff ...)
    (script/inline

@@ -53,6 +53,26 @@
                          line-color
                          bg-color)
   @script/inline{
+ var @(id 'isMobile) = {
+            Android: function () {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function () {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function () {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function () {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function () {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function () {
+                return (@(id 'isMobile).Android() || @(id 'isMobile).BlackBerry() || @(id 'isMobile).iOS() || @(id 'isMobile).Opera() || @(id 'isMobile).Windows());
+            }
+        };
  var @(id 'sketch) = function(p){
   // TURTLE STUFF:
   let x, y; // the current position of the turtle
@@ -168,7 +188,16 @@
    whereinstring = 0;
    };
   };
- var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+window.onload = function(){
+ if (@(id 'isMobile).any()){
+  var parent = document.getElementById("@(id 'main)");
+  parent.classList.remove('bg-transparent');
+  parent.style.backgroundColor = '@bg-color';
+ }
+ else {
+  var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+ }
+}
  }  )
 
 (module+ main

@@ -7,11 +7,14 @@
 (define (accordion-card 
            #:header (header "Click to show")
            #:shown? (shown? #f)
+           #:dark? (dark? #f)
            . content)
   (enclose
    (card
-    (card-header 
-     (button-link on-click: (call 'toggle)
+    class: (if dark? "bg-secondary" "")
+    (card-header
+     (button-link class: (if dark? "text-white" "")
+                  on-click: (call 'toggle)
        header))
     (div id: (id 'collapse1)
          class: (~a "collapse " (if shown? "show" ""))

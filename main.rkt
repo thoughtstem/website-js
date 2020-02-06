@@ -1,6 +1,6 @@
 #lang at-exp racket
 
-(provide (all-defined-out)
+(provide (except-out (all-defined-out) state) 
          (all-from-out website/bootstrap)
 	 (all-from-out "./js.rkt"))
 

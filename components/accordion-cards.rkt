@@ -18,7 +18,9 @@
        header))
     (div id: (id 'collapse1)
          class: (~a "collapse " (if shown? "show" ""))
-      (card-body content)))
+      (card-body
+       class: (if dark? "text-white" "")
+       content)))
    (script ([toToggle (id 'collapse1)])
      (function (toggle)
        @js{$("#"+@toToggle).toggle()}))))

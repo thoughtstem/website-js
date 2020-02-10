@@ -1,4 +1,4 @@
-#lang at-exp racket
+#lang at-exp web-server ;Made this webserver lang so things serialize appropriately across continuations.
 
 (provide (except-out (all-defined-out) state) 
          (all-from-out website/bootstrap)
@@ -24,10 +24,10 @@
 
 ;Namespace-aware stuff
 
-(define namespace (make-parameter ""))
+(define namespace (make-web-parameter ""))
 
 (define-syntax-rule (with-namespace n stuff ...)
-  (parameterize ([namespace n])
+  (web-parameterize ([namespace n])
     (let () stuff ...)))
 
 

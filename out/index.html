@@ -1,4 +1,11 @@
-<html><head><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /><meta charset="utf-8" /></head><body><script src="/js/jquery-3.4.1.min.js"></script><script src="/js/moment.min.js"></script><script>
+<html><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /><script>
+//<![CDATA[
+function preloadSupported() {
+  var relList = document.createElement('link').relList;
+  return !!(relList && relList.supports && relList.supports('preload'));
+}
+//]]>
+</script><script async="" src="/js/modernizr-custom.js"></script><link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="/css/fontawesome.min.css" /><link rel="stylesheet" type="text/css" href="/css/fontawesome-brands.min.css" /><link rel="stylesheet" type="text/css" href="/css/fontawesome-solid.min.css" /></head><body><script src="/js/jquery-3.4.1.min.js"></script><script async="" src="/js/moment.min.js"></script><script>
 //<![CDATA[
    function replaceAllText(root, find, replace) {
 
@@ -69,35 +76,267 @@ function injectComponent(template, target, oldNamespace){
           actualTemplate.afterInject(window.injected)
 }
 //]]>
-</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns1400_main()" id="ns1400_clicker"><span id="ns1400_count">0</span></button></div></div><script>
+</script><div class="jumbotron" id="ns697_jumbo"><div class="card-deck"><div class="jumbotron"><div class="card-deck"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns698_main()" id="ns698_clicker">0</button></div></div><script>
 //<![CDATA[
-window.ns1400_main = function(){
-window.ns1400_inc(1);
+window.ns698_main = function(){
+window.ns698_inc(1);
 
-window.ns1400_render()
+
 }
 
-window.ns1400_clear = function(){
-window.ns1400_count  = 0;
+window.ns698_clear = function(){
+window.ns698_count  = 0;
+ window.ns698_render();
 
-window.ns1400_render()
+
 }
 
-window.ns1400_inc = function(amount){
-window.ns1400_count  +=  amount;
+window.ns698_inc = function(amount){
+window.ns698_count  +=  amount;
+ window.ns698_render();
+ window.ns697_main(window.ns698_count);
+
+
+}
+
+window.ns698_render = function(){
+document.getElementById( window.ns698_button ).innerHTML =  window.ns698_count;
+
+
+}
+
+window.ns698_button="ns698_clicker";
+window.ns698_count=0;
+
+//]]>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-success" onClick="window.ns699_main()" id="ns699_clicker">0</button></div></div><script>
+//<![CDATA[
+window.ns699_main = function(){
+window.ns699_inc(1);
+
+
+}
+
+window.ns699_clear = function(){
+window.ns699_count  = 0;
+ window.ns699_render();
+
+
+}
+
+window.ns699_inc = function(amount){
+window.ns699_count  +=  amount;
+ window.ns699_render();
+ window.ns697_main(window.ns699_count);
+
+
+}
+
+window.ns699_render = function(){
+document.getElementById( window.ns699_button ).innerHTML =  window.ns699_count;
+
+
+}
+
+window.ns699_button="ns699_clicker";
+window.ns699_count=0;
+
+//]]>
+</script><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-danger" onClick="window.ns700_main()" id="ns700_clicker">0</button></div></div><script>
+//<![CDATA[
+window.ns700_main = function(){
+window.ns700_inc(1);
+
+
+}
+
+window.ns700_clear = function(){
+window.ns700_count  = 0;
+ window.ns700_render();
+
+
+}
+
+window.ns700_inc = function(amount){
+window.ns700_count  +=  amount;
+ window.ns700_render();
+ window.ns697_main(window.ns700_count);
+
+
+}
+
+window.ns700_render = function(){
+document.getElementById( window.ns700_button ).innerHTML =  window.ns700_count;
+
+
+}
+
+window.ns700_button="ns700_clicker";
+window.ns700_count=0;
+
+//]]>
+</script></div></div></div></div><script>
+//<![CDATA[
+window.ns697_main = function(amount){
+window.ns697_count  = amount 
+ if( window.ns697_count  == 10){ 
+ document.getElementById( window.ns697_jumbo ).style.backgroundColor = "red" 
+ };
+
+
+}
+
+window.ns697_count=0;
+window.ns697_jumbo="ns697_jumbo";
+
+//]]>
+</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns701_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns701_total"></span><hr /><div class="row" id="ns701_target"></div><template id="ns701_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns702_main()" id="ns702_clicker">0</button></div></div><script>
+//<![CDATA[
+window.ns702_main = function(){
+window.ns702_inc(1);
+
+
+}
+
+window.ns702_clear = function(){
+window.ns702_count  = 0;
+ window.ns702_render();
+
+
+}
+
+window.ns702_inc = function(amount){
+window.ns702_count  +=  amount;
+ window.ns702_render();
+ window.ns701_updateTotal(window.ns702_count);
+
+
+}
+
+window.ns702_render = function(){
+document.getElementById( window.ns702_button ).innerHTML =  window.ns702_count;
+
+
+}
+
+window.ns702_button="ns702_clicker";
+window.ns702_count=0;
+
+//]]>
+</script></div></template><button type="button" class="btn btn-danger" onClick="window.ns701_clearAll()">Clear All</button></div></div><script>
+//<![CDATA[
+window.ns701_clearAll = function(){
+for(var c of  window.ns701_children ) 
+    window[getNamespace( c ) +  "_clear" ](  );
+
+
+}
+
+window.ns701_newClicker = function(){
+injectComponent(window.ns701_template, window.ns701_target, "ns701");;
+   window.ns701_children .push(injected) ;
+
+
+}
+
+window.ns701_updateTotal = function(){
+window.ns701_total  += 1 
+ document.getElementById( window.ns701_totalDiv ).innerHTML = "Total:" +  window.ns701_total;
  ;
 
-window.ns1400_render()
-}
-
-window.ns1400_render = function(){
-document.getElementById( " ns1400_count ".trim() ) .innerHTML =  ns1400_count;
-
 
 }
 
-window.ns1400_button="ns1400_clicker";
-window.ns1400_count=0;
+window.ns701_target="ns701_target";
+window.ns701_template="ns701_template";
+window.ns701_totalDiv="ns701_total";
+window.ns701_total=0;
+window.ns701_children=[];
+
+//]]>
+</script><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns703_newClicker()">I make clicker-makers</button><span class="badge badge-pill badge-primary" id="ns703_total"></span><hr /><div class="row" id="ns703_target"></div><template id="ns703_template"><div class="col"><div class="card"><div class="card-body"><button type="button" class="btn btn-primary" onClick="window.ns704_newClicker()">I make clickers</button><span class="badge badge-pill badge-primary" id="ns704_total"></span><hr /><div class="row" id="ns704_target"></div><template id="ns704_template"><div class="col"><div class="card"><div class="card-body"><h5 class="card-title">Click Me</h5><button type="button" class="btn btn-primary" onClick="window.ns705_main()" id="ns705_clicker">0</button></div></div><script>
+//<![CDATA[
+window.ns705_main = function(){
+window.ns705_inc(1);
+
+
+}
+
+window.ns705_clear = function(){
+window.ns705_count  = 0;
+ window.ns705_render();
+
+
+}
+
+window.ns705_inc = function(amount){
+window.ns705_count  +=  amount;
+ window.ns705_render();
+ window.ns704_updateTotal(window.ns705_count);
+
+
+}
+
+window.ns705_render = function(){
+document.getElementById( window.ns705_button ).innerHTML =  window.ns705_count;
+
+
+}
+
+window.ns705_button="ns705_clicker";
+window.ns705_count=0;
+
+//]]>
+</script></div></template><button type="button" class="btn btn-danger" onClick="window.ns704_clearAll()">Clear All</button></div></div><script>
+//<![CDATA[
+window.ns704_clearAll = function(){
+for(var c of  window.ns704_children ) 
+    window[getNamespace( c ) +  "_clear" ](  );
+
+
+}
+
+window.ns704_newClicker = function(){
+injectComponent(window.ns704_template, window.ns704_target, "ns704");;
+   window.ns704_children .push(injected) ;
+
+
+}
+
+window.ns704_updateTotal = function(){
+window.ns704_total  += 1 
+ document.getElementById( window.ns704_totalDiv ).innerHTML = "Total:" +  window.ns704_total;
+ window.ns703_updateTotal(window.ns704_total);
+
+
+}
+
+window.ns704_target="ns704_target";
+window.ns704_template="ns704_template";
+window.ns704_totalDiv="ns704_total";
+window.ns704_total=0;
+window.ns704_children=[];
+
+//]]>
+</script></div></template></div></div><script>
+//<![CDATA[
+window.ns703_newClicker = function(){
+injectComponent(window.ns703_template, window.ns703_target, "ns703");;
+
+
+}
+
+window.ns703_updateTotal = function(){
+window.ns703_total  += 1 
+ document.getElementById( window.ns703_totalDiv ).innerHTML = "Total:" +  window.ns703_total;
+
+
+}
+
+window.ns703_target="ns703_target";
+window.ns703_template="ns703_template";
+window.ns703_totalDiv="ns703_total";
+window.ns703_total=0;
 
 //]]>
 </script><script src="/js/bootstrap.bundle.min.js"></script><script>
@@ -106,4 +345,4 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 //]]>
-</script><script src="/js/font-awesome.js"></script></body></html>
+</script></body></html>

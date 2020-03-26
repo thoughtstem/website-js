@@ -1,7 +1,6 @@
 #lang at-exp racket
 
 (provide calendar 
-         calendar2
          event)
 
 (require website-js
@@ -14,7 +13,10 @@
                     #:active? (active? #t)
                     (events (hash)))
   (enclose
-   (card id: id class: "dayTarget" 
+    (card id: id class: (~a "dayTarget" (if (not active?)
+                                          " d-none d-sm-block"
+                                          ""
+                                          )) 
     (card-body id: (ns 'main)
                (p class: "badge badge-pill badge-light"
                   day-num))
@@ -26,103 +28,10 @@
 
 (define (day-name n)
   (card 
-    class: "bg-success text-white"
-    (card-header n)))
-
-(define (calendar2 the-date (events (hash)))
-  (define month-name
-    (~t the-date "MMMM"))
-
-  ;returns day of week month starts on
-  (define start-wday
-    (->wday the-date))
-
-  (enclose
-   (define (normal-day n)
-     (day-square #:id (~a (ns 'dayTarget) n) n events))
-
-    (define day-names
-      (div
-        class: "card-group"
-        (day-name "Sun") 
-        (day-name "Mon") 
-        (day-name "Tue") 
-        (day-name "Wed")
-        (day-name "Thu") 
-        (day-name "Fri") 
-        (day-name "Sat")))
-
-    (define week-1-end-wday
-      (- 7 (sub1 start-wday)))
-
-    (define week-1 
-      (card-group
-       (map (thunk* (day-square "" #:active? #f))
-            (range start-wday))
-       (map normal-day (range 1 week-1-end-wday))))
-
-    (define week-2-end-wday (+ 7 week-1-end-wday))
-
-    (define week-2
-      (card-group
-       (map normal-day (range week-1-end-wday week-2-end-wday))))
-
-    (define week-3-end-wday (+ 7 week-2-end-wday))
-
-    (define week-3
-      (card-group
-       (map normal-day (range week-2-end-wday week-3-end-wday))))
-
-    (define week-4-end-wday (+ 7 week-3-end-wday))
-
-    (define week-4
-      (card-group
-       (map normal-day (range week-3-end-wday week-4-end-wday))))
-
-    (define week-5-end-day
-      (days-in-month (->year the-date)
-                     (->month the-date)))
-
-    (define week-5-end-wday
-      (->wday (date (->year the-date)
-                    (->month the-date)
-                    week-5-end-day)))
-
-    (define week-5
-      (card-group
-       (map normal-day (range week-4-end-wday
-                              (add1 week-5-end-day)))
-
-       (map (thunk* (day-square "" #:active? #f))
-            (range (- 7 (add1 week-5-end-wday))))))
-
-    (card id: (ns 'main) 
-     (card-header 
-      (h3 month-name))
-     (card-body 
-      ;(button-danger on-click: (call 'advanceDay) (i class: "fas fa-clock") " Advance")
-      day-names
-      week-1 
-      week-2
-      week-3
-      week-4
-      week-5))
-    (script ([dayTarget (ns 'dayTarget)]
-             [currentDay 0]
-             [contruct @js{setTimeout(()=>{@(call 'advanceDay)},1)}])
-            (function (advanceDay)
-               (set-var currentDay @js{@currentDay + 1})
-               @js{
-                 document.querySelectorAll("@(id# 'main) .dayTarget").forEach(function(e){ 
-                   @(-> 'e setNotCurrent)
-                 })
-               }
-               (-> @getEl{@dayTarget + @currentDay}
-                         setCurrent))
-            (function (addEvent day event)
-                      (-> @getEl{@dayTarget + day}
-                          addEvent
-                          event)))))
+    class: "bg-success text-white d-none d-sm-block"
+    (card-header (span class: "d-sm-none d-md-block" n)
+                 (span class: "d-none d-sm-block d-md-none" (substring n 0 1))
+                 )))
 
 (define (calendar the-date (events (hash)))
   (define month-name
@@ -145,50 +54,47 @@
         (day-name "Thu") 
         (day-name "Fri") 
         (day-name "Sat")))
+      
+    (define total-days (days-in-month (->year the-date)
+                                      (->month the-date))) 
+    
+    (define blank-squares (map (thunk* (day-square "" #:active? #f))
+                               (range start-wday)))
 
-    (define week-1-end-wday
-      (- 7 (sub1 start-wday)))
+    (define non-blank-squares 
+      (map normal-day (range 1 (add1 total-days)))
+      )
 
-    (define week-1 
-      (card-group
-       (map (thunk* (day-square "" #:active? #f))
-            (range start-wday))
-       (map normal-day (range 1 week-1-end-wday))))
+    (define all-squares (append blank-squares non-blank-squares))
 
-    (define week-2-end-wday (+ 7 week-1-end-wday))
+    (define weeks
+      '())
+      
+    (let loop () 
+      (define current-week (if (> 7 (length all-squares))
+                             all-squares
+                             (take all-squares 7)
+                             ))
+      (set! all-squares (if (> 7 (length all-squares))
+                          '()
+                          (drop all-squares 7)
+                          ))
+      (set! weeks (append weeks
+                          (list
+                            (card-group
+                              (if (= 7 (length current-week))
+                                current-week
+                                (append current-week (map (thunk* (day-square "" #:active? #f))
+                                                          (range (- 7 (length current-week)))
+                                                          )) 
+                                )
+                              ))))
+      
+      (when (= 7 (length current-week))
+        (loop)
+        )
+      )
 
-    (define week-2
-      (card-group
-       (map normal-day (range week-1-end-wday week-2-end-wday))))
-
-    (define week-3-end-wday (+ 7 week-2-end-wday))
-
-    (define week-3
-      (card-group
-       (map normal-day (range week-2-end-wday week-3-end-wday))))
-
-    (define week-4-end-wday (+ 7 week-3-end-wday))
-
-    (define week-4
-      (card-group
-       (map normal-day (range week-3-end-wday week-4-end-wday))))
-
-    (define week-5-end-day
-      (days-in-month (->year the-date)
-                     (->month the-date)))
-
-    (define week-5-end-wday
-      (->wday (date (->year the-date)
-                    (->month the-date)
-                    week-5-end-day)))
-
-    (define week-5
-      (card-group
-       (map normal-day (range week-4-end-wday
-                              (add1 week-5-end-day)))
-
-       (map (thunk* (day-square "" #:active? #f))
-            (range (- 7 (add1 week-5-end-wday))))))
 
     (card id: (ns 'main) 
      (card-header 
@@ -196,11 +102,7 @@
      (card-body 
       ;(button-danger on-click: (call 'advanceDay) (i class: "fas fa-clock") " Advance")
       day-names
-      week-1 
-      week-2
-      week-3
-      week-4
-      week-5))
+      weeks))
     (script ([dayTarget (ns 'dayTarget)]
              [currentDay 0]
              [contruct @js{setTimeout(()=>{@(call 'advanceDay)},1)}])

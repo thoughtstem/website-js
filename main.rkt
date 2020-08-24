@@ -147,6 +147,25 @@
                   ...
                   (list html js)))
 
+;Abstraction barriers
+(define (enclosed-html e) (first e))
+(define (enclosed-js e) 
+  (define with-tags
+    (~a
+      (with-output-to-string ;TODO shorten
+	(thunk
+	  (output-xml (second e))))))
+
+  ;Hmmm, may have problems if scripts contain <script> tags,
+  ;  might want to only get the first and last ones.
+  (regexp-replaces
+    with-tags
+    '([#rx"<script>" ""]
+      [#rx"</script>" ""]
+      [#rx"//<!\\[CDATA\\[" ""] 
+      [#rx"//\\]\\]>" ""])
+    )
+  )
 
 
 (define-syntax-rule (state ([k v] ...)
@@ -187,7 +206,7 @@
     (string-replace
       with-tags 
       "</script>" 
-      (if keep-script-tags "</scr\"+\"pt>" "")))
+      (if keep-script-tags "</scri\"+\"pt>" "")))
 
 
   (if keep-script-tags

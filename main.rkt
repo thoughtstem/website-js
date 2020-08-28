@@ -42,8 +42,19 @@
   (string->symbol
     @~a{@name(@params[(map val args)])}))
 
+;Deprecated: Use (call-method ) instead
 (define-syntax-rule (-> elem fun args ...)
-  @js{window[getNamespace(@elem) + @(val (~a "_" 'fun))](@params[(map val (list args ...))])})
+  @js{window[getNamespace(@elem) + @(val (~a "_" 'fun))](@params[(map val (list args ...))])}
+  )
+
+(define (call-method elem fun-name . args)
+  @js{
+  (function(){
+  var funName =  @elem .getAttribute("data-ns") + @(val (~a "_" @fun-name))
+  return window[funName](@params[(map val args)])
+  })()
+  }
+  )
 
 ;Simple currying mechanic
 (define (callback fun . args)
@@ -121,6 +132,7 @@
       (map ~a (flatten s)))))
 
 ;Make this take dom objects and strings alike
+;Deprecated: use html->js-injector, which does not require template nonsense or the special runtime
 (define (inject-component template target)
   (string->symbol
     @~a{
@@ -145,27 +157,35 @@
   (with-namespace (gensym 'ns) 
                   stuff 
                   ...
-                  (list html js)))
+                  (list (add-namespace-attribute html) js)))
+
+(define (add-namespace-attribute elem)
+  (local-require website/util)
+  (set-attribute elem 'data-ns: (namespace)))
 
 ;Abstraction barriers
-(define (enclosed-html e) (first e))
+(define (enclosed-html e) 
+  (if (list? e)
+      (first e)
+      e))
 (define (enclosed-js e) 
-  (define with-tags
-    (~a
-      (with-output-to-string ;TODO shorten
-	(thunk
-	  (output-xml (second e))))))
+  (if (list? e)
+      (let ()
+	(define with-tags
+	  (~a
+	    (with-output-to-string ;TODO shorten
+	      (thunk
+		(output-xml (second e))))))
 
-  ;Hmmm, may have problems if scripts contain <script> tags,
-  ;  might want to only get the first and last ones.
-  (regexp-replaces
-    with-tags
-    '([#rx"<script>" ""]
-      [#rx"</script>" ""]
-      [#rx"//<!\\[CDATA\\[" ""] 
-      [#rx"//\\]\\]>" ""])
-    )
-  )
+	;Hmmm, may have problems if scripts contain <script> tags,
+	;  might want to only get the first and last ones.
+	(regexp-replaces
+	  with-tags
+	  '([#rx"<script>" ""]
+	    [#rx"</script>" ""]
+	    [#rx"//<!\\[CDATA\\[" ""] 
+	    [#rx"//\\]\\]>" ""])))
+      ""))
 
 
 (define-syntax-rule (state ([k v] ...)
@@ -235,5 +255,60 @@
 (define (getEl . stuff)
   @js{document.getElementById(@stuff)})
 
+(define (~j template . args)
+  (~s
+    (string-replace
+      (apply format template args)
+      "NAMESPACE" (~a (namespace)))))
 
 
+;An injector is a JS function that takes an injection DOM target, and
+;  injects a newly instatiated DOM enclosure there,
+;  Freshens up the namespaces for that enclosure and all child enclosures
+;  evals the JS code associated with that enclosure
+(define (html->js-injector e)
+  (define the-html (enclosed-html e))
+  (define the-js (enclosed-js e))
+
+  @js{
+    function(target){
+      var element = document.implementation.createHTMLDocument()
+      element.body.innerHTML = @(string-replace
+				  (~s (element->string e))
+				  "</script>"
+				  "</scri\"+\"pt>")
+      
+
+      var nonScripts = Array.from(element.body.querySelectorAll(':not(script)'))
+      var nameSpaces = nonScripts.map((ns)=>ns.getAttribute("data-ns")).filter((i)=>i)
+
+      //Now redo element with the right namespace
+      //  Fixes the script tags too
+
+      if(!window.namespaceMappingIndex){
+        window.namespaceMappingIndex = 0
+      }
+
+      window.namespaceMappingIndex += 1
+
+      nameSpaces.map((ns)=>{
+		     var Nns = "N"+ window.namespaceMappingIndex + ns
+		     element.body.innerHTML = element.body.innerHTML.replace(new RegExp(ns, "g"),Nns) 
+		     })
+
+      //Now that the enclosures are in the DOM, eval the scripts
+
+      var scripts = Array.from(element.body.getElementsByTagName('script')).map((s)=>s.innerHTML)
+
+
+      var e = element.body.children.item(0) //Should only be one, aside from the script
+      var ret = target.appendChild(e)
+
+      for (var n = 0; n < scripts.length; n++){
+        var s = scripts[n]
+        eval(s)
+      }
+
+      return ret
+    }
+  })

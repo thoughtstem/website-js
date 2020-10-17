@@ -29,7 +29,6 @@
                              content
                              @style/inline{
  @(id# 'canvas) {
-  @;#pointilism-sketch-container {
   position:absolute;
   top:0;
   left:0;
@@ -188,17 +187,22 @@
    whereinstring = 0;
    };
   };
-window.onload = function(){
- if (@(id 'isMobile).any()){
-  var parent = document.getElementById("@(id 'main)");
-  parent.classList.remove('bg-transparent');
-  parent.style.backgroundColor = '@bg-color';
+ const @(id 'onload) = function(){
+  if (@(id 'isMobile).any()){
+   var parent = document.getElementById("@(id 'main)");
+   parent.classList.remove('bg-transparent');
+   parent.style.backgroundColor = '@bg-color';
+  }
+  else {
+   let @(id 'p5) = new p5(@(id 'sketch),'@(id 'canvas)');
+  }
  }
- else {
-  var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+ if(window.addEventListener){
+  window.addEventListener('load', @(id 'onload));
+  }else{
+  window.attachEvent('onload', @(id 'onload));
  }
-}
- }  )
+})
 
 (module+ main
   (render (list
@@ -207,7 +211,7 @@ window.onload = function(){
                   (content
                     (js-runtime)
                     (include-p5-js)
-                    (l-system #:x "240"
+                    (l-system #:x "p.width/3"      ;"240"
                               #:y "p.height/3*2"
                               #:start-angle -150
                               #:step 18
@@ -220,19 +224,22 @@ window.onload = function(){
                               #:line-color "rgba(0,255,128,0.4)"
                               #:max-radius 0
                               class: "p-5 card bg-transparent mb-0 text-center"
-                           style: (properties height: "300")
-                           (card class: "border-dark col-4 mx-auto"
-                                 (card-body (h4 "Dragon Curve"))))
+                           style: (properties height: "300px")
+                           (card class: "border-dark p-2 mx-auto"
+                                 style: (properties 'overflow: "hidden")
+                                 (h4 class: "mb-0"
+                                     "Dragon Curve")))
                     (l-system #:step 16
                               #:loops 4
                               #:max-radius 15
                               #:bg-color "#e9ecef"
                               class: "p-5 card bg-transparent text-center"
                               style: (properties 'overflow: "hidden"
-                                                        height: "300")
-                      (card class: "border-dark col-6 mx-auto"
-                            (card-body (h4 "Sierpinksi Triangle with Arrowhead Curves")))
-                      )
+                                                 height: "300px")
+                              (card class: "border-dark p-2 mx-auto"
+                                    style: (properties 'overflow: "hidden")
+                                    (h4 class: "mb-0"
+                                        "Sierpinksi Triangle with Arrowhead Curves")))
                     (l-system  #:step  20
                                #:angle  -90
                                #:axiom  "F"
@@ -242,9 +249,10 @@ window.onload = function(){
                                #:line-color "rgba(100,100,100,0.4)"
                                class: "p-5 card bg-transparent text-center"
                                style: (properties 'overflow: "hidden"
-                                                  height: "300")
-                               (card class: "border-dark col-4 mx-auto"
-                                (card-body (h4 "Koch Curve")))
-                               )
+                                                  height: "300px")
+                               (card class: "border-dark p-2 mx-auto"
+                                     style: (properties 'overflow: "hidden")
+                                     (h4 class: "mb-0"
+                                         "Koch Curve")))
                     ))))
           #:to "out"))

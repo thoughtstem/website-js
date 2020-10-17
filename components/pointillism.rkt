@@ -5,15 +5,14 @@
 (require website-js)
 
 (define (pointillism #:color-1 [c1 "rgba(255, 200, 0, 0.024)"]
-                     #:color-2 [c2 "rgba(237, 70, 41, 0.004)"]
-                     #:bg-color [bg-color "white"]
-                     . content)
+               #:color-2 [c2 "rgba(237, 70, 41, 0.004)"]
+               #:bg-color [bg-color "white"]
+               . content)
   (enclose
    (apply div (flatten (list id: (id 'main)
                              content
                              @style/inline{
  @(id# 'canvas) {
-  @;#pointilism-sketch-container {
   position:absolute;
   top:0;
   left:0;
@@ -116,17 +115,22 @@ var @(id 'sketch) = function(p){
    
    };
 };
-window.onload = function(){
- if (@(id 'isMobile).any()){
-  var parent = document.getElementById("@(id 'main)");
-  parent.classList.remove('bg-transparent');
-  parent.style.backgroundColor = '@bg';
+ const @(id 'onload) = function(){
+  if (@(id 'isMobile).any()){
+   var parent = document.getElementById("@(id 'main)");
+   parent.classList.remove('bg-transparent');
+   parent.style.backgroundColor = '@bg';
+  }
+  else {
+   let @(id 'p5) = new p5(@(id 'sketch),'@(id 'canvas)');
+  }
  }
- else {
-  var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+ if(window.addEventListener){
+  window.addEventListener('load', @(id 'onload));
+  }else{
+  window.attachEvent('onload', @(id 'onload));
  }
-}
- }  )
+})
 
 (module+ main
   (render (list
@@ -135,25 +139,32 @@ window.onload = function(){
                   (content
                     (js-runtime)
                     (include-p5-js)
-                    (jumbotron class: "mb-0" style: (properties height: "400"))
                     (pointillism #:bg-color "#6c757d"
                                  class: "p-5 card bg-transparent"
                                  style: (properties 'overflow: "hidden"
-                                              height: "300")
-                      (button-primary "HI") 
-                      (button-success "HI") 
-                      (button-warning "HI") 
-                      (button-danger "HI") 
-                      )
+                                              height: "300px")
+                                 (card class: "border-dark p-2 mx-auto"
+                                       style: (properties 'overflow: "hidden")
+                                       (h4 class: "mb-0"
+                                           "Pointillism Demo 1")))
                     (pointillism #:color-1 "rgba(0, 255, 255, 0.024)"
                                  #:color-2 "rgba(255, 0, 255, 0.004)"
                                  class: "p-5 card bg-transparent"
                                  style: (properties 'overflow: "hidden"
-                                              height: "300")
-                      (button-primary "BYE") 
-                      (button-success "BYE") 
-                      (button-warning "BYE") 
-                      (button-danger "BYE") 
-                      )
+                                              height: "300px")
+                                 (card class: "border-dark p-2 mx-auto"
+                                       style: (properties 'overflow: "hidden")
+                                       (h4 class: "mb-0"
+                                           "Pointillism Demo 2")))
+                    (pointillism #:bg-color 'black
+                                 #:color-1 "rgba(100, 200, 0, 0.024)"
+                                 #:color-2 "rgba(128, 0, 255, 0.004)"
+                                 class: "p-5 card bg-transparent"
+                                 style: (properties 'overflow: "hidden"
+                                              height: "300px")
+                                 (card class: "border-dark p-2 mx-auto"
+                                       style: (properties 'overflow: "hidden")
+                                       (h4 class: "mb-0"
+                                           "Pointillism Demo 2")))
                     ))))
           #:to "out"))

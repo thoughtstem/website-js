@@ -120,16 +120,21 @@ var @(id 'sketch) = function(p){
    };
 };
 
-window.onload = function(){
- if (@(id 'isMobile).any()){
-  var parent = document.getElementById("@(id 'main)");
-  parent.classList.remove('bg-transparent');
-  parent.style.backgroundColor = '@bg';
+const @(id 'onload) = function(){
+  if (@(id 'isMobile).any()){
+   var parent = document.getElementById("@(id 'main)");
+   parent.classList.remove('bg-transparent');
+   parent.style.backgroundColor = '@bg';
+  }
+  else {
+   let @(id 'p5) = new p5(@(id 'sketch),'@(id 'canvas)');
+  }
  }
- else {
-  var myp5 = new p5(@(id 'sketch),'@(id 'canvas)');
+ if(window.addEventListener){
+  window.addEventListener('load', @(id 'onload));
+  }else{
+  window.attachEvent('onload', @(id 'onload));
  }
-}
 }  )
 
 (module+ main
@@ -139,25 +144,32 @@ window.onload = function(){
                   (content
                     (js-runtime)
                     (include-p5-js)
-                    (jumbotron class: "mb-0" style: (properties height: "400"))
+                    (recursive-trees #:bg-color 'black
+                                     #:color-1 "rgba(0, 255, 0, 0.5)"
+                                     #:color-2 "rgba(255, 255, 0, 0.5)"
+                                     class: "p-5 card bg-transparent"
+                                     style: (properties 'overflow: "hidden"
+                                                        height: "300px")
+                                     (card class: "border-dark p-2 mx-auto"
+                                           style: (properties 'overflow: "hidden")
+                                           (h4 class: "mb-0"
+                                               "Recursive Trees 1")))
                     (recursive-trees #:bg-color "#6c757d"
                                      class: "p-5 card bg-transparent"
                                      style: (properties 'overflow: "hidden"
-                                                        height: "300")
-                      (button-primary class: "btn-sm col-3 mx-auto" "HI") 
-                      (button-success class: "btn-sm col-3 mx-auto" "HI") 
-                      (button-warning class: "btn-sm col-3 mx-auto" "HI") 
-                      (button-danger class: "btn-sm col-3 mx-auto" "HI") 
-                      )
+                                                        height: "300px")
+                                     (card class: "border-dark p-2 mx-auto"
+                                           style: (properties 'overflow: "hidden")
+                                           (h4 class: "mb-0"
+                                               "Recursive Trees 2")))
                     (recursive-trees #:color-1 "rgba(0, 255, 128, 0.5)"
                                      #:color-2 "rgba(255, 0, 255, 0.5)"
                                      class: "p-5 card bg-transparent"
                                      style: (properties 'overflow: "hidden"
-                                                        height: "300")
-                      (button-primary class: "btn-sm col-3 mx-auto" "BYE") 
-                      (button-success class: "btn-sm col-3 mx-auto" "BYE") 
-                      (button-warning class: "btn-sm col-3 mx-auto" "BYE") 
-                      (button-danger class: "btn-sm col-3 mx-auto" "BYE") 
-                      )
+                                                        height: "300px")
+                                     (card class: "border-dark p-2 mx-auto"
+                                           style: (properties 'overflow: "hidden")
+                                           (h4 class: "mb-0"
+                                               "Recursive Trees 3")))
                     ))))
           #:to "out"))
